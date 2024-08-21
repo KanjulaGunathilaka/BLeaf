@@ -1,0 +1,155 @@
+.coming-wrapper{
+    position: relative;
+    z-index: 1;
+	padding:25px;
+	
+	.logo-header{
+		float: unset;
+		margin: 0 auto 10px;
+		height: 65px;
+		width: 160px;
+	}
+	.bg-img{
+		position:absolute;
+		top:20px;
+		z-index:-1;
+	}
+	.dz-social-icon{
+		ul{
+			margin-right: -20px;
+			li{
+				display:inline-block;
+				padding:0 6px;
+				margin-right: 20px;
+				a{
+					font-size:18px;
+					i{
+						color:#000000;
+					}
+				}
+			}
+		}
+	}
+	@include respond('laptop'){
+		.bg-img{
+			top:25px;
+			left:80px;
+		}
+	}
+	@include respond('tab-land'){
+		padding:45px 25px 25px;
+		.bg-img{
+			top:10px;
+			left:14px;
+		}
+	}
+	@include respond('tab-port'){
+		padding:25px;
+		.bg-img{
+			display:none;
+		}
+		.dz-social-icon{
+			ul{
+				li{
+					a{
+						font-size:16px;
+					}
+				}
+			}
+		}
+	}
+	@include respond('phone'){
+		padding:25px 0 25px;
+		
+	}
+	.inner-content{
+		width: 100%;
+		min-height:650px;
+		overflow:hidden;
+		
+		.coming-head{
+			font-size: 32px;
+			line-height: 1.3;
+			letter-spacing: 0.01em;
+			color: #323232;
+			margin-bottom:0;
+		}
+		.coming-para{
+			color: #828282;
+			letter-spacing: 0.01em;
+		}
+		.coming-media{
+			transform: scale(2.5);
+			z-index: -1;
+			position: relative;
+		}
+		@include respond('laptop'){
+			min-height:500px;
+			.center-logo{
+				margin-bottom:25px;
+			}
+			.coming-media{
+				transform: scale(2);
+			}
+		}
+		@include respond('tab-port'){
+			min-height:600px;
+			
+			.coming-media{
+				transform: scale(2.5);
+			}
+		}
+		@include respond('phone-land'){
+			min-height:500px;
+			
+			.coming-head{
+				font-size: 25px;
+			}
+		}
+		@include respond('phone'){
+			min-height:400px;
+		}
+	}
+	.middle-content{
+		margin-bottom:60px;
+		@include respond('laptop'){
+			margin-bottom:35px;
+		}
+	}
+	.coming-footer{
+		p{
+			color: #828282;
+			letter-spacing: 0.01em;
+			margin-bottom:0;
+		}
+	}
+}
+
+
+.style-8 .countdown-timer{
+    margin-bottom: 50px;
+}
+.style-8 .dez-title{
+    font-size: 140px;
+    line-height: 140px;
+    font-family: cookie-regular;
+    color: #c90103;
+    font-weight: 500;
+}
+.style-8 .countdown-timer .clock .val{
+	color: #000;
+    font-family: cookie-regular;
+    font-size: 95px;
+    line-height: 165px;
+    margin-bottom: 5px;	
+}
+.style-8 .countdown-timer .clock .kineticjs-content:after{
+    border: 1px solid #d2d2d2;
+}
+.style-8 .countdown-timer .clock .type-time{
+	color:#000;
+}
+.water-layer3,
+.water-layer1{
+	background-size: 95%;
+}

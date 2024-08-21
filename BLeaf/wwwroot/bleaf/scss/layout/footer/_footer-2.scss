@@ -1,0 +1,100 @@
+// ft-clients
+.site-footer {
+	&.style-2{
+		background-color:#fff;
+		
+		.footer-bg-wrapper{
+			margin-left:100px;
+			margin-right:100px;
+			z-index:1;
+			position:relative;
+			border-radius:30px;
+			background-color:$dark;
+			
+			.particles-js-canvas-el{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+		}	
+		.footer-top{
+			padding-top: 45px;
+			padding-bottom: 30px;
+			
+			.footer-title{
+				margin-bottom:30px;
+				font-weight: 600;
+				font-size: 24px;
+				line-height: 1.1;
+				color:#fff;
+				letter-spacing: 0.01em;
+				text-transform: uppercase;
+			}
+		}
+		.footer-bottom {
+			.copyright-text {
+				color: #666666;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 1.1;
+			}
+			.footer-link {
+				a {
+					 color: #666666;
+					 letter-spacing: 0.01em;
+				}
+			}
+		}
+		@include respond('laptop'){
+			.footer-bg-wrapper{
+				margin-left:0px;
+				margin-right:0px;
+				border-radius:0;
+			}
+		}
+		@include respond('tab-land'){
+			.footer-top{
+				.footer-title{
+					font-size: 20px;
+					line-height: 1;
+				}
+			}
+		}
+		@include respond('phone'){
+			.footer-bottom {
+				.footer-link {
+					li {
+						padding: 0px 5px;
+
+						a {
+							font-size: 13px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.footer-subscribe-wrapper{
+	margin-bottom:60px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	padding-bottom: 40px;
+	.wrapper-inner{
+		.title{
+			font-size: 24px;
+			letter-spacing: 0.01em;
+		}
+	}
+	@include respond('tab-port'){
+		margin-bottom:40px;
+		.wrapper-inner{
+			.title{
+				font-size: 22px;
+			}
+		}
+	}
+	@include respond('phone'){
+		margin-bottom:30px;
+		padding-bottom:30px;
+	}
+}

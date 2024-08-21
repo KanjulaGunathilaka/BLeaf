@@ -1,0 +1,78 @@
+//Blog styles
+.dz-card{
+	&.style-1{
+		position:relative;
+		border-radius:10px;
+		box-shadow: 0px 15px 55px rgba(34, 34, 34, 0.15);
+		overflow:hidden;
+		background-color:#fff;
+		
+		.dz-media {
+			width:100%;
+		    height: 100%;
+			
+			img{
+				height: 100%;
+				object-fit: cover;
+				width: 100%;
+			}
+		}
+		.dz-info{
+			.dz-meta{
+				ul{
+					li{
+						font-weight:500;
+						
+						i{
+							font-size:16px;
+						    transform: translateY(-2px) scale(1.15);
+						}
+					}
+				}
+			}
+			.dz-title{
+				margin-bottom:8px;
+			}
+		}
+		@include respond('tab-land'){
+			.dz-info{
+				padding:20px;
+			}
+		}
+		&.blog-half{
+			.dz-media {
+				min-width: 240px;
+				width: 240px;
+				height: auto;;
+			}
+			.dz-info{
+				padding: 25px 30px;
+				display:flex;
+				flex-direction:column;
+				
+				p{
+					font-size: 14px;
+					line-height: 22px;
+				}
+				.read-btn{
+					margin-top:auto;
+				}
+			}
+			@include respond('phone-land'){
+				.dz-info{
+					padding:20px;
+					.dz-title{
+						font-size:18px;
+					}
+				}
+			}
+			@include respond('phone'){
+				.dz-media {
+					min-width: 100%;
+					width:100%;
+					height:250px;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,64 @@
+.dz-divider {
+    height: 1px;
+    position: relative;
+    margin: 30px 0;
+	&.tb20{
+		margin:20px 0;
+	}
+	&.tb15{
+		margin:15px 0;
+	}
+	&.tb10{
+		margin:10px 0;
+	}
+	&.tb0{
+		margin:0;
+	}
+	&.divider-2px {
+		height: 2px;
+	}
+	&.divider-3px {
+		height: 3px;
+	}
+	&.divider-4px {
+		height: 4px;
+	}
+	i {
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		text-align: center;
+		line-height: 30px;
+		display: block;
+		border-radius: 100%;
+		-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+	&.icon-left {
+		margin-left: 40px;
+	}
+	&.icon-left {
+		i{
+			left: -40px;
+		}
+	}
+	&.icon-right {
+		margin-right: 40px;
+	}
+	&.icon-right {
+		i{
+			left: auto;
+			right: -40px;
+		}
+	}
+	&.icon-center {
+		i{
+			left: 50%;
+			margin-left: -5px;
+		}
+	}
+}
+.bg-gray-dark {
+    background-color: #d3d3d3;
+}

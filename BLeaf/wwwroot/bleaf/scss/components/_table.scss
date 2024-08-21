@@ -1,0 +1,139 @@
+.table-responsive-sm {
+    min-width: 48rem;
+}
+.table-responsive-md {
+  min-width: 60rem; 
+  -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+}
+.table {
+    margin-bottom     : 0px;
+    font-weight       : 400;
+    tr {
+
+        td,
+        th {
+            padding: 15px;
+        }
+    }
+}
+
+.table{
+    tr{
+        th{
+		    color: $headings-color;
+            font-weight: 500;
+        }
+    }
+}
+
+.table-striped {
+    thead {
+        tr {
+            th {
+                padding-bottom: 15px!important;
+            }
+        }
+    }
+
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+        background-color: $body-bg;
+    }
+
+    tfoot{
+        border-top: 2px solid $border-color;
+        tr{
+            th{
+                padding-top: 10px;
+            }
+        }
+    }
+}
+.table-responsive{
+	border-radius:var(--border-radius-base);
+}
+
+
+.order-detail{
+	margin-top:40px;
+	table{
+		width:100%!important;
+		margin-bottom: 25px;
+		tr{
+			td{
+				padding:6px 0;
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 21px;
+				&.price{
+					font-weight: 600;
+					font-size: 16px;
+					line-height: 24px;
+					text-align:end;
+				}
+			}
+			&.charges{
+				border-bottom:1px dashed rgba(34,34,34,0.2);
+				td{
+					padding-bottom:15px;
+				}
+			}
+			&.tax{
+				border-bottom:2px solid rgba(34,34,34,0.2);
+				td{
+					padding:15px 0;
+				}
+			}
+			&.total{
+				td{
+					padding:20px 0 0;
+				}
+			}
+		}
+	}
+	.btn{
+		i{
+			vertical-align: middle;
+			margin-left:10px;
+		}
+	}
+}
+
+.check-tbl{
+	width:100%;
+	border:1px solid rgba(0, 0, 0, 0.125);
+	vertical-align:middle;
+	thead{
+		th{
+			font-size: 16px;
+			font-weight: 600;
+			padding: 15px 15px;
+			color: #fff;
+		    background: #222;
+		}
+	}
+	tbody{
+		td{
+			padding: 15px;
+			font-weight: 500;
+			img{
+				width: 100px;
+				border-radius:6px;
+			}
+		}
+	}
+	.product-item-close{ 
+		text-align: right;
+		a{
+			width: 40px;
+			height: 40px;
+			border-radius: 6px;
+			background: var(--primary);
+			display: inline-block;
+			color: #fff;
+			text-align: center;
+			line-height: 40px;
+		}
+	}
+
+}

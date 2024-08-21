@@ -1,0 +1,25 @@
+.card {
+    border: 0px solid $border-color;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow   : 0px 36px 48px rgba(31, 66, 135, 0.04);
+    background: $white;\
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $border-color;
+        background: $white;
+        padding: 20px 30px;        
+    }
+    &-title {
+        font-size: 24px;
+        margin-bottom: 0px;
+    }
+    .card-body {
+        padding: 20px 30px;
+        background: $white;
+        border-radius: 15px;
+    }
+}
+

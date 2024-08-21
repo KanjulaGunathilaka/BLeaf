@@ -1,0 +1,127 @@
+// site-header
+.site-header{
+	
+	&.style-1{
+		--headerheight: 64px;
+		
+		.main-bar{
+			box-shadow: none;
+			padding:10px 0;
+			
+		}
+		.extra-nav {
+			height: var(--headerheight);
+			padding-left: 60px;
+			
+			@include custommq ($max:1200px){
+				padding-left: 30px;
+			}
+			@include respond('tab-port'){
+				display: none;
+			}
+		}
+		.logo-header {
+			height: var(--headerheight);
+			
+		}
+		&.header-border{
+			border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+		}
+		
+		// Header Nav
+		.header-nav{
+			.nav {
+				&>li {
+					&>a {
+						@include custommq ($min:1024px){			
+							padding: 20px 12px;
+							font-weight: 400;
+							font-size: 16px;
+							line-height: 24px;
+						}
+						&.active{
+							color:var(--primary);
+						}
+					}
+					&.active,&:hover{
+						&>a {
+							color:var(--primary);
+							@include respond('tab-port-min'){
+								&::before {
+									transform: translateY(0);
+									opacity: 1; 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.main-bar-wraper:not(.is-fixed){			
+			.header-nav{
+				.nav{
+					&.white> li > a{
+						color:#fff;
+						@include respond('tab-port'){
+							color:var(--title);
+						}
+						&.active,&:hover{
+							color:var(--primary);
+						}
+					}
+				}
+			}
+		}
+		.top-bar{
+			border-bottom:0;
+		}
+		.is-fixed:not(.sticky-no){
+			.main-bar{
+			    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+			    background-color: white;
+				padding:0;
+			}
+		}
+		
+	}
+	
+}
+.header-nav .nav > li.active > a{
+	color: var(--secondary);
+}
+.header-transparent:not(.transparent-white){
+	.mostion.logo-header{
+		.logo-white,
+		.anim-logo-white{
+			display: table-cell; 
+		}
+		.anim-logo,
+		.logo-dark{
+			display: none; 
+		}
+	}
+	.is-fixed{
+		.mostion.logo-header{
+			.logo-white,
+			.anim-logo-white{
+				display: none; 
+			}
+			.logo-dark,
+			.anim-logo{
+				display: table-cell;
+			}
+		}
+	}
+}
+	
+.header-adv{
+	img{
+		padding:15px;
+	}
+	@include respond('tab-port'){
+		display:none;
+		img{
+			display:none;
+		}
+	}
+}

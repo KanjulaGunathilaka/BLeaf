@@ -1,0 +1,74 @@
+/*
+    =========================
+	Template Name 	 : bleaf
+	Author			 : DexignZone
+	Version			 : 1.1
+	Author Portfolio : https://themeforest.net/user/dexignzone
+	=========================
+	
+	[Table of Contents] 
+
+	=== SCSS Start ===
+	
+    1. Abstract
+		1.1 abstract.scss
+		1.2 mixins.scss
+		1.3 variable.scss
+		
+    2. Base
+		2.1 base.scss
+		2.2 custom-grid.scss
+		2.3 fonts.scss
+		2.4 preloader.scss
+		2.5 reset.scss
+		2.6 shortcode.scss
+		
+    3. Components
+		3.1 About
+		3.2 Blog Post
+		3.3 Iconbox
+		3.4 Main Slider
+		3.5 Portfolio
+		3.6 Team
+		3.7 Testimonials
+		3.8 Other scss File
+		
+    4. Layout
+		4.1 Banner
+		4.2 Footer
+		4.3 Header
+		4.4 Theme
+		4.5 Other scss File
+		
+    5. Pages
+		5.1 blog-details.scss
+		5.2 coming-soon.scss
+		5.3 contact-us.scss
+		5.4 error-404.scss
+		5.5 index.scss
+		5.6 login.scss
+		5.7 pages.scss
+		5.8 section-wrapper.scss
+		5.9 shop.scss
+		5.10 under-construction.scss
+	
+	=== SCSS Start ===
+*/
+
+/*=== Abstract ===*/
+@import "./abstract/abstract";
+
+/*=== Bootstrap ===*/
+@import "./../vendor/bootstrap/scss/bootstrap.scss";
+
+/*=== Base  ===*/
+@import "./base/base";
+
+/*=== Layout ===*/
+@import "./layout/layout";
+
+/*=== Components ===*/
+@import "./components/components";
+
+/*=== Pages ===*/
+@import "./pages/pages";

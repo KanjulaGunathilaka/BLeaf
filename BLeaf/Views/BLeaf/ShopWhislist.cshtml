@@ -1,0 +1,121 @@
+﻿@{
+	Layout = "~/Views/Shared/_LayoutBLeaf.cshtml";
+}
+<div class="page-content bg-white">
+	<!-- Banner  -->
+	<div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr5.jpg'); background-size:cover; background-position:center;">
+		<div class="container">
+			<div class="dz-bnr-inr-entry">
+				<h1>Shop Wishlist</h1>
+				<!-- Breadcrumb Row -->
+				<nav aria-label="breadcrumb" class="breadcrumb-row">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="@Url.Action("Index","BLeaf")">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Shop Wishlist</li>
+					</ul>
+				</nav>
+				<!-- Breadcrumb Row End -->
+			</div>
+		</div>
+	</div>
+	<!-- Banner End -->
+	<!-- Wishlist Section -->
+	<div class="content-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="table-responsive">
+						<table class="table check-tbl table-responsive-md">
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Product Name</th>
+									<th>Unit Price</th>
+									<th>Add to cart </th>
+									<th class="text-end">Close</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="product-item-img"><img src="~/bleaf/images/gallery/small/pic1.jpg" alt="/"></td>
+									<td class="product-item-name">Cheese Pizza</td>
+									<td class="product-item-price">$35.00</td>
+									<td class="product-item-totle"><a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-gray btn-hover-2">Add To Cart</a></td>
+									<td class="product-item-close">
+										<a href="javascript:void(0);" class="bg-danger">
+											<i class="fa fa-close"></i>
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td class="product-item-img"><img src="~/bleaf/images/gallery/small/pic2.jpg" alt="/"></td>
+									<td class="product-item-name">Fried Rice</td>
+									<td class="product-item-price">$28.00</td>
+									<td class="product-item-totle"><a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-gray btn-hover-2">Add To Cart</a></td>
+									<td class="product-item-close">
+										<a href="javascript:void(0);" class="bg-danger">
+											<i class="fa fa-close"></i>
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td class="product-item-img"><img src="~/bleaf/images/gallery/small/pic3.jpg" alt="/"></td>
+									<td class="product-item-name">Green Salad</td>
+									<td class="product-item-price">$15.00</td>
+									<td class="product-item-totle"><a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-gray btn-hover-2">Add To Cart</a></td>
+									<td class="product-item-close">
+										<a href="javascript:void(0);" class="bg-danger">
+											<i class="fa fa-close"></i>
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td class="product-item-img"><img src="~/bleaf/images/gallery/small/pic4.jpg" alt="/"></td>
+									<td class="product-item-name">Butterfly Pasta</td>
+									<td class="product-item-price">$55.00</td>
+									<td class="product-item-totle"><a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-gray btn-hover-2">Add To Cart</a></td>
+									<td class="product-item-close">
+										<a href="javascript:void(0);" class="bg-danger">
+											<i class="fa fa-close"></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Wishlist Section -->
+
+</div>
+
+@section bleaf_style
+	{
+	<!-- Stylesheet -->
+	<link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+	<link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="~/bleaf/vendor/nouislider/nouislider.min.css">
+}
+@section bleaf_script
+	{
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELEECT -->
+	<script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
+	<script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+	<script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+	<script src="~/bleaf/vendor/wow/wow.js"></script><!-- WOW JS -->
+	<script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- TOUCHSPIN -->
+	<script src="~/bleaf/vendor/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
+	<script src="~/bleaf/vendor/wnumb/wNumb.js"></script><!-- WNUMB -->
+	<script src="~/bleaf/vendor/particles/particles.js"></script>
+	<script src="~/bleaf/vendor/particles/particles-app.js"></script>
+	<script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+	<script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
+	
+	<script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER -->
+	
+}

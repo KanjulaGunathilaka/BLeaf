@@ -1,0 +1,174 @@
+.offcanvas-form{
+    background: #fff;
+    padding: 60px 70px;
+	@include respond('tab-land'){
+		padding:40px;
+	}
+	.login-head{
+		text-align:center;
+		.title{
+			font-size: 30px;
+		}
+		p{
+			margin-bottom:35px;
+		}
+		.login-title{
+			text-align: center;
+			position: relative;
+			z-index: 1;
+			display: flex;
+			margin: 30px 0;
+			align-items: center;
+			&::before, &::after{
+				content: "";
+				height: 1px;
+				flex: 1 1;
+				left: 0;
+				background-color:#C4C4C4;
+				top: 50%;
+				z-index: -1;
+				margin: 0;
+				padding: 0;
+			}
+			
+			span{
+				padding: 0 10px;
+			}
+			
+		}
+	}
+	input{
+		height:50px!important;
+		
+	}
+	.form-group{
+		.form-label{
+			font-weight: 500;
+			font-size: 15px;
+			line-height: 22px;
+			color: #000000;
+		}
+	}
+}
+.search-input{
+	position:relative;
+	.show-pass{
+		cursor: pointer;
+		position: absolute;
+		right: 0;
+		height: 100%;
+		width: 50px;
+		top: 0px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index:9;
+		.eye-close {
+			display: block;
+		}
+		.eye-open{
+			display: none;
+		}
+		&.active{
+			.eye-close {
+				display: none;
+			}
+			.eye-open{
+				display: block;
+			}
+		}
+	}
+}
+.offcanvas{
+	z-index:999999;
+	border: 0;
+	
+	&.offcanvas-end{
+		width:510px;
+		overflow-y:auto;
+		
+	}
+	.offcanvas-body{
+		padding:0;
+		overflow-y:initial;
+	}
+	.btn-close{
+		margin:15px 20px;
+		
+		&.style-1{
+			background: none;
+			font-size: 28px;
+			padding: 0;
+			line-height: 28px;
+			margin: 15px 15px;
+		}
+	}
+	@include respond('tab-land'){
+		&.offcanvas-end{
+			width:400px;
+		}
+	}
+	@include respond('phone'){
+		&.offcanvas-end{
+			width:325px;
+		}
+	}
+}
+.offcanvas-backdrop{
+	z-index: 99999;
+}
+
+.offcanvas{
+	.offcanvas-body{
+		.category-check-list{
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom:10px;
+			.form-check {
+				width:50%;
+				margin-bottom: 10px;
+				.form-check-input{
+					border: 1px solid rgba(34, 34, 34, 0.3);
+					border-radius:4px;
+					width:	15px;
+					height:	15px;
+					&:checked{
+						background-color:var(--primary);
+						border:1px solid var(--primary);
+					}
+				}
+				.form-check-label{
+					font-family:var(--font-family-title);
+					margin-left: 0px;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+	&.filter-category-sidebar{
+		padding: 50px 30px 20px;
+		
+		.btn-close{
+			background: none;
+			font-size: 28px;
+			padding: 0;
+			line-height: 28px;
+			margin: 0;
+			position: absolute;
+			left: 10px;
+			top: 10px;
+			
+			i{
+				color: #000;
+			}
+		}
+		.widget {
+			margin-bottom: 30px;
+		}
+		@include respond('phone-land'){
+			padding: 50px 20px 20px;
+		}
+		
+	}
+}

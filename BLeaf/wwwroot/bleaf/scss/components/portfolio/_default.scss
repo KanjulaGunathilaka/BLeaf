@@ -1,0 +1,42 @@
+.dz-box{
+	position:relative;
+}
+
+.portfolio-slider {
+	.swiper-slide {
+    	width:auto;
+    	@include transitionMedium;
+  	}
+}
+.portfolio-wrapper {
+	position: relative;
+	z-index: 2;
+	padding-top: 80px;
+	padding-bottom: 50px;
+	
+	.portfolio-wrapper-inner{
+	    z-index: 1;
+	    position: relative;
+	    overflow: hidden;
+		padding-bottom:125px;
+	}
+	.bg-image{
+		margin-bottom:-2px;
+		position:absolute;
+		bottom:0;
+		width: 100%;
+	}
+	@include respond('tab-land'){
+		.portfolio-wrapper-inner{
+			padding-bottom: 80px;
+		}
+	}
+	@include respond('phone-land'){
+	    padding-top: 40px;
+		padding-bottom: 0px;
+		
+		.portfolio-wrapper-inner{
+			padding-bottom: 50px;
+		}
+	}
+}

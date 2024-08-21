@@ -1,0 +1,200 @@
+// dz-accordion
+.dz-accordion{
+	margin-bottom:60px;
+	@include respond('tab-port'){
+		margin-bottom:30px;
+	}
+	.accordion-item{
+		background: #fff;
+		border: 1px solid #B1B1B1;
+		border-right: 0;
+		border-bottom: 0;
+		border-left: 0;
+		border-radius: 0;
+	}
+	&:last-child{
+		border-bottom:1px solid #B1B1B1;
+	}
+	.accordion-body{
+		padding: 25px 0px;
+		border-radius: 0;
+		margin-top: -9px;
+		@include transitionMedium;
+		p{
+			font-size:15px;
+			max-width:515px;
+			line-height: 25px;
+			letter-spacing: 0.02em;
+		}
+		@include respond('tab-port'){
+			padding:20px 0;
+			p{
+				font-size:14px;
+			}
+		}
+		@include respond('phone'){
+			p{
+				font-size:13px;
+				line-height: 20px;
+			}
+		}
+	}
+	.accordion-collapse{
+		border: 0;
+		border: 0;
+	    border-radius: 0 !important;
+	}
+	.accordion-header{
+		background-color:#fff;
+		@include transitionMedium;
+		.accordion-button{
+			font-size: 18px;
+			border: 0;
+			font-weight: 400;
+			padding: 28px 30px 28px 0;
+			@include transitionMedium;
+			color: black;
+		
+			&::after{
+				content: none;
+			}
+			.toggle-close{
+				background-color: transparent;
+				height: 28px;
+				width: 28px;
+				display: flex;
+				border: 2px solid #000;
+				border-radius: 50%;
+				align-items:center;
+				justify-content: center;
+				position: absolute;
+				right: 0px;
+				line-height: 28px;
+				text-align: center;
+				@include transitionMedium;
+				z-index:1;
+				overflow:hidden;
+				&::before{
+					content: "\2b";
+					color: var(--title);
+					@include transitionMedium;
+					font-size: 18px;
+					font-family: 'Font Awesome 5 Free';
+					z-index: 99;
+					opacity: 1;
+					transition: all 0.5s;
+					display:block;
+					font-weight:900;
+				}
+			}
+			
+			&.collapsed{
+				background: transparent;
+				color: inherit;
+				&::after{
+					opacity:0;
+				}
+				.toggle-close{
+					content: "";
+					&::after{
+						opacity:1;
+					}
+					&::before{
+						opacity: 1;
+					}
+				}
+				
+			}
+			&:not(.collapsed) {
+				color:var(--title);
+				background-color:#fff;
+				box-shadow:none;
+				padding: 28px 30px 0px 0;
+				.toggle-close{
+					&::before{
+						@include transitionMedium;
+						content: "\f068";
+					}
+				}
+			}
+		}
+		@include respond('tab-port'){
+			.accordion-button{
+				padding:20px 25px 20px 0;
+				font-size:16px;
+				&:not(.collapsed) {
+					padding:20px 25px 0px 0;
+				}
+				.toggle-close{
+					width:22px;
+					height:22px;
+					line-height:22px;
+					&::before{
+						font-size:16px;
+					}
+				}
+				
+			}
+		}
+		@include respond('phone'){
+			.accordion-button{
+				padding: 20px 30px 20px 0;
+				font-size:14px;
+				&:not(.collapsed) {
+					padding: 20px 30px 0px 0;
+				}
+				
+			}
+		}
+	}
+	
+}
+
+.widget{
+	&.dz-widget_services{
+		.form-check {
+			margin-bottom: 15px;
+			.form-check-input{
+				border: 1px solid rgba(34, 34, 34, 0.3);
+				border-radius:4px;
+				width:	20px;
+				height:	20px;
+				&:checked{
+					background-color:var(--primary);
+					border:1px solid var(--primary);
+				}
+			}
+			.form-check-label{
+				font-family:var(--font-family-title);
+				margin-left: 10px;
+				font-size: 15px;
+			}
+		}
+	}
+} 
+.faq-media{
+	@include respond('tab-port'){
+		width:450px;
+		height:450px;
+		margin: auto;
+	}
+	@include respond('phone-land'){
+		width:300px;
+		height:300px;
+	}
+}
+.faq-info{
+	.title{
+		font-size: 50px;
+	}
+	input{
+		background: #F8F8F8;
+		border: 1px solid #B9B9B9;
+	}
+	@include respond('tab-port'){
+		.title{
+			font-size: 35px;
+		}
+	}
+}
+

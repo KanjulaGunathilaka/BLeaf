@@ -1,0 +1,111 @@
+// to ignore cli warning about deprecated mixin
+$enable-deprecation-messages: false;
+$ignore-warning             : true;
+
+// Color
+$primary   : #7DA640;   
+$secondary : #FE9F10 !default;
+$success   : #13c24d !default;
+$info      : #00aeff !default;
+$warning   : #FFBD13 !default;
+$danger    : #ff0003 !default;
+$light     : #faf8f2 !default;
+$dark      : #222222 !default;
+
+
+// Body
+$body-bg   : #ffffff;
+$body-color: #666666;
+
+// Typography
+$barlow: 'Barlow', sans-serif;
+$font-family-base : 'Poppins', sans-serif;
+$font-family-title : 'Poppins', sans-serif;
+$headings-font-weight   : 600;
+
+$font-size-base         : 0.9375rem !default;
+$font-weight-base       : 400 !default;
+
+$line-height-base    	: 1.6;
+$h1-font-size           : 2.625rem; // 42px
+$h2-font-size           : 2.25rem; // 36px
+$h3-font-size           : 1.875rem; // 30px
+$h4-font-size           : 1.5rem; // 24px
+$h5-font-size           : 1.25rem; //20px
+$h6-font-size           : 1.125rem; //18px
+
+$text-muted : #AEAED5;
+$colors     : () !default;
+
+$heading-primary-size: 1.8rem;
+$sub-heading-size    : 1.6rem !default;
+$grid-gutter-width   : 30px;
+$dropdown-lik-color  : $body-color;
+$border-color        : #E1E1F0;
+$headings-color      : #222222 !default;
+$grid-breakpoints    : (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1170px, xxl: 1440);
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1200px) !default;
+
+$input-btn-focus-width: 0rem !default;
+$border-radius-base   : 6px !default;
+$shadow-color: rgba(160, 159, 202, 0.15);
+
+// Other Color
+$orange   : #ff8853;
+$skyblue  : #00aeff;
+$gray  	  : #f3f4f8;
+$yellow   : #FFE713;
+$red      : #ff0003;
+$green    : #029e76;
+$blue     : #281E8B;
+$pink  	  : #ff5e78;
+$purple	  : #9A69F9;
+$darkblue : #1E4DC8;
+
+// Color Opacity
+$primary-light: rgba($primary,0.1);
+$secondary-light: rgba($secondary,0.1);
+$success-light: rgba($success,0.1);
+$warning-light: rgba($warning,0.1);
+$danger-light: rgba($danger,0.1);
+$info-light: rgba($info,0.1);
+$dark-light: rgba($dark,0.1);
+$white-light: rgba($light,0.1);
+$yellow-light: rgba($yellow,0.1);
+
+// border radius
+$border-radius: .25rem !default;
+$border-radius-lg: 1rem !default;
+$border-radius-sm: .75rem !default;
+
+//Opacity 
+$primary-opacity: rgba($primary, 0.2);
+$secondary-opacity: rgba($secondary, 0.5);
+$success-opacity: rgba($success, 0.1);
+$warning-opacity: rgba($warning, 0.1);
+$danger-opacity: rgba($danger, 0.15);
+$info-opacity: rgba($info, 0.1);
+$dark-opacity: rgba($dark, 0.35);
+
+
+:root{
+	--primary: #{$primary};
+	--secondary: #{$secondary};
+	--gray: #{$gray};
+	--primary-hover: #{darken($primary, 10)};
+	--primary-dark: #{darken($primary, 30)};
+	--rgba-secondary-1: #{rgba($secondary, 0.1)};
+	--rgba-primary-1: #{rgba($primary, 0.1)};
+	--rgba-primary-2: #{rgba($primary, 0.2)};
+	--rgba-primary-3: #{rgba($primary, 0.3)};
+	--rgba-primary-4: #{rgba($primary, 0.4)};
+	--rgba-primary-5: #{rgba($primary, 0.5)};
+	--rgba-primary-6: #{rgba($primary, 0.6)};
+	--rgba-primary-7: #{rgba($primary, 0.7)};
+	--rgba-primary-8: #{rgba($primary, 0.8)};
+	--rgba-primary-9: #{rgba($primary, 0.9)};
+	--border-radius-base: #{$border-radius-base};
+	--font-family-base: #{$font-family-base};
+	--font-family-title: #{$font-family-title};
+	--title: #{$headings-color};
+}

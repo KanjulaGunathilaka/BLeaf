@@ -1,0 +1,79 @@
+// VC
+// WP ROW CONTAINER 
+.page-wraper .vc_column_container > .vc_column-inner{
+	padding-left:0;
+	padding-right:0;
+}
+.page-wraper .vc_row{
+	margin-left:0;
+	margin-right:0;
+}
+.kc-row-container.kc-container{
+	max-width:75rem;
+	width:100%;
+}
+.kc_row .kc_col-sm-12{
+	padding-left:0rem !important;
+	padding-right:0rem !important; 
+}
+
+/* required for TF review, write this class */
+.commentlist .bypostauthor {font-weight: 600;}
+/* required for TF review, write this class END */
+
+.admin-bar .is-fixed .main-bar{
+	top: 30px;
+}
+@media only screen and (max-width: 61.9375rem) {
+	.admin-bar  .header-nav{
+	    top: 30px;
+		height: calc(100vh - 30px) !important;	
+	}
+}
+@media only screen and (max-width: 48.875rem) {
+	.admin-bar .is-fixed .main-bar{
+		top: 45px;
+	}
+	.admin-bar  .header-nav{
+	    top: 45px;
+		height: calc(100vh - 45px) !important;	
+	}
+}
+@media only screen and (max-width: 37.5rem) {
+	.admin-bar .is-fixed .main-bar{
+		top: 0;
+	}
+	.admin-bar  .header-nav{
+	    top: 45px;
+		height: calc(100vh - 45px) !important;	
+	}
+	.admin-bar  .is-fixed  .header-nav{
+	    top: 0;
+		height:100vh !important;	
+	}
+}
+.elementor-section > .elementor-container{
+	width:100%;
+}
+
+.wpcf7 form .wpcf7-response-output {
+    margin: 1em 0 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

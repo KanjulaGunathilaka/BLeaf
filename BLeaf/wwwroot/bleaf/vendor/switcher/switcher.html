@@ -1,0 +1,180 @@
+<div id="dzSwitcher-right" class="styleswitcher">
+  <div class="overlay-switch"></div>
+  <div class="switcher-btn-bx">
+    <a href="javascript:void(0);" class="switch-btn closed">
+      <span class="fas fa-cog"></span>
+    </a>
+  </div>
+  <div class="styleswitcher-inner">
+    <div class="sw-main-title">Theme Setting <a href="javascript:void(0);" class="dez-page btn btn-primary btn-sm" onclick="deleteAllCookie()">Delete All Cookie</a>
+    </div>
+    <div class="theme-design theme-option row" opt="themeFullColor">
+      <div class="theme-box col-md-12">
+        <h5 class="switcher-title">
+          <span>Theme</span>
+        </h5>
+        <ul val="themeFullColor" class="color-skins theme-panel-save">
+          <li class="active">
+            <a class="theme-skin skin-1 theme-color" href="javascript:void(0);" data-color-theme="skin-1" data-logo-selector=".logo-dark img, .logo-white img, .layout-dark .header .logo-dark img" data-logo-image="../bleaf/images/logo.png, ../bleaf/images/logo-white.png, ../bleaf/images/logo-white.png"></a>
+          </li>
+          <li>
+            <a class="theme-skin skin-2 theme-color" href="javascript:void(0);" data-color-theme="skin-2" data-logo-selector=".logo-dark img, .logo-white img, .layout-dark .header .logo-dark img" data-logo-image="../bleaf/images/logo-2.png, ../bleaf/images/logo-white-2.png, ../bleaf/images/logo-white-2.png"></a>
+          </li>
+          <li>
+            <a class="theme-skin skin-3 theme-color" href="javascript:void(0);" data-color-theme="skin-3" data-logo-selector=".logo-dark img, .logo-white img, .layout-dark .header .logo-dark img" data-logo-image="../bleaf/images/logo-3.png, ../bleaf/images/logo-white-3.png, ../bleaf/images/logo-white-3.png"></a>
+          </li>
+          <li>
+            <a class="theme-skin skin-4 theme-color" href="javascript:void(0);" data-color-theme="skin-4" data-logo-selector=".logo-dark img, .logo-white img, .layout-dark .header .logo-dark img" data-logo-image="../bleaf/images/logo-4.png, ../bleaf/images/logo-white-4.png, ../bleaf/images/logo-white-4.png"></a>
+          </li>
+          <li>
+            <a class="theme-skin skin-5 theme-color" href="javascript:void(0);" data-color-theme="skin-5" data-logo-selector=".logo-dark img, .logo-white img, .layout-dark .header .logo-dark img" data-logo-image="../bleaf/images/logo-5.png, ../bleaf/images/logo-white-5.png, ../bleaf/images/logo-white-5.png"></a>
+          </li>
+          <li>
+            <a class="theme-skin skin-6 theme-color" href="javascript:void(0);" data-color-theme="skin-6" data-logo-selector=".logo-dark img, .logo-white img, .layout-dark .header .logo-dark img" data-logo-image="../bleaf/images/logo-6.png, ../bleaf/images/logo-white-6.png, ../bleaf/images/logo-white-6.png"></a>
+          </li>
+          <li>
+            <a class="theme-skin skin-7 theme-color" href="javascript:void(0);" data-color-theme="skin-7" data-logo-selector=".logo-dark img, .logo-white img, .layout-dark .header .logo-dark img" data-logo-image="../bleaf/images/logo-7.png, ../bleaf/images/logo-white-7.png, ../bleaf/images/logo-white-7.png"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="theme-design theme-option row theme-layout-wrapper" opt="themeLayout">
+      <div class="theme-box col-md-12">
+        <h5 class="switcher-title">
+          <span>Theme Layout</span>
+        </h5>
+        <ul val="themeLayout" class="layout layout-view theme-panel-save">
+          <li class="wide-layout active">
+            <a href="javascript:void(0);" dir="wide-layout">
+              <div></div>
+              <span>Wide</span>
+            </a>
+          </li>
+          <li class="boxed">
+            <a href="javascript:void(0);" dir="boxed">
+              <div>
+                <span></span>
+              </div>
+              <span>Boxed</span>
+            </a>
+          </li>
+          <li class="frame">
+            <a href="javascript:void(0);" dir="frame">
+              <div>
+                <span></span>
+              </div>
+              <span>Frame</span>
+            </a>
+          </li>
+        </ul>
+        <div id="ThemeRangeSlider" class="price-slide-2 range-slider px-2 mb-3" style="display:none">
+          <div class="price">
+            <input type="text" id="FramePadding" class="amount" readonly="" value="20px">
+            <div id="slider-range-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="theme-design theme-option row theme-view-wrapper" opt="headerOption">
+      <div class="col-lg-12 theme-box">
+        <h5 class="switcher-title">
+          <span>Header</span>
+        </h5>
+        <ul val="headerOption" class="tab-checkbx header-view theme-panel-save">
+          <li class="header-fixed active">
+            <a href="javascript:void(0);" dir="sticky-header">Fixed</a>
+          </li>
+          <li class="header-static">
+            <a href="javascript:void(0);" dir="sticky-no">Static</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="theme-design row mb-0 theme-background-wrapper">
+      <div class="col-md-12 theme-box theme-option mb-4" opt="backgroundColor">
+        <h5 class="switcher-title">
+          <span>Background Color</span>
+        </h5>
+        <ul val="backgroundColor" class="bg-color-switcher theme-panel-save">
+          <li>
+            <a class="bg-color-1" href="javascript:void(0);" dir="#7DA640"></a>
+          </li>
+          <li>
+            <a class="bg-color-2" href="javascript:void(0);" dir="#FE9F10"></a>
+          </li>
+          <li>
+            <a class="bg-color-3" href="javascript:void(0);" dir="#EE2737"></a>
+          </li>
+          <li>
+            <a class="bg-color-4" href="javascript:void(0);" dir="#A75D5D"></a>
+          </li>
+          <li>
+            <a class="bg-color-5" href="javascript:void(0);" dir="#EA5C2B"></a>
+          </li>
+          <li>
+            <a class="bg-color-6" href="javascript:void(0);" dir="#A9907E"></a>
+          </li>
+          <li>
+            <a class="bg-color-7" href="javascript:void(0);" dir="#87805E"></a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-12 theme-box theme-option mb-4" opt="backgroundImage">
+        <h5 class="switcher-title">
+          <span>Background Image</span>
+        </h5>
+        <ul val="backgroundImage" class="background-switcher theme-panel-save">
+          <li>
+            <img src="~/bleaf/images/switcher/small/background/bg1.jpg" dir="~/bleaf/images/switcher/large/background/bg1.jpg" alt="">
+          </li>
+          <li>
+            <img src="~/bleaf/images/switcher/small/background/bg2.jpg" dir="~/bleaf/images/switcher/large/background/bg2.jpg" alt="">
+          </li>
+          <li>
+            <img src="~/bleaf/images/switcher/small/background/bg3.jpg" dir="~/bleaf/images/switcher/large/background/bg3.jpg" alt="">
+          </li>
+          <li>
+            <img src="~/bleaf/images/switcher/small/background/bg4.jpg" dir="~/bleaf/images/switcher/large/background/bg4.jpg" alt="">
+          </li>
+          <li>
+            <img src="~/bleaf/images/switcher/small/background/bg5.jpg" dir="~/bleaf/images/switcher/large/background/bg5.jpg" alt="">
+          </li>
+          <li>
+            <img src="~/bleaf/images/switcher/small/background/bg6.jpg" dir="~/bleaf/images/switcher/large/background/bg6.jpg" alt="">
+          </li>
+          <li>
+            <img src="~/bleaf/images/switcher/small/background/bg7.jpg" dir="~/bleaf/images/switcher/large/background/bg7.jpg" alt="">
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-12 theme-box theme-option" opt="backgroundPattern">
+        <h5 class="switcher-title">
+          <span>Background Pattern</span>
+        </h5>
+        <ul val="backgroundPattern" class="pattern-switcher theme-panel-save">
+          <li>
+            <img src="/bleaf/images/switcher/small/pattern/pt1.jpg" dir="/bleaf/images/switcher/large/pattern/pt1.jpg" alt="">
+          </li>
+          <li>
+            <img src="/bleaf/images/switcher/small/pattern/pt2.jpg" dir="/bleaf/images/switcher/large/pattern/pt2.jpg" alt="">
+          </li>
+          <li>
+            <img src="/bleaf/images/switcher/small/pattern/pt3.jpg" dir="/bleaf/images/switcher/large/pattern/pt3.jpg" alt="">
+          </li>
+          <li>
+            <img src="/bleaf/images/switcher/small/pattern/pt4.jpg" dir="/bleaf/images/switcher/large/pattern/pt4.jpg" alt="">
+          </li>
+          <li>
+            <img src="/bleaf/images/switcher/small/pattern/pt5.jpg" dir="/bleaf/images/switcher/large/pattern/pt5.jpg" alt="">
+          </li>
+          <li>
+            <img src="/bleaf/images/switcher/small/pattern/pt6.jpg" dir="/bleaf/images/switcher/large/pattern/pt6.jpg" alt="">
+          </li>
+          <li>
+            <img src="/bleaf/images/switcher/small/pattern/pt7.jpg" dir="/bleaf/images/switcher/large/pattern/pt7.jpg" alt="">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

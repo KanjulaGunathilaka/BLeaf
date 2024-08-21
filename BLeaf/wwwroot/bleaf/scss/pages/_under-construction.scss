@@ -1,0 +1,146 @@
+.under-construction{
+	position:relative;
+	overflow:hidden;
+	min-height:750px;
+	height:100vh;
+	
+	& > div{
+		z-index: 2;
+		position: relative;
+	}
+	.particles-js-canvas-el{
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;	
+	}
+	
+	@include respond('tab-port'){
+		min-height:600px;
+		height:100vh;
+	}
+	@include respond('phone'){
+		min-height:450px;
+		height:100vh;
+	}
+	.inner-construction{
+		.dz-head{
+			font-weight: 700;
+			font-size: 40px;
+			margin-bottom: 15px;
+			line-height: 1.2;
+		}
+		.const-p{
+			font-size: 18px;
+			color: #828282;
+			margin-bottom: 25px;
+		}
+		.space-right{
+			max-width:350px;
+			.input-group{
+				.form-control{
+					height:50px;
+					margin-bottom:15px;
+				}
+				button{
+					border-radius: 6px !important;
+				}
+			}
+		}
+		@include respond('tab-land'){
+			.const-p{
+				font-size:16px;
+			}
+		}
+		@include respond('tab-port'){
+			.dz-head{
+				font-size: 34px;
+			}
+			.space-right{
+				max-width:270px;
+			}
+			.const-p{
+				font-size: 14px;
+			}
+		}
+		@include respond('phone-land'){
+			.space-right{
+				max-width:100%;
+			}
+		}
+	}
+	.construction-media{
+		position:relative;
+		z-index:1;
+		
+		img{
+			position:absolute;
+			left:120px;
+			top:0;	
+			width:100%;
+			min-width: 35vw;
+		}
+		&::after{
+			position: absolute;
+			content: "";
+			top: -15vw;
+			left: 10vw;
+			z-index: -1;
+			width: 50vw;
+			height: 50vw;
+			background: var(--secondary);
+			opacity: 0.2;
+			border-radius: 100%;
+		}
+		@include respond('laptop'){
+			img{
+				left:0;
+				min-width:830px;
+			}
+			&::after{
+				top: -285px;
+				left: 70px;
+			}
+		}
+		@include respond('tab-land'){
+			img{
+				min-width:730px;
+			}
+			&::after{
+				top: -214px;
+				width: 850px;
+				left: 40px;
+				height: 850px;
+			}
+		}
+		@include respond('tab-port'){
+			img{
+				min-width:550px;
+			}
+			&::after{
+				top: -170px;
+				width: 600px;
+				left: 34px;
+				height: 600px;
+			}
+		}
+		@include respond('phone-land'){
+			margin-top: 30px;
+			img{
+				min-width: 100%;
+				position: unset;
+			}
+			&::after{
+				top: 0;
+				width: 450px;
+				left: 0;
+				height: 450px;
+			}
+		}
+		@include respond('phone'){
+			&::after{
+				display:none;
+			}
+		}
+	}
+}

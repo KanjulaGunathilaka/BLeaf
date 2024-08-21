@@ -1,0 +1,574 @@
+﻿@{
+	Layout = "~/Views/Shared/_LayoutBLeaf.cshtml";
+}
+<div class="page-content bg-white">
+	<!-- Banner  -->
+	<div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr4.jpg'); background-size:cover; background-position:center;">
+		<div class="container">
+			<div class="dz-bnr-inr-entry">
+				<h1>Our Menu 4</h1>
+				<!-- Breadcrumb Row -->
+				<nav aria-label="breadcrumb" class="breadcrumb-row">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="@Url.Action("Index","BLeaf")">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Our Menu 4</li>
+					</ul>
+				</nav>
+				<!-- Breadcrumb Row End -->
+			</div>
+		</div>
+	</div>
+	<!-- Banner End -->
+	<!-- Our Menu-->
+	<section class="content-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-10 col-lg-9 col-md-12">
+					<div class="site-filters style-1 clearfix">
+						<ul class="filters" data-bs-toggle="buttons">
+							<li data-filter=".All" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>ALL</a></li>
+							<li data-filter=".drink" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-cocktail"></i></span>COLD DRINK</a></li>
+							<li data-filter=".pizza" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-pizza-slice"></i></span>PIZZA</a></li>
+							<li data-filter=".salad" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-salad"></i></span>SALAD</a></li>
+							<li data-filter=".sweet" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-cupcake"></i></span>SWEETS</a></li>
+							<li data-filter=".spicy" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-chili-pepper"></i></span>SPICY</a></li>
+							<li data-filter=".burger" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-hamburger-1"></i></span>BURGER</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-xl-2 col-lg-3 col-md-12 text-lg-end mb-lg-0 m-b30 d-flex d-lg-block align-items-center justify-content-between">
+					<strong class="filter-item-show d-lg-none">51,740 items</strong>
+					<a data-bs-toggle="offcanvas" href="#offcanvasFilter" role="button" aria-controls="offcanvasFilter" class="btn btn-primary filter-btn btn-hover-2">
+						Filter <span><i class="icon-filter m-l5"></i></span>
+					</a>
+				</div>
+				<div class="offcanvas offcanvas-end filter-category-sidebar" tabindex="-1" id="offcanvasFilter">
+					<button type="button" class="btn-close style-1" data-bs-dismiss="offcanvas" aria-label="Close"><i class="la la-close"></i></button>
+					<div class="offcanvas-body">
+						<div class="widget">
+							<div class="widget-title">
+								<h4 class="title">Refine By Categories</h4>
+							</div>
+							<div class="category-check-list">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-01">
+									<label class="form-check-label" for="productCheckBox-01">
+										Pizza
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-02">
+									<label class="form-check-label" for="productCheckBox-02">
+										Hamburger
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-03">
+									<label class="form-check-label" for="productCheckBox-03">
+										Cold Drink
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-04">
+									<label class="form-check-label" for="productCheckBox-04">
+										Sandwich
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-05">
+									<label class="form-check-label" for="productCheckBox-05">
+										Muffin
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-06">
+									<label class="form-check-label" for="productCheckBox-06">
+										Burrito
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-07">
+									<label class="form-check-label" for="productCheckBox-07">
+										Taco
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-08">
+									<label class="form-check-label" for="productCheckBox-08">
+										Hot Dog
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-09">
+									<label class="form-check-label" for="productCheckBox-09">
+										Noodles
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-10">
+									<label class="form-check-label" for="productCheckBox-10">
+										Macrony
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-11">
+									<label class="form-check-label" for="productCheckBox-11">
+										Cheese Pasta
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-12">
+									<label class="form-check-label" for="productCheckBox-12">
+										Fish Fry
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-13">
+									<label class="form-check-label" for="productCheckBox-13">
+										Cold Coffee
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-14">
+									<label class="form-check-label" for="productCheckBox-14">
+										Manchurian
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-15">
+									<label class="form-check-label" for="productCheckBox-15">
+										Dosa
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-16">
+									<label class="form-check-label" for="productCheckBox-16">
+										Momos
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-17">
+									<label class="form-check-label" for="productCheckBox-17">
+										Soup
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-18">
+									<label class="form-check-label" for="productCheckBox-18">
+										Chicken Burger
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-19">
+									<label class="form-check-label" for="productCheckBox-19">
+										Beverages
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="productCheckBox-20">
+									<label class="form-check-label" for="productCheckBox-20">
+										Lemon Lime Soda
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="widget">
+							<div class="widget-title">
+								<h4 class="title">Near Me</h4>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="productCheckBox-21">
+								<label class="form-check-label" for="productCheckBox-21">
+									Ortus Restaurant
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="productCheckBox-22">
+								<label class="form-check-label" for="productCheckBox-22">
+									Amar Punjabi Restaurant
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="productCheckBox-23">
+								<label class="form-check-label" for="productCheckBox-23">
+									Other
+								</label>
+							</div>
+						</div>
+						<div class="widget rating-filter">
+							<div class="widget-title">
+								<h4 class="title">Rating</h4>
+							</div>
+							<ul>
+								<li><span>5 Star</span></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+							</ul>
+							<ul>
+								<li><span>4 Star</span></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+							</ul>
+							<ul>
+								<li><span>3 Star</span></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+							</ul>
+							<ul>
+								<li><span>2 Star</span></li>
+								<li><i class="icon-star-on"></i></li>
+								<li><i class="icon-star-on"></i></li>
+							</ul>
+							<ul>
+								<li><span>1 Star</span></li>
+								<li><i class="icon-star-on"></i></li>
+							</ul>
+						</div>
+						<div class="widget">
+							<div class="widget-title">
+								<h4 class="title">Price Range</h4>
+							</div>
+							<div class="range-slider style-1">
+								<div id="slider-tooltips"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul id="masonry" class="row">
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All drink pizza burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic1.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Burger</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$10.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All pizza sweet">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic2.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Hot Rice</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$15.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All salad spicy burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic3.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Momos</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$25.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All drink sweet">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic4.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Pasta</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$45.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All pizza spicy burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic5.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Panner</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$20.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All salad sweet burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic6.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Soya Rice</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$90.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All drink burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic7.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Potato Stick</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$20.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All pizza salad">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic8.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Salad</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$05.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All drink spicy">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic9.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Veg Soup</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$82.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All pizza burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic10.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Hot Rice</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$16.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All drink spicy burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic11.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Noodles</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$22.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All salad pizza sweet">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic12.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Fish Fry</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$90.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All spicy burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic13.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Aloo tikki</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$20.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All pizza sweet">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic14.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Soya Rice</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$90.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All salad sweet">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic15.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Pizza</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$35.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+				<li class="card-container col-xl-3 col-lg-4 col-md-6 m-b30 All pizza burger">
+					<div class="dz-img-box style-4 box-hover">
+						<div class="menu-detail">
+							<div class="dz-media">
+								<img src="~/bleaf/images/menu-small/pic8.png" alt="/">
+							</div>
+							<div class="dz-content">
+								<h5 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Salad</a></h5>
+								<p>Delicious and Spicy</p>
+							</div>
+						</div>
+						<div class="menu-footer">
+							<span>Regular Price</span>
+							<h5 class="price">$15.00</h5>
+						</div>
+						<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<!-- Our Menu-->
+
+</div>
+
+@section bleaf_style
+	{
+	<!-- Stylesheet -->
+	<link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+	<link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="~/bleaf/vendor/nouislider/nouislider.min.css">
+}
+@section bleaf_script
+	{
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELEECT -->
+	<script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
+	<script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+	<script src="~/bleaf/vendor/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
+	<script src="~/bleaf/vendor/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
+	<script src="~/bleaf/vendor/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
+	<script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+	<script src="~/bleaf/vendor/wow/wow.js"></script><!-- WOW JS -->
+	<script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+	<script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- OWL-CAROUSEL -->
+	<script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- TOUCHSPIN -->
+	<script src="~/bleaf/vendor/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
+	<script src="~/bleaf/vendor/wnumb/wNumb.js"></script><!-- WNUMB -->
+	<script src="~/bleaf/vendor/particles/particles.js"></script>
+	<script src="~/bleaf/vendor/particles/particles-app.js"></script>
+	<script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
+	<script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+	<script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
+	
+	<script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER -->
+	
+}

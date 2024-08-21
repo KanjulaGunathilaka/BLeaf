@@ -1,0 +1,90 @@
+.checkbox{
+	&-info{
+		.form-check-input{
+			&:focus{
+				border-color: $info;
+				outline: 0;
+			}
+			&:checked{
+				background-color: $info;
+				border-color: $info;
+			}
+		}
+	}
+	&-danger {
+		.form-check-input{
+			&:focus{
+				border-color: $danger;
+				outline: 0;
+			}
+			&:checked{
+				background-color: $danger;
+				border-color: $danger;
+			}
+		}
+	}
+	&-success{
+		.form-check-input{
+			&:focus{
+				border-color: $success;
+				outline: 0;
+			}
+			&:checked{
+				background-color: $success;
+				border-color: $success;
+			}
+		}
+	}
+	&-warning{
+		.form-check-input{
+			&:focus{
+				border-color: $warning;
+				outline: 0;
+			}
+			&:checked{
+				background-color: $warning;
+				border-color: $warning;
+			}
+		}
+	}
+	&-secondary{
+		.form-check-input{
+			&:focus{
+				border-color: var(--secondary);
+				outline: 0;
+			}
+			&:checked{
+				background-color: var(--secondary);
+				border-color: var(--secondary);
+			}
+		}
+	}
+}
+
+.form-check-input{
+	&:checked {
+		background-color: var(--primary);
+		border-color: var(--primary);
+	}
+	&.checkbox-primary{
+		border-color: var(--primary);
+		background-color: var(--secondary);
+		&:checked {
+			background-color: var(--primary);
+		}
+	}
+	&.checkbox-secondary{
+		&:checked {
+			background-color: var(--secondary);
+		}
+	}
+}
+
+.search-content{
+	.form-check-input{
+		width:24px;
+		height:24px;
+		border:2px solid var(--primary);
+		margin-top:0;
+	}
+}

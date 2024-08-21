@@ -1,0 +1,41 @@
+/* Light Gallery */
+.lg-actions .lg-next, 
+.lg-actions .lg-prev, 
+.lg-sub-html, 
+.lg-toolbar{
+    background-color: rgba(30, 30, 30, .6);
+}
+.lg-outer{
+	z-index: 999999;
+	
+	.lg-toogle-thumb,
+	.lg-thumb-outer,
+	.lg-img-wrap, 
+	.lg-item{
+		background-color: transparent;
+	}
+	.lg-thumb-item{
+		&.active,
+		&:hover{
+			border-color: var(--primary);			
+		}
+	}
+}
+.lg-backdrop {
+    z-index: 99999;
+	background-color: rgba(30, 30, 30, 0.9);
+}
+.lg-outer .lg-toogle-thumb, 
+.lg-actions .lg-next, 
+.lg-actions .lg-prev, 
+.lg-toolbar .lg-icon,
+#lg-counter{
+    color: $white;
+}
+.lg-item{
+	cursor: pointer;
+	display: block;
+}
+.lg-progress-bar .lg-progress {
+    background-color: var(--primary);
+}

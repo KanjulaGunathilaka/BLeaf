@@ -1,0 +1,150 @@
+.icon-bx-wraper{
+	&.style-5 {
+		position:relative;
+		text-align:center;
+		margin-bottom:30px;
+		@include transitionMedium;
+		padding-top: 60px;
+		
+		.icon-bx{
+			width: 115px;
+			height: 115px;
+			line-height: 115px;
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			transform: translateY(-50%) translateX(-50%);
+			z-index: 2;
+			
+			.icon-cell {
+				border-radius:100%;
+				box-shadow: 0px 15px 55px rgba(34, 34, 34, 0.15);
+				background-color:#fff;
+				color: var(--primary);
+				@include transitionMedium;
+				
+				i{
+					font-size: 50px;
+					vertical-align: middle;
+					line-height:50px;
+				}
+			}	
+		} 
+		.icon-content {
+			padding:90px 40px 30px;
+			box-shadow: 0px 15px 55px rgba(34, 34, 34, 0.15);
+			border-radius: 10px;
+			@include transitionMedium;
+			background-color:#fff;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+		
+			.title{
+				margin-bottom: 10px;
+				@include transitionMedium;
+			}
+			p{
+				@include transitionMedium;
+				
+				&:last-child{
+					margin-bottom: 0;
+				}
+			}
+			.effect{
+				position: absolute;
+				display: block;
+				width: 0;
+				height: 0;
+				border-radius: 50%;
+				transition: width .4s ease-in-out,height .4s ease-in-out;
+				-webkit-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+				z-index: -1;
+			}
+		}
+		&:hover,
+		&.active{
+			.icon-cell {
+				i{
+					animation: shake 1s;
+				}
+			}
+			.icon-content{
+				.title{
+					color: #fff;
+				}
+				p{
+					color: rgba(255,255,255,0.8);
+				}
+				.effect{
+					width: 300%;
+					height: 300%;
+				}
+			}
+		}
+		@include respond('tab-land'){
+			padding-top: 45px;
+			
+			.icon-bx{
+				width:90px;
+				height:90px;
+				line-height:90px;
+				
+				i{
+					font-size:40px;
+					line-height:40px;
+				}
+			}
+			.icon-content{
+				padding:65px 20px 30px;
+				p{
+					font-size:14px;
+				}
+			}
+		}
+		@include respond('tab-port'){
+			border-radius:10px;
+			overflow:hidden;
+			padding:30px 20px;
+			box-shadow: 0px 15px 55px rgba(34, 34, 34, 0.15);
+			position: relative;
+			z-index: 1;
+			
+			.icon-bx{
+				position:initial;
+				transform:translateY(0);
+				margin-left:auto;
+				margin-right:auto;
+				margin-bottom:15px;
+				width:60px;
+				height:60px;
+				line-height:60px;
+				.icon-cell{
+					box-shadow:none;
+					background-color:transparent;
+					i{
+						font-size:45px;
+						line-height:45px;
+					}
+				}
+			}
+			.icon-content{
+				border-radius:0;
+				padding:0;
+				box-shadow:none;
+				position: static;
+				background-color: transparent;
+			}
+			
+			&:hover,
+			&.active{
+				.icon-bx{
+					.icon-cell{
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}

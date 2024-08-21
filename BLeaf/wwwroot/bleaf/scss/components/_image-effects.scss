@@ -1,0 +1,162 @@
+.dz-img-effect {
+    position: relative;
+    overflow: hidden;
+    display: block;
+	vertical-align: middle;
+	img {
+		display: block;
+		margin: 0;
+		width: 100%;
+		height: auto;
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+		-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+		-moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+		@include transitionFast;
+	}
+	
+	// IMAGE OPACITY
+	&.opacity img:hover{
+		opacity: 0.8;
+	}
+	
+	// IMAGE ZOOM 
+	&.zoom-slow {
+		img{
+			transition: all 10s;
+			-moz-transition: all 10s;
+			-webkit-transition: all 10s;
+			-o-transition: all 10s;
+		}
+		&:hover img {
+			@include transformScaleSM;
+		}
+	}
+	// IMAGE ZOOM SLOW
+	&.zoom{
+		&:hover img {
+			transform: scale(1.1);
+			-moz-transform: scale(1.1);
+			-webkit-transform: scale(1.1);
+			-ms-transform: scale(1.1);
+			-o-transform: scale(1.1);
+		}	
+	}
+	// IMAGE SHRINK
+	&.shrink:hover img {
+		@include transformScaleXS;
+	}
+	// IMAGE SIDE PAN
+	&.side-pan:hover img {
+		margin-left: -11%;
+		@include transformScaleSM;
+	}
+	// IMAGE VERTICAL PAN
+	&.vertical-pan:hover img {
+		margin-top: -10%;
+		@include transformScaleSM;
+	}
+	// IMAGE FADE IN
+	&.fade-in {
+		background: #000;
+		img {
+			opacity: 0.65;
+		}
+		&:hover img {
+			opacity: 1;
+		}
+	}
+	// IMAGE FADE OUT
+	&.fade-out {
+		background: #000;
+		&:hover img {
+			opacity: 0.7;
+		}
+	}
+	// IMAGE ROTATE
+	&.rotate:hover img {
+		-moz-transform: scale(1.5) rotate(-20deg);
+		-webkit-transform: scale(1.5) rotate(-20deg);
+		-o-transform: scale(1.5) rotate(-20deg);
+		-ms-transform: scale(1.5) rotate(-20deg);
+		transform: scale(1.5) rotate(-20deg);
+	}
+	// IMAGE SEPIA
+	&.image-sepia img {
+		-webkit-filter: sepia(100%);
+		filter: sepia(100%);
+	}
+	// IMAGE BLURR
+	&.blurr{
+		img {
+			@include transitionFast;
+		}
+		&:hover img {
+			filter: blur(3px);
+			-webkit-filter: blur(3px);
+			-moz-filter: blur(3px);
+			-o-filter: blur(3px);
+			-ms-filter: blur(3px);
+		}
+	}
+	// IMAGE BLURR INVERT
+	&.blurr-invert{
+		img{
+			@include transitionFast;
+			filter: blur(3px);
+			-webkit-filter: blur(3px);
+			-moz-filter: blur(3px);
+			-o-filter: blur(3px);
+			-ms-filter: blur(3px);
+		}
+		&:hover img {
+			filter: blur(0px);
+			-webkit-filter: blur(0px);
+			-moz-filter: blur(0px);
+			-o-filter: blur(0px);
+			-ms-filter: blur(0px);
+		}
+	}
+	// IMAGE OFF COLOR
+	&.off-color{
+		img {
+			filter: grayscale(0);
+			-webkit-filter: grayscale(0);
+			-moz-filter: grayscale(0);
+			-o-filter: grayscale(0);
+			-ms-filter: grayscale(0);
+		}
+		&:hover img {
+			filter: grayscale(1);
+			-webkit-filter: grayscale(1);
+			-moz-filter: grayscale(1);
+			-o-filter: grayscale(1);
+			-ms-filter: grayscale(1);
+		}
+	}
+	// IMAGE ON COLOR
+	&.on-color{
+		img {
+			filter: grayscale(1);
+			-webkit-filter: grayscale(1);
+			-moz-filter: grayscale(1);
+			-o-filter: grayscale(1);
+			-ms-filter: grayscale(1);
+		}
+		&:hover img {
+			filter: grayscale(0);
+			-webkit-filter: grayscale(0);
+			-moz-filter: grayscale(0);
+			-o-filter: grayscale(0);
+			-ms-filter: grayscale(0);
+		}
+	}
+	
+}
+// IMAGE ROTATE
+.dz-box:hover .dz-img-effect.rotate img{
+    -moz-transform: scale(1.5) rotate(-20deg);
+    -webkit-transform: scale(1.5) rotate(-20deg);
+    -o-transform: scale(1.5) rotate(-20deg);
+    -ms-transform: scale(1.5) rotate(-20deg);
+    transform: scale(1.5) rotate(-20deg);
+}

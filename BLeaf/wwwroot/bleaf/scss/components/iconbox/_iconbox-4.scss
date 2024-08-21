@@ -1,0 +1,45 @@
+.icon-bx-wraper{
+	&.style-4{
+		border-radius: 10px;
+		text-align:center;
+		padding:20px 12px 30px;
+		min-height:180px;
+		
+		.icon-bx{
+			margin-bottom:20px;
+			
+			.icon-cell{
+			    width: 65px;
+				height: 65px;
+				margin: auto;
+				min-width: 65px;
+				line-height: 65px;
+
+				i{
+					font-size:60px;
+					color:var(--primary);
+				}
+			}
+		}
+		.icon-content{
+			p{
+				font-weight: 500;
+				font-size: 18px;
+				line-height: 27px;
+				color:var(--title);
+			}
+		}
+		&:hover{
+			.icon-bx .icon-cell i{
+				animation: shake 1s;
+			}
+		}
+		@include respond('tab-land'){
+			.icon-content p{
+				font-size:15px;
+				line-height:1.5;
+			}
+		}
+	}
+}
+

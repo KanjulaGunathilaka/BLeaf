@@ -1,0 +1,316 @@
+.adv-box{
+	position:relative;
+	overflow:hidden;
+	border-radius:10px;
+	height: 100%;
+	
+	.adv-media{
+		position:relative;
+		overflow:hidden;
+	}
+	&.style-1{
+		overflow:unset;
+		background-color: #054F48;
+		text-align:center;
+		
+		.adv-content{
+			padding:30px 20px 0px;
+			
+			span{
+				font-weight: 700;
+				font-size: 20px;
+				color: #fff;
+			}
+			.title{
+				color: #FECC48;
+				font-weight: 800;
+				font-size: 43px;
+				font-family: var(--font-family-title);
+				line-height: 64px;
+			}
+		}
+		.adv-media{
+			position:relative;
+			overflow:unset;
+			width: 400px;
+			left: -31px;
+			top: 0px;
+			
+			.item-media{
+				position: absolute;
+				right: 20px;
+				bottom: 20px;
+			}
+		}
+		@include respond('tab-land'){
+			.adv-content{
+				margin-bottom:30px;
+			}
+			.adv-media{
+				width:370px;
+				left:0;
+			}
+		}
+		@include custommq($max: 1199px) {
+			.adv-media{
+				width:100%;
+				left:0;
+				text-align:right;
+			}
+			.adv-content{
+				margin-bottom:45px;
+				
+				.title{
+					font-size: 33px;
+					line-height: 44px;
+				}
+			}
+		}
+		@include respond('tab-port'){
+			.adv-media{
+				.main-media{
+					width:500px;
+					height:300px;
+					object-fit:cover;
+				}
+			}
+		}
+		@include respond('phone-land'){
+			.adv-media{
+				.main-media{
+					width:100%;
+					height:auto;
+					object-fit:cover;
+				}
+			}
+		}
+	}
+	&.style-2{
+		background-color:var(--primary);
+		display:flex;
+		align-items:center;
+		overflow:unset;
+		
+		.adv-content{
+			padding:10px;
+			margin-left:-10px;
+			
+			.price{
+				font-weight: 800;
+				font-size: 24px;
+				line-height: 36px;
+				color: #F9FE10;
+				display:block;
+				margin-bottom:8px;
+			}
+			.special{
+				font-weight: 700;
+				font-size: 18px;
+				line-height: 24px;
+			}
+			.title{
+				font-weight: 700;
+				font-size: 50px;
+				line-height: 55px;
+			}
+		}
+		.adv-media{
+			position:relative;
+			overflow:unset;
+			height:220px;
+			min-height:220px;
+			width:200px;
+			
+			img{
+				position:absolute;
+				bottom:-1px;
+				object-fit:cover;
+			}
+		}
+		@include respond('tab-land'){
+			.adv-media{
+				width:180px;
+			}
+			.adv-content{
+				padding:0;
+				margin-left:-15px;
+				.special{
+					font-size:16px;
+					line-height:20px;
+				}
+				.title{
+					font-size:40px;
+					line-height:40px;
+				}
+				.price{
+					font-size:18px;
+					line-height:25px;
+				}
+			}
+		}
+		@include custommq($max: 1024px) {
+			.adv-media{
+				width:145px;
+				height:185px;
+				min-height:185px;
+			}
+		}
+		@include respond('phone-land'){
+			.adv-media{
+				width:120px;
+				margin-right:30px;
+			}
+		}
+		
+	}
+	&.style-3{
+		.adv-content{
+			padding:40px 15px 40px 190px;
+			
+			.special{
+				font-weight: 700;
+				font-size: 16px;
+				line-height: 24px;
+			}
+			.title{
+				font-weight: 800;
+				font-size: 40px;
+				line-height: 1.2;
+				margin-bottom: 20px;
+				text-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
+				color: #FECC48;
+			}
+		}
+		@include custommq($max: 1024px) {
+			.adv-content{
+				padding:30px 14px 30px 131px;
+				.title{
+					font-size:30px;
+					line-height:50px;
+				}
+			}
+		}
+		@include respond('tab-port'){
+			.adv-content{
+				padding:30px 14px 30px 160px;
+			}
+		}
+		@include respond('phone-land'){
+			.adv-content{
+				padding:30px 14px 30px 265px;
+			}
+		}
+		@include respond('phone'){
+			.adv-content{
+				padding:25px 14px 25px 162px;
+			}
+		}
+	}
+	&.style-4{
+		overflow:unset;
+		background-color: rgba(19, 137, 25, 1);
+		display:flex;
+		align-items:center;
+		justify-content:space-between;
+		padding:30px 30px 0 30px;
+		
+		.adv-media{
+			position: relative;
+			overflow: unset;
+			width: 250px;
+			min-width: 250px;
+			height: 150px;
+			img{
+				position: absolute;
+				top: -55px;
+				object-fit: cover;
+				left: -90px;
+			}
+		}
+		.adv-content{
+			.special{
+				font-weight: 600;
+				font-size: 18px;
+				line-height: 28px;
+			}
+			.price{
+				font-weight: 800;
+				font-size: 54px;
+				line-height: 81px;
+				color:#fff;
+			}
+		}
+		@include custommq($max: 1024px) {
+			padding:0px 20px 0 0px;
+			.adv-content{
+				.price{
+					font-size: 40px;
+					line-height: 50px;
+				}
+			}
+			.adv-media{
+				width:200px;
+				min-width:200px;
+				img{
+					top:-20px;
+					left:-70px;
+				}
+			}
+		}
+		@include respond('phone-land'){
+			.adv-content{
+				.price{
+					font-size: 40px;
+					line-height: 40px;
+				}
+				.special{
+					font-size:14px;
+					line-height:24px;
+				}
+				
+			}
+			.adv-media{
+				width:150px;
+				min-width:150px;
+				img{
+					top:0;
+					left:0;
+				}
+			}
+		}
+		@include respond('phone'){
+			display:block;
+			text-align:center;
+			padding:20px;
+			.adv-media{
+				img{
+					left:50px;
+					margin:auto;
+				}
+			}
+		}
+	}
+}
+
+.offer-label{
+    width: 100px;
+    height: 100px;
+
+	img{
+		animation: dzRotate360 10s linear infinite;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	span{
+		color: var(--title);
+		font-size: 22px;
+		font-weight: 700;
+		position: absolute;
+		top: 54%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: block;
+		line-height: 1.2;
+	}
+}

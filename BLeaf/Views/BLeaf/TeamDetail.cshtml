@@ -1,0 +1,198 @@
+﻿@{
+	Layout = "~/Views/Shared/_LayoutBLeaf.cshtml";
+}
+<div class="page-content bg-white">
+	<!-- Banner  -->
+	<div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr4.jpg'); background-size:cover; background-position:center;">
+		<div class="container">
+			<div class="dz-bnr-inr-entry">
+				<h1>Team Detail</h1>
+				<!-- Breadcrumb Row -->
+				<nav aria-label="breadcrumb" class="breadcrumb-row">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="@Url.Action("Index","BLeaf")">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Team Detail</li>
+					</ul>
+				</nav>
+				<!-- Breadcrumb Row End -->
+			</div>
+		</div>
+	</div>
+	<!-- Banner End -->
+	<!-- Team Section -->
+	<section class="content-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="team-detail">
+						<div class="dz-media rounded-md">
+							<img src="~/bleaf/images/team/detail/pic1.jpg" alt="/">
+						</div>
+						<div class="dz-info">
+							<div class="head">
+								<h2 class="title">John Doe</h2>
+								<span class="sub-title text-primary">Restaurant Chef</span>
+							</div>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<ul class="team-info">
+								<li><strong>Responsibility:</strong>Senior Chef</li>
+								<li><strong>Experience:</strong>10 Year</li>
+								<li><strong>Email:</strong>Example@gmail.com</li>
+								<li><strong>Phone:</strong>+22 33 56 7675 8939</li>
+							</ul>
+							<div class="dz-social-icon">
+								<ul>
+									<li>
+										<a target="_blank" class="btn-md text-dark" href="https://www.facebook.com/">
+											<i class="fab fa-facebook-f"></i>
+										</a>
+									</li>
+									<li>
+										<a target="_blank" class="btn-md text-dark" href="https://twitter.com/">
+											<i class="fab fa-twitter"></i>
+										</a>
+									</li>
+									<li>
+										<a target="_blank" class="btn-md text-dark" href="https://www.youtube.com/">
+											<i class="fa-brands fa-youtube"></i>
+										</a>
+									</li>
+									<li>
+										<a target="_blank" class="btn-md text-dark" href="https://www.instagram.com/">
+											<i class="fab fa-instagram"></i>
+										</a>
+									</li>
+									<li>
+										<a target="_blank" class="btn-md text-dark" href="https://www.linkedin.com/feed/">
+											<i class="fa-brands fa-linkedin"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="team-bio">
+						<h4 class="m-b10">Biography</h4>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+					</div>
+					<div class="row">
+						<div class="col-xl-5 col-lg-6 m-b10">
+							<h4 class="m-b15">Signature Dish</h4>
+							<ul class="dish-gallery gallery-grid-2">
+								<li>
+									<a href="@Url.Action("ProductDetail","BLeaf")">
+										<div class="gallery-box-1">
+											<img src="~/bleaf/images/gallery/grid5/pic1.jpg" alt="/">
+											<span class="category">Sweet Cake</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="@Url.Action("ProductDetail","BLeaf")">
+										<div class="gallery-box-1">
+											<img src="~/bleaf/images/gallery/grid5/pic5.jpg" alt="/">
+											<span class="category">Chicken</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="@Url.Action("ProductDetail","BLeaf")">
+										<div class="gallery-box-1">
+											<img src="~/bleaf/images/gallery/grid5/pic7.jpg" alt="/">
+											<span class="category">Salad</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="@Url.Action("ProductDetail","BLeaf")">
+										<div class="gallery-box-1">
+											<img src="~/bleaf/images/gallery/grid5/pic4.jpg" alt="/">
+											<span class="category">Burger</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-xl-7 col-lg-6 m-b30">
+							<div class="team-skills">
+								<h4 class="m-b10">Professional Skills</h4>
+								<p class="m-b15">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+								<div class="progress-bx style-1">
+									<h6 class="progress-label">
+										Skills
+										<span class="pull-end">60%</span>
+									</h6>
+									<div class="progress primary rounded-md m-b20">
+										<div class="progress-bar rounded-md" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+										</div>
+									</div>
+								</div>
+								<div class="progress-bx style-1">
+									<h6 class="progress-label">
+										Signature Dishes
+										<span class="pull-end">85%</span>
+									</h6>
+									<div class="progress primary rounded-md m-b20">
+										<div class="progress-bar rounded-md" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:85%">
+										</div>
+									</div>
+								</div>
+								<div class="progress-bx style-1">
+									<h6 class="progress-label">
+										Customer Satisfied
+										<span class="pull-end">95%</span>
+									</h6>
+									<div class="progress primary rounded-md m-b20">
+										<div class="progress-bar rounded-md" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width:95%">
+										</div>
+									</div>
+								</div>
+								<div class="progress-bx style-1">
+									<h6 class="progress-label">
+										Communication Skills
+										<span class="pull-end">75%</span>
+									</h6>
+									<div class="progress primary rounded-md m-b20">
+										<div class="progress-bar rounded-md" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:75%">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Team Section -->
+
+</div>
+
+@section bleaf_style
+	{
+	<!-- Stylesheet -->
+	<link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+	<link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+}
+@section bleaf_script
+	{
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELEECT -->
+	<script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
+	<script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+	<script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+	<script src="~/bleaf/vendor/wow/wow.js"></script><!-- WOW JS -->
+	<script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+	<script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- OWL-CAROUSEL -->
+	<script src="~/bleaf/vendor/particles/particles.js"></script>
+	<script src="~/bleaf/vendor/particles/particles-app.js"></script>
+	<script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
+	<script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+	<script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
+	
+	<script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- CUSTOM JS -->
+	
+}

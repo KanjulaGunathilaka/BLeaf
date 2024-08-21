@@ -1,0 +1,66 @@
+// dzmove1
+.dzmove1{
+	animation: dzMove1 5s linear infinite;
+}
+@keyframes dzMove1 {
+    0%{
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    50%{
+        -webkit-transform: translate(25px, 25px);
+        transform: translate(25px, 25px);
+    }
+    100%{
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+
+// dzmove2
+.dzmove2{
+	-webkit-animation: move1 5s infinite;
+	animation: move1 5s infinite; 
+}
+@-webkit-keyframes dzmove2{
+	0%{
+		-webkit-transform: rotate(-25deg) translate(-50px, -50px);
+		transform: rotate(-25deg) translate(-50px, -50px); 
+	}
+	50%{
+		-webkit-transform: rotate(25deg) translate(50px, 50px);
+		transform: rotate(25deg) translate(50px, 50px); 
+	}
+	100%{
+		-webkit-transform: rotate(-25deg) translate(-50px, -50px);
+		transform: rotate(-25deg) translate(-50px, -50px); 
+	}
+}
+
+// dzheart
+.dzheart{
+	animation: dzHeart 1s linear infinite;
+}
+@keyframes dzHeart{
+    0% { 
+        transform: scale(1); 
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

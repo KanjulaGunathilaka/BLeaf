@@ -1,0 +1,217 @@
+// FILTER BUTTONS CSS
+.site-filters {
+    margin-bottom: 30px;
+	ul {
+		margin: 0;
+		list-style: none;
+	}
+	li {
+		display: inline-block;
+		padding: 0;
+		margin-bottom:3px;
+		&.btn {
+			box-shadow: none;
+			-webkit-box-shadow: none;
+			outline: none !important;
+		}
+		input {
+			display: none;
+		}
+		a {
+			margin: 0 5px 5px 0;
+			display: block;
+		}
+		
+	}
+	&.center{
+		text-align: center;
+		ul {
+			display: inline-block;
+			margin: auto;
+		}
+		[class*="btn"] {
+			display: inline-block;
+			margin: 0 5px 10px;
+			text-transform: uppercase;
+			@include respond('phone'){
+				margin: 0 1px 5px;
+				padding: 5px 10px;
+				font-size: 12px;
+			}
+		}
+	}
+	&.style-1{
+		margin-bottom: 40px;
+		ul{
+			margin-right:-10px;
+			li{
+				padding:8px 15px;
+				border:none;
+				margin-right:10px;
+				a{
+					color: #222222;
+					font-weight: 500;
+					font-size: 15px;
+					line-height: 22px;
+					margin:0;
+					display:flex;
+					align-items:center;
+				    overflow: hidden;
+					
+					i{
+						font-size:25px;
+						margin-right:10px;
+					}
+				}
+				&:hover,
+				&.active{
+					background:var(--bg-light);
+					
+					a{
+						color:var(--primary);
+						
+						i{
+							-webkit-animation: upToDown 0.5s forwards;
+							-moz-animation: upToDown 0.5s forwards;
+							animation: upToDown 0.5s forwards;
+						}
+					}
+				}
+			}
+		}
+		@include respond('tab-land'){
+			ul{
+				margin-right:-5px;
+				li{
+					padding:8px;
+					margin-right:5px;
+					a{
+						font-size:13px;
+						i{
+							margin-right:5px;
+						}
+					}
+				}
+			}
+		}
+		@include respond('tab-port'){
+			margin-bottom:30px;
+		}
+		@include respond('phone-land'){
+			text-align:center;
+		}
+	}
+	&.style-2{
+		margin-bottom: 20px;
+		ul{
+			li{
+				text-align:center;
+				border:none;
+				padding:0px 30px;
+				a{
+					color: #222222;
+					font-weight: 500;
+					font-size: 15px;
+					line-height: 22px;
+					margin:0;
+					
+					span{
+						display:block;
+						margin-bottom:10px;
+						
+						i{
+							font-size:40px;
+						}
+					}
+				}
+				&:hover,
+				&.active{
+					a{
+						color:var(--primary);
+						
+						i{
+							animation: shake 1s;
+						}
+					}
+				}
+			}
+		}
+		@include respond('tab-port'){
+			ul{
+				li{
+					padding:0px 20px;
+				}
+			}
+		}
+		@include respond('phone-land'){
+			ul{
+				li{
+					margin-bottom:20px;
+					padding:0px 10px;
+					a{
+						font-size:14px;
+
+						span{
+							i{
+								font-size:30px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+@-webkit-keyframes upToDown {
+	49%{
+		-webkit-transform: translateY(100%);
+	}
+	50% {
+		opacity: 0;
+		-webkit-transform: translateY(-100%);
+	}
+	51%{
+		opacity: 1;
+	}
+}
+@-moz-keyframes upToDown{
+	49%{
+		-moz-transform: translateY(100%);
+	}
+	50%{
+		opacity: 0;
+		-moz-transform: translateY(-100%);
+	}
+	51%{
+		opacity: 1;
+	}
+}
+@keyframes upToDown{
+	49%{
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+	}
+	50%{
+		opacity: 0;
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+	51%{
+		opacity: 1;
+	}
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
