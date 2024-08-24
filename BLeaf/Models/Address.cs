@@ -37,5 +37,8 @@ namespace BLeaf.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
+        // Add this navigation property
+        public ICollection<Order> Orders { get; set; }
     }
 }

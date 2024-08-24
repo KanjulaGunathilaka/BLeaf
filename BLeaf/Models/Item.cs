@@ -30,8 +30,7 @@ namespace BLeaf.Models
         [StringLength(255)]
         public string ImageThumbnailUrl { get; set; }
 
-        [Required]
-        public bool InStock { get; set; } = true;
+        public bool? InStock { get; set; } = true;
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }

@@ -1,6 +1,8 @@
 ﻿using BLeaf.Models;
 using Microsoft.EntityFrameworkCore;
 
+namespace BLeaf.Data
+{
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
@@ -19,6 +21,7 @@ using Microsoft.EntityFrameworkCore;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             // Category
             modelBuilder.Entity<Category>()
                 .Property(c => c.CreatedAt)
@@ -44,6 +47,10 @@ using Microsoft.EntityFrameworkCore;
             modelBuilder.Entity<Item>()
                 .Property(i => i.IsSpecial)
                 .HasDefaultValue(false);
+
+            modelBuilder.Entity<Item>()
+                .Property(i => i.Price)
+                .HasColumnType("decimal(10, 2)");
 
             // Review
             modelBuilder.Entity<Review>()
@@ -72,6 +79,12 @@ using Microsoft.EntityFrameworkCore;
                 .Property(a => a.IsPrimary)
                 .HasDefaultValue(false);
 
+            modelBuilder.Entity<Address>()
+                .HasMany(a => a.Orders)
+                .WithOne(o => o.Address)
+                .HasForeignKey(o => o.AddressId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             // Order
             modelBuilder.Entity<Order>()
                 .Property(o => o.OrderPlacedAt)
@@ -86,13 +99,27 @@ using Microsoft.EntityFrameworkCore;
                 .HasDefaultValue("Credit Card");
 
             modelBuilder.Entity<Order>()
-            .Property(o => o.PaymentStatus)
-            .HasDefaultValue("Unpaid");
+                .Property(o => o.PaymentStatus)
+                .HasDefaultValue("Unpaid");
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.OrderTotal)
+                .HasColumnType("decimal(10, 2)");
+
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // OrderDetail
             modelBuilder.Entity<OrderDetail>()
                 .Property(od => od.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<OrderDetail>()
+                .Property(od => od.UnitPrice)
+                .HasColumnType("decimal(10, 2)");
 
             // ShoppingCartItem
             modelBuilder.Entity<ShoppingCartItem>()
@@ -112,6 +139,10 @@ using Microsoft.EntityFrameworkCore;
                 .Property(d => d.IsActive)
                 .HasDefaultValue(true);
 
+            modelBuilder.Entity<Discount>()
+                .Property(d => d.DiscountAmount)
+                .HasColumnType("decimal(10, 2)");
+
             // Reservation
             modelBuilder.Entity<Reservation>()
                 .Property(r => r.CreatedAt)
@@ -126,3 +157,4 @@ using Microsoft.EntityFrameworkCore;
                 .HasDefaultValue("Pending");
         }
     }
+}
