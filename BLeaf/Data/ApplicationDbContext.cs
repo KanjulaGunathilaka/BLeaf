@@ -1,8 +1,6 @@
 ﻿using BLeaf.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BLeaf.Data
-{
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
@@ -128,4 +126,3 @@ namespace BLeaf.Data
                 .HasDefaultValue("Pending");
         }
     }
-}
