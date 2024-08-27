@@ -1,0 +1,324 @@
+﻿@model IEnumerable<BLeaf.Models.Reservation>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Reservation Management</h2>
+        <button id="showAddReservationForm" class="btn btn-primary mb-3">Add Reservation</button>
+
+        <div id="reservationMessage" class="alert" style="display: none;"></div>
+
+        <div id="addReservationForm" style="display: none;">
+            <h3 id="reservationFormTitle">Enter Reservation Details</h3>
+            <form id="reservationForm">
+                <input type="hidden" id="reservationId" name="reservationId" />
+                <div class="form-group">
+                    <label for="userId">User:</label>
+                    <select id="userId" name="userId" class="form-control">
+                        @foreach (var user in ViewBag.Users)
+                        {
+                            <option value="@user.UserId">@user.FullName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reservationDate">Reservation Date:</label>
+                    <input type="datetime-local" id="reservationDate" name="reservationDate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="numberOfPeople">Number of People:</label>
+                    <input type="number" id="numberOfPeople" name="numberOfPeople" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests:</label>
+                    <textarea id="specialRequests" name="specialRequests" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reservationStatus">Reservation Status:</label>
+                    <select id="reservationStatus" name="reservationStatus" class="form-control">
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <button id="submitReservation" type="button" class="btn btn-primary">Submit Reservation</button>
+                <button id="cancelReservationEdit" type="button" class="btn btn-secondary" style="display: none;">Cancel</button>
+            </form>
+        </div>
+
+        <div id="reservationTable" class="mt-3">
+            <h3>View Reservations</h3>
+            <table id="reservationDataTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ReservationId</th>
+                        <th>User</th>
+                        <th>Reservation Date</th>
+                        <th>Number of People</th>
+                        <th>Special Requests</th>
+                        <th>Reservation Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reservation in Model)
+                    {
+                        <tr>
+                            <td>@reservation.ReservationId</td>
+                            <td>@reservation.User.FullName</td>
+                            <td>@reservation.ReservationDate</td>
+                            <td>@reservation.NumberOfPeople</td>
+                            <td>@reservation.SpecialRequests</td>
+                            <td>@reservation.ReservationStatus</td>
+                            <td>
+                                <button class="btn btn-secondary edit-reservation" data-id="@reservation.ReservationId">Edit</button>
+                                <button class="btn btn-danger delete-reservation" data-id="@reservation.ReservationId">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#showAddReservationForm").click(function () {
+                clearReservationForm();
+                $("#addReservationForm").toggle();
+                $("#reservationFormTitle").text("Enter Reservation Details");
+                $("#submitReservation").text("Submit Reservation");
+                $("#reservationId").val("");
+                $("#cancelReservationEdit").hide();
+                clearReservationMessage();
+            });
+
+            $("#submitReservation").click(function (event) {
+                event.preventDefault();
+
+                var formData = {
+                    userId: $("#userId").val(),
+                    reservationDate: $("#reservationDate").val(),
+                    numberOfPeople: $("#numberOfPeople").val(),
+                    specialRequests: $("#specialRequests").val(),
+                    reservationStatus: $("#reservationStatus").val()
+                };
+
+                var reservationId = $("#reservationId").val();
+
+                if (reservationId) {
+                    formData.reservationId = reservationId;
+                    updateReservation(formData);
+                } else {
+                    addReservation(formData);
+                }
+            });
+
+            function addReservation(formData) {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/reservation",
+                    data: JSON.stringify(formData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        showReservationMessage("Reservation added successfully", "alert-success");
+                        loadReservations();
+                        $("#addReservationForm").hide();
+                        setTimeout(clearReservationMessage, 5000);
+                    },
+                    error: function (xhr, status, error) {
+                        showReservationMessage("Failed to add reservation", "alert-danger");
+                        console.error("Failed to add reservation:", xhr.responseText);
+                        setTimeout(clearReservationMessage, 5000);
+                    }
+                });
+            }
+
+            function updateReservation(formData) {
+                var reservationId = formData.reservationId;
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/reservation/" + reservationId,
+                    data: JSON.stringify(formData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        showReservationMessage("Reservation updated successfully", "alert-success");
+                        loadReservations();
+                        $("#addReservationForm").hide();
+                        setTimeout(clearReservationMessage, 5000);
+                    },
+                    error: function (xhr, status, error) {
+                        showReservationMessage("Failed to update reservation", "alert-danger");
+                        console.error("Failed to update reservation:", xhr.responseText);
+                        setTimeout(clearReservationMessage, 5000);
+                    }
+                });
+            }
+
+            function loadReservations() {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/reservation",
+                    success: function (reservations) {
+                        var table = $("#reservationDataTable tbody");
+                        table.empty();
+                        $.each(reservations, function (i, reservation) {
+                            var row = $("<tr>");
+                            row.append($("<td>").text(reservation.reservationId));
+                            row.append($("<td>").text(reservation.user.fullName));
+                            row.append($("<td>").text(reservation.reservationDate));
+                            row.append($("<td>").text(reservation.numberOfPeople));
+                            row.append($("<td>").text(reservation.specialRequests));
+                            row.append($("<td>").text(reservation.reservationStatus));
+                            row.append($("<td>").html('<button class="btn btn-secondary edit-reservation" data-id="' + reservation.reservationId + '">Edit</button> <button class="btn btn-danger delete-reservation" data-id="' + reservation.reservationId + '">Delete</button>'));
+                            table.append(row);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Failed to load reservations:", error);
+                    }
+                });
+            }
+
+            loadReservations();
+
+            $(document).on("click", ".edit-reservation", function () {
+                var reservationId = $(this).data("id");
+                editReservation(reservationId);
+            });
+
+            $(document).on("click", ".delete-reservation", function () {
+                var reservationId = $(this).data("id");
+                showReservationDeleteConfirmation(reservationId);
+            });
+
+            function editReservation(reservationId) {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/reservation/" + reservationId,
+                    success: function (reservation) {
+                        populateReservationForm(reservation);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Failed to fetch reservation:", error);
+                    }
+                });
+            }
+
+            function deleteReservation(reservationId) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/reservation/" + reservationId,
+                    success: function (response) {
+                        showReservationMessage("Reservation deleted successfully", "alert-success");
+                        loadReservations();
+                        clearReservationMessage();
+                    },
+                    error: function (xhr, status, error) {
+                        showReservationMessage("Failed to delete reservation", "alert-danger");
+                        console.error("Failed to delete reservation:", xhr.responseText);
+                        clearReservationMessage();
+                    }
+                });
+            }
+
+            function showReservationDeleteConfirmation(reservationId) {
+                var confirmationModal = `
+                    <div class="modal fade" tabindex="-1" role="dialog" id="deleteReservationConfirmationModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Confirm Deletion</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this reservation?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="confirmDeleteReservationCancelButton">Cancel</button>
+                                    <button type="button" class="btn btn-danger" id="confirmDeleteReservationButton">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $('body').append(confirmationModal);
+
+                $('#deleteReservationConfirmationModal').modal('show');
+
+                $('#confirmDeleteReservationButton').on('click', function () {
+                    deleteReservation(reservationId);
+                    $('#deleteReservationConfirmationModal').modal('hide');
+                });
+
+                $('#confirmDeleteReservationCancelButton').on('click', function () {
+                    $('#deleteReservationConfirmationModal').modal('hide');
+                });
+
+                $('#deleteReservationConfirmationModal').on('hidden.bs.modal', function (e) {
+                    $(this).remove();
+                });
+            }
+
+            function populateReservationForm(reservation) {
+                $("#userId").val(reservation.userId);
+                $("#reservationDate").val(reservation.reservationDate);
+                $("#numberOfPeople").val(reservation.numberOfPeople);
+                $("#specialRequests").val(reservation.specialRequests);
+                $("#reservationStatus").val(reservation.reservationStatus);
+                $("#reservationId").val(reservation.reservationId);
+
+                $("#addReservationForm").show();
+                $("#reservationFormTitle").text("Edit Reservation");
+                $("#submitReservation").text("Update Reservation");
+                $("#cancelReservationEdit").show();
+                clearReservationMessage();
+            }
+
+            $("#cancelReservationEdit").click(function () {
+                $("#addReservationForm").hide();
+                $("#reservationFormTitle").text("Enter Reservation Details");
+                $("#submitReservation").text("Submit Reservation");
+                clearReservationForm();
+                clearReservationMessage();
+            });
+
+            function showReservationMessage(message, alertClass) {
+                var messageDiv = $("#reservationMessage");
+                messageDiv.removeClass();
+                messageDiv.addClass("alert " + alertClass);
+                messageDiv.text(message);
+                messageDiv.show();
+            }
+
+            function clearReservationMessage() {
+                var messageDiv = $("#reservationMessage");
+                messageDiv.removeClass();
+                messageDiv.text("");
+                messageDiv.hide();
+            }
+
+            function clearReservationForm() {
+                $("#userId").val("");
+                $("#reservationDate").val("");
+                $("#numberOfPeople").val("");
+                $("#specialRequests").val("");
+                $("#reservationStatus").val("Pending");
+                $("#reservationId").val("");
+            }
+        });
+    </script>
+</body>
+</html>

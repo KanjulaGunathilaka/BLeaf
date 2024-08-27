@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<h2>Admin Panel</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="@Url.Action("Categories", "Admin")">Manage Categories</a></li>
+                <li class="list-group-item"><a href="@Url.Action("Items", "Admin")">Manage Items</a></li>
+                <li class="list-group-item"><a href="@Url.Action("Reviews", "Admin")">Manage Reviews</a></li>
+                <li class="list-group-item"><a href="@Url.Action("Discounts", "Admin")">Manage Discounts</a></li>
+                <li class="list-group-item"><a href="@Url.Action("Users", "Admin")">Manage Users</a></li>
+                <li class="list-group-item"><a href="@Url.Action("Addresses", "Admin")">Manage Addresses</a></li>
+                <li class="list-group-item"><a href="@Url.Action("Orders", "Admin")">Manage Orders</a></li>
+                <li class="list-group-item"><a href="@Url.Action("OrderDetails", "Admin")">Manage Order Details</a></li>
+                <li class="list-group-item"><a href="@Url.Action("ShoppingCartItems", "Admin")">Manage Shopping Cart Items</a></li>
+                <li class="list-group-item"><a href="@Url.Action("Reservations", "Admin")">Manage Reservations</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <h3>Welcome to the Admin Panel</h3>
+            <p>Select an option from the menu to manage the respective section.</p>
+        </div>
+    </div>
+</div>

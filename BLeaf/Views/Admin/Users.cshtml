@@ -1,0 +1,318 @@
+﻿@model IEnumerable<BLeaf.Models.User>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>User Management</h2>
+        <button id="showAddUserForm" class="btn btn-primary mb-3">Add User</button>
+
+        <div id="userMessage" class="alert" style="display: none;"></div>
+
+        <div id="addUserForm" style="display: none;">
+            <h3 id="userFormTitle">Enter User Details</h3>
+            <form id="userForm">
+                <input type="hidden" id="userId" name="userId" />
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="billingAddress">Billing Address:</label>
+                    <textarea id="billingAddress" name="billingAddress" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select id="role" name="role" class="form-control">
+                        <option value="Customer">Customer</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+                <button id="submitUser" type="button" class="btn btn-primary">Submit User</button>
+                <button id="cancelUserEdit" type="button" class="btn btn-secondary" style="display: none;">Cancel</button>
+            </form>
+        </div>
+
+        <div id="userTable" class="mt-3">
+            <h3>View Users</h3>
+            <table id="userDataTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>UserId</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Billing Address</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.UserId</td>
+                            <td>@user.FullName</td>
+                            <td>@user.Email</td>
+                            <td>@user.PhoneNumber</td>
+                            <td>@user.BillingAddress</td>
+                            <td>@user.Role</td>
+                            <td>
+                                <button class="btn btn-secondary edit-user" data-id="@user.UserId">Edit</button>
+                                <button class="btn btn-danger delete-user" data-id="@user.UserId">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#showAddUserForm").click(function () {
+                clearUserForm();
+                $("#addUserForm").toggle();
+                $("#userFormTitle").text("Enter User Details");
+                $("#submitUser").text("Submit User");
+                $("#userId").val("");
+                $("#cancelUserEdit").hide();
+                clearUserMessage();
+            });
+
+            $("#submitUser").click(function (event) {
+                event.preventDefault();
+
+                var formData = {
+                    fullName: $("#fullName").val(),
+                    email: $("#email").val(),
+                    phoneNumber: $("#phoneNumber").val(),
+                    billingAddress: $("#billingAddress").val(),
+                    role: $("#role").val()
+                };
+
+                var userId = $("#userId").val();
+
+                if (userId) {
+                    formData.userId = userId;
+                    updateUser(formData);
+                } else {
+                    addUser(formData);
+                }
+            });
+
+            function addUser(formData) {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/user",
+                    data: JSON.stringify(formData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        showUserMessage("User added successfully", "alert-success");
+                        loadUsers();
+                        $("#addUserForm").hide();
+                        setTimeout(clearUserMessage, 5000);
+                    },
+                    error: function (xhr, status, error) {
+                        showUserMessage("Failed to add user", "alert-danger");
+                        console.error("Failed to add user:", xhr.responseText);
+                        setTimeout(clearUserMessage, 5000);
+                    }
+                });
+            }
+
+            function updateUser(formData) {
+                var userId = formData.userId;
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/user/" + userId,
+                    data: JSON.stringify(formData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        showUserMessage("User updated successfully", "alert-success");
+                        loadUsers();
+                        $("#addUserForm").hide();
+                        setTimeout(clearUserMessage, 5000);
+                    },
+                    error: function (xhr, status, error) {
+                        showUserMessage("Failed to update user", "alert-danger");
+                        console.error("Failed to update user:", xhr.responseText);
+                        setTimeout(clearUserMessage, 5000);
+                    }
+                });
+            }
+
+            function loadUsers() {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/user",
+                    success: function (users) {
+                        var table = $("#userDataTable tbody");
+                        table.empty();
+                        $.each(users, function (i, user) {
+                            var row = $("<tr>");
+                            row.append($("<td>").text(user.userId));
+                            row.append($("<td>").text(user.fullName));
+                            row.append($("<td>").text(user.email));
+                            row.append($("<td>").text(user.phoneNumber));
+                            row.append($("<td>").text(user.billingAddress));
+                            row.append($("<td>").text(user.role));
+                            row.append($("<td>").html('<button class="btn btn-secondary edit-user" data-id="' + user.userId + '">Edit</button> <button class="btn btn-danger delete-user" data-id="' + user.userId + '">Delete</button>'));
+                            table.append(row);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Failed to load users:", error);
+                    }
+                });
+            }
+
+            loadUsers();
+
+            $(document).on("click", ".edit-user", function () {
+                var userId = $(this).data("id");
+                editUser(userId);
+            });
+
+            $(document).on("click", ".delete-user", function () {
+                var userId = $(this).data("id");
+                showUserDeleteConfirmation(userId);
+            });
+
+            function editUser(userId) {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/user/" + userId,
+                    success: function (user) {
+                        populateUserForm(user);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Failed to fetch user:", error);
+                    }
+                });
+            }
+
+            function deleteUser(userId) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/user/" + userId,
+                    success: function (response) {
+                        showUserMessage("User deleted successfully", "alert-success");
+                        loadUsers();
+                        clearUserMessage();
+                    },
+                    error: function (xhr, status, error) {
+                        showUserMessage("Failed to delete user", "alert-danger");
+                        console.error("Failed to delete user:", xhr.responseText);
+                        clearUserMessage();
+                    }
+                });
+            }
+
+            function showUserDeleteConfirmation(userId) {
+                var confirmationModal = `
+                    <div class="modal fade" tabindex="-1" role="dialog" id="deleteUserConfirmationModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Confirm Deletion</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this user?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="confirmDeleteUserCancelButton">Cancel</button>
+                                    <button type="button" class="btn btn-danger" id="confirmDeleteUserButton">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $('body').append(confirmationModal);
+
+                $('#deleteUserConfirmationModal').modal('show');
+
+                $('#confirmDeleteUserButton').on('click', function () {
+                    deleteUser(userId);
+                    $('#deleteUserConfirmationModal').modal('hide');
+                });
+
+                $('#confirmDeleteUserCancelButton').on('click', function () {
+                    $('#deleteUserConfirmationModal').modal('hide');
+                });
+
+                $('#deleteUserConfirmationModal').on('hidden.bs.modal', function (e) {
+                    $(this).remove();
+                });
+            }
+
+            function populateUserForm(user) {
+                $("#fullName").val(user.fullName);
+                $("#email").val(user.email);
+                $("#phoneNumber").val(user.phoneNumber);
+                $("#billingAddress").val(user.billingAddress);
+                $("#role").val(user.role);
+                $("#userId").val(user.userId);
+
+                $("#addUserForm").show();
+                $("#userFormTitle").text("Edit User");
+                $("#submitUser").text("Update User");
+                $("#cancelUserEdit").show();
+                clearUserMessage();
+            }
+
+            $("#cancelUserEdit").click(function () {
+                $("#addUserForm").hide();
+                $("#userFormTitle").text("Enter User Details");
+                $("#submitUser").text("Submit User");
+                clearUserForm();
+                clearUserMessage();
+            });
+
+            function showUserMessage(message, alertClass) {
+                var messageDiv = $("#userMessage");
+                messageDiv.removeClass();
+                messageDiv.addClass("alert " + alertClass);
+                messageDiv.text(message);
+                messageDiv.show();
+            }
+
+            function clearUserMessage() {
+                var messageDiv = $("#userMessage");
+                messageDiv.removeClass();
+                messageDiv.text("");
+                messageDiv.hide();
+            }
+
+            function clearUserForm() {
+                $("#fullName").val("");
+                $("#email").val("");
+                $("#phoneNumber").val("");
+                $("#billingAddress").val("");
+                $("#role").val("Customer");
+                $("#userId").val("");
+            }
+        });
+    </script>
+</body>
+</html>
