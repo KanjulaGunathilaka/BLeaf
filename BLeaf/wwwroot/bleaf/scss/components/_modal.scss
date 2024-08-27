@@ -1,0 +1,11 @@
+.modal-dialog{
+	max-width:970px!important;
+	
+	@include respond('tab-port'){
+		max-width: 750px!important;
+		padding: 15px;
+	}
+	@include respond('phone'){
+		padding: 10px;
+	}
+}

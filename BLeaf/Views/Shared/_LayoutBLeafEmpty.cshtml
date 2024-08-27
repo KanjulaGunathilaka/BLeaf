@@ -1,0 +1,33 @@
+﻿@{
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="BLeaf/_Meta" />
+    <title>@Configuration.GetSection("DefaultValue")["Title"]</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/bleaf/images/favicon.png">
+
+    @RenderSection("bleaf_style", false)
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="~/bleaf/vendor/rangeslider/rangeslider.css">
+    <link rel="stylesheet" href="~/bleaf/vendor/switcher/switcher.css">
+    <link rel="stylesheet" href="~/bleaf/css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body id="bg">
+    <partial name="BLeaf/_PreLoader" />
+    <div class="page-wraper">
+        @RenderBody()
+    </div>
+    @RenderSection("bleaf_script", false)
+</body>
+</html>

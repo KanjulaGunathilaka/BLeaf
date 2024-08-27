@@ -1,0 +1,45 @@
+//dz-tabs
+.nav-tabs{
+	margin: 0 -5px 25px;
+	border-bottom: none;
+	li{
+		color:#fff;
+		margin: 0 5px 5px;
+		border-radius: 6px;
+		button{
+			i{
+				font-family: 'feather' !important;
+				font-style: normal;
+				text-transform: none;
+				vertical-align:middle;
+			}
+			&:active{
+				background-color:var(--primary-hover);
+			}
+		}
+	}
+}
+
+// Tabs style 1
+.tabs-style-1{
+	border-bottom: 2px solid #EAEAEA;
+	margin: 0 0 30px;
+	
+	li{
+		margin: 0 3px -1px 0;
+	}
+	.nav-link{
+		border: 2px solid rgba(255,255,255,0);
+		border-width: 2px 2px 0;
+		color: var(--title);
+		
+		&.active,
+		&:hover,
+		&:active,
+		&:focus{
+			border: 2px solid #EAEAEA;
+			background-color: #EAEAEA;
+			color: var(--title);
+		}
+	}
+}

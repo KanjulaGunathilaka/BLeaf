@@ -1,0 +1,542 @@
+sticky-top// text size
+.font-10 {
+    font-size: 10px;
+}
+.font-12 {
+    font-size: 12px;
+}
+.font-13 {
+    font-size: 13px;
+}
+.font-14 {
+    font-size: 14px;
+}
+.font-15 {
+    font-size: 15px;
+}
+.font-16 {
+    font-size: 16px;
+}
+.font-18 {
+    font-size: 18px;
+}
+.font-20 {
+    font-size: 20px;
+}
+.font-22 {
+    font-size: 22px;
+}
+.font-24 {
+    font-size: 24px;
+}
+.font-26 {
+    font-size: 26px;
+}
+.font-30 {
+    font-size: 30px;
+}
+.font-35 {
+    font-size: 35px;
+}
+.font-40 {
+    font-size: 40px;
+}
+.font-45 {
+    font-size: 45px;
+}
+.font-50 {
+    font-size: 50px;
+}
+.font-55 {
+    font-size: 55px;
+}
+.font-60 {
+    font-size: 60px;
+}
+.font-70 {
+    font-size: 70px;
+}
+.font-75 {
+    font-size: 75px;
+}
+.font-80 {
+    font-size: 80px;
+}
+.font-90 {
+    font-size: 90px;
+}
+.font-100 {
+    font-size: 100px;
+}
+
+// Font Weight 
+.font-weight-300 {
+    font-weight: 300;
+}
+.font-weight-400 {
+    font-weight: 400;
+}
+.font-weight-500 {
+    font-weight: 500;
+}
+.font-weight-600 {
+    font-weight: 600;
+}
+.font-weight-700 {
+    font-weight: 700;
+}
+.font-weight-800 {
+    font-weight: 800;
+}
+.font-weight-900 {
+    font-weight: 900;
+}
+
+$value: 20;
+$x: 5;
+$y: px;
+@for $i from 0 through $value{
+	// Padding Value
+	.p-a#{$i*$x}{
+		padding: ($x*$i) + px;
+	}
+	.p-t#{$i*$x}{
+		padding-top: ($x*$i) + px;
+	}
+	.p-b#{$i*$x}{
+		padding-bottom: ($x*$i) + px;
+	}
+	.p-l#{$i*$x}{
+		padding-left: ($x*$i) + px;
+	}
+	.p-r#{$i*$x}{
+		padding-right: ($x*$i) + px;
+	}
+	.p-lr#{$i*$x}{
+		padding-left: ($x*$i) + px;
+		padding-right: ($x*$i) + px;
+	}
+	.p-tb#{$i*$x}{
+		padding-bottom: ($x*$i) + px;
+		padding-top: ($x*$i) + px;
+	}
+	
+	// Margin Value
+	.m-a#{$i*$x}{
+		margin: ($x*$i) + px;
+	}
+	.m-t#{$i*$x}{
+		margin-top: ($x*$i) + px;
+	}
+	.m-b#{$i*$x}{
+		margin-bottom: ($x*$i) + px;
+	}
+	.m-l#{$i*$x}{
+		margin-left: ($x*$i) + px;
+	}
+	.m-r#{$i*$x}{
+		margin-right: ($x*$i) + px;
+	}
+	.m-lr#{$i*$x}{
+		margin-left: ($x*$i) + px;
+		margin-right: ($x*$i) + px;
+	}
+	.m-tb#{$i*$x}{
+		margin-bottom: ($x*$i) + px;
+		margin-top: ($x*$i) + px;
+	}
+}
+
+@media (min-width: 992px){
+	@for $i from 0 through $value{
+		// Margin Value
+		.m-lg-t#{$i*$x}{
+			margin-top: ($x*$i) + px;
+		}
+		.m-lg-b#{$i*$x}{
+			margin-bottom: ($x*$i) + px;
+		}
+	}
+	.m-lg-r0 {margin-right:0;}
+	.m-lg-l0 {margin-left:0;}
+}
+@media (min-width: 768px){
+	@for $i from 0 through $value{
+		// Margin Value
+		.m-md-t#{$i*$x}{
+			margin-top: ($x*$i) + px;
+		}
+		.m-md-b#{$i*$x}{
+			margin-bottom: ($x*$i) + px;
+		}
+	}
+	.m-md-r0 {margin-right:0;}
+	.m-md-l0 {margin-left:0;}
+}
+@media (min-width: 576px){
+	@for $i from 0 through $value{
+		// Margin Value
+		.m-sm-t#{$i*$x}{
+			margin-top: ($x*$i) + px;
+		}
+		.m-sm-b#{$i*$x}{
+			margin-bottom: ($x*$i) + px;
+		}
+	}
+}
+
+// BOX MAX-WIDTH CSS
+.max-w50 {
+    max-width: 50px;
+}
+.max-w60 {
+    max-width: 60px;
+}
+.max-w80 {
+    max-width: 80px;
+}
+.max-w100 {
+    max-width: 100px;
+}
+.max-w200 {
+    max-width: 200px;
+}
+.max-w300 {
+    max-width: 300px;
+}
+.max-w400 {
+    max-width: 400px;
+}
+.max-w500 {
+    max-width: 500px;
+}
+.max-w600 {
+    max-width: 600px;
+}
+.max-w700 {
+    max-width: 700px;
+}
+.max-w800 {
+    max-width: 800px;
+}
+.max-w900 {
+    max-width: 900px;
+}
+.max-w1000 {
+    max-width: 1000px;
+}
+
+// BACKGROUND IMAGE
+.bg-img-fix {
+    background-attachment: unset;
+	background-size: cover;
+}
+.full-img{
+	width:100%;
+}
+
+
+.page-title {
+    padding : 65px 0px 45px;
+    position: relative;
+    background         : $light;
+    background-size    : cover;
+    background-position: center;
+
+    p {
+        font-size     : 20px;
+        font-weight  : 500;
+        margin-bottom : 5px;
+        color         : #7272A8;
+        text-transform: capitalize;
+		@include respond('phone'){
+			font-size:16px;
+		}
+    }
+
+    h3 {
+        font-size     : 40px;
+        line-height   : 1.2;
+        font-weight  : 600;
+        text-transform: capitalize;
+		@include respond('phone'){
+			font-size: 28px;
+		}
+    }
+}
+.img-cover {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.img-cover-1 {
+    height: 100%;
+    width: 100%;
+}
+.img-cover-2 {
+    height: 306px;
+    width: 100%;
+    object-fit: cover;
+}
+.img-cover-3 {
+    height: 100%!important;
+    width: 100%;
+	object-fit: cover;
+}
+section{
+    position: relative;
+}
+.section-head{
+	margin-bottom:50px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	
+	.sub-title {
+		text-transform: uppercase;
+		color: var(--secondary);
+		font-size: 18px;
+		font-weight: 600;
+		margin-bottom:5px;
+		@include respond('phone-land'){
+			font-size: 16px;			
+		}
+	}
+	.title {
+		margin-bottom: 15px;
+	}
+	h2.title,h3.title,h4.title,h5.title{
+		font-family: Lobster;
+		font-weight: 400;
+	}
+	h2.title{
+		font-size: 60px;
+		line-height: 1;
+		font-style: normal;
+		font-family: Lobster;
+		@include respond('tab-land'){
+			font-size: 50px;
+			line-height: 50px;
+		}
+		@include respond('phone'){
+			font-size: 35px;
+			line-height: 45px;
+		}
+	}
+
+	@include respond('tab-land'){
+		margin-bottom:35px;
+	}
+	
+}
+.res-pl {
+	padding-left: 50px;
+	@include respond('tab-land'){
+		padding-left: 30px;
+	}
+}
+
+.row.spno,
+.spno{
+	margin-left:0;
+	margin-right:0;
+	
+	[class*="col"],
+	[class*="col"]{
+		padding-left:0;
+		padding-right:0;
+	}
+}
+.row.sp4,
+.sp4{
+	margin-left:-4px;
+	margin-right:-4px;
+	
+	[class*="col"],
+	[class*="col"]{
+		padding-left:4px;
+		padding-right:4px;
+	}
+}
+.row.sp15,
+.sp15{
+	margin-left:-7px;
+	margin-right:-7px;
+	
+	[class*="col"],
+	[class*="col"]{
+		padding-left:7px;
+		padding-right:7px;
+	}
+}
+.row.sp10,
+.sp10{
+	margin-left:-5px;
+	margin-right:-5px;
+	[class*="col-"]{
+		padding-left:5px;
+		padding-right:5px;
+	}
+}
+.row.sp60,
+.sp60{
+	margin-left:-30px;
+	margin-right:-30px;
+	[class*="col-"]{
+		padding-left:30px;
+		padding-right:30px;
+	}
+}
+.row.sp40,
+.sp40{
+	margin-left:-20px;
+	margin-right:-20px;
+	[class*="col-"]{
+		padding-left:20px;
+		padding-right:20px;
+	}
+}
+.row.sp20,
+.sp20{
+	margin-left:-10px;
+	margin-right:-10px;
+	[class*="col-"]{
+		padding-left:10px;
+		padding-right:10px;
+	}
+}
+.row.sp16,
+.sp16{
+	margin-left:-8px;
+	margin-right:-8px;
+	[class*="col-"]{
+		padding-left:8px;
+		padding-right:8px;
+	}
+}
+
+
+// rounded
+.rounded-xl{
+	border-radius: 50% !important;
+}
+.rounded-lg{
+	border-radius: 20px !important;
+}
+.rounded-md{
+	border-radius: 10px !important;
+}
+.rounded-sm{
+	border-radius: 8px !important;
+}
+
+// text color
+.text-orange{
+	color: $orange;
+}
+.text-yellow{
+	color: $yellow;
+}
+.text-skyblue{
+	color: $green;
+}
+.text-red{
+	color: $red;
+}
+.text-green{
+	color: $green;
+}
+.text-blue{
+	color: $blue;
+}
+
+// bg color
+.bg-gray{
+	background-color: $gray;
+}
+.bg-orange{
+	background-color: $orange;
+}
+.bg-yellow{
+	background-color: $yellow !important;
+}
+.bg-skyblue{
+	background-color: $skyblue;
+}
+.bg-red{
+	background-color: $red;
+}
+.bg-green{
+	background-color: $green;
+}
+.bg-blue{
+	background-color: $blue;
+}
+.bg-pink {
+	background-color:$pink;
+}
+.text-black{
+	color:#071c35;
+}
+.bg-purple{
+	background-color:$purple;
+}
+.bg-dark{
+	background-color:$dark;
+}
+.bg-darkblue{
+	background-color:$darkblue;
+}
+
+// Scale
+.scale8{
+	transform:scale(1.85);
+	-moz-transform:scale(1.85);
+	-webkit-transform:scale(1.85);
+	-ms-transform:scale(1.85);
+	-o-transform:scale(1.85);
+}
+.scale7{
+	transform:scale(1.7);
+	-moz-transform:scale(1.7);
+	-webkit-transform:scale(1.7);
+	-ms-transform:scale(1.7);
+	-o-transform:scale(1.7);
+}
+.scale5{
+	@include transformScaleMD;
+}
+.scale3{
+	transform:scale(1.3);
+	-moz-transform:scale(1.3);
+	-webkit-transform:scale(1.3);
+	-ms-transform:scale(1.3);
+	-o-transform:scale(1.3);
+}
+.scale2{
+	@include transformScaleSM;
+}
+.scale08{
+	@include transformScaleXS;
+}
+.scale05{
+	@include transformScaleXS1;
+}
+.tl{
+	transform-origin: left;
+	-moz-transform-origin: left;
+	-webkit-transform-origin: left;
+	-ms-transform-origin: left;
+	-o-transform-origin: left;
+}
+.shadow-none{
+	box-shadow: unset;
+}
+.shadow{
+	box-shadow: 0 10px 10px 0 rgba(0 ,0 ,0 ,0.05)!important;
+}
+.separator {
+	height: 1px;
+    width: 100%;
+    background: lightgrey;
+}

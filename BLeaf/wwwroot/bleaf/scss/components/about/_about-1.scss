@@ -1,0 +1,21 @@
+.about-p{
+	width:815px;
+	margin:auto;
+	@include respond('tab-port'){
+		width:100%;
+		font-size:14px;
+	}
+}
+.about-media{
+	height:430px;
+	img{
+		height:100% !important;
+		object-fit:cover;
+	}
+	@include respond('tab-port'){
+		height:380px;
+	}
+	@include respond('phone'){
+		height:300px;
+	}
+}

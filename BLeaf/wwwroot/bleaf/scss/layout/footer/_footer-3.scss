@@ -1,0 +1,79 @@
+// ft-clients
+.site-footer {
+	&.style-3{
+		background-color: rgba(34, 34, 34, 0.05);
+		z-index: 0;
+		
+		.footer-subscribe-wrapper,.footer-top{
+			border-bottom:1px solid rgba(34,34,34,0.1);
+		}
+		.footer-subscribe-wrapper{
+			margin-bottom:55px;
+		}
+		.footer-title{
+			margin-bottom:20px!important;
+			@include respond('tab-port'){
+				font-size: 20px;
+				margin-bottom:15px!important;
+			}
+		}
+		.footer-top{
+			padding-top:40px;
+			padding-bottom:50px;
+			@include respond('tab-port'){
+				padding-top:20px;
+			}
+		}
+		.footer-menu{
+			ul{
+				margin:0 -15px;
+				li{
+					margin: 0 15px;
+					display: inline-block;
+					a{
+						letter-spacing: 0.01em;
+						color: #666666;
+						font-size: 14px;
+						line-height: 1.1;
+					}
+				}
+				@include respond('tab-land'){
+					margin: 0 -8px;
+					li{
+						margin:0 8px;
+					}
+				}
+				@include respond('phone-land'){
+					margin:0;
+					li{
+						display:block;
+						margin:0;
+						padding:5px 0;
+					}
+				}
+			}
+			@include respond('phone-land'){
+				margin-bottom:35px;
+			}
+			@include respond('phone'){
+				margin-bottom:22px;
+			}
+		}
+		.footer-bottom {
+			p{
+				color: #666666;
+			}
+			.copyright-text {
+				color: #666666;
+			}
+			@include respond('tab-land'){
+				p{
+					font-size:14px;
+				}
+				.copyright-text{
+					font-size:14px;
+				}
+			}
+		}
+	}
+}

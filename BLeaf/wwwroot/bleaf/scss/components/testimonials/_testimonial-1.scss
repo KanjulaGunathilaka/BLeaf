@@ -1,0 +1,119 @@
+.testimonial-1{
+	background:var(--primary);
+	position:relative;
+	padding:35px 40px;
+	height:100%;
+	border-radius: 0px 10px 10px 0px;
+	display:flex;
+	flex-direction: column;
+	.testimonial-text{
+		margin:0 0 10px;
+		p{
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 32px;
+			color:#fff;
+		}
+	}
+	.testimonial-info{
+		position:relative;
+		z-index:1;
+		margin-top:auto;
+		padding-left:15px;
+		&::after{
+			background:var(--secondary);
+			border-radius: 4px;
+			height: 5px;
+			width: 50px;
+			content:"";	
+			position:absolute;
+			z-index:-1;
+			transform:rotate(90deg);
+			top:25px;
+			left:-22px;
+		}
+		.testimonial-name{
+			font-size: 22px;
+			color:#fff;
+			line-height: 33px;
+			font-weight:700;
+			margin-bottom:0;
+		}
+		.testimonial-position{
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 21px;
+			color:#fff;
+		}
+	}
+	.quote{
+		position:absolute;
+		right:35px;
+		bottom:5px;
+		font-size:140px;
+		color:var(--secondary);
+	}
+	@include custommq($max: 1024px) {
+		padding:25px;
+		.testimonial-text{
+			p{
+				font-size: 16px;
+				line-height: 30px;
+			}
+		}
+	}
+	@include respond('tab-port'){
+		border-radius:0 0 10px 10px;
+		
+		.quote{
+			font-size:100px;
+		}
+	}
+	@include respond('phone'){
+		padding:25px 15px;
+		.testimonial-text{
+			margin:0 0 15px;
+		}
+		.quote{
+			font-size:85px;
+			right:20px;
+		}
+	}
+}
+
+.testimonial-one-thumb{
+	&.swiper {
+      width: 100%;
+      height: 450px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      height: calc(100% / 2) !important;
+		transition:all 0.5s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+	  img{
+		height: 100%;
+		object-fit: cover;
+	    width: 100%;
+	  }
+	  &.swiper-slide-thumb-active{
+		padding:10px;
+	  }
+    }
+	@include respond('phone'){
+		&.swiper {
+			height:250px;
+		}
+		.swiper-slide {
+			&.swiper-slide-thumb-active{
+				padding:5px;
+			}
+		}
+	}
+}

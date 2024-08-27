@@ -1,0 +1,94 @@
+﻿@{
+	Layout = "~/Views/Shared/_LayoutBLeafEmpty.cshtml";
+}
+<div class="page-content bg-white">
+	<div class="coming-wrapper overflow-hidden min-vh-100">
+		<div class="container">
+			<img class="bg-img dz-move" src="~/bleaf/images/background/pic17.png" alt="/">
+			<div class="row">
+				<div class="col-lg-8 m-auto">
+					<div class="inner-content text-center">
+						<div class="logo-header">
+							<a href="@Url.Action("Index","BLeaf")"><img src="~/bleaf/images/logo.png" alt="/"></a>
+						</div>
+						<h3 class="coming-head">WE ARE COMING SOON!</h3>
+						<p class="coming-para">Stay tuned for something amazing</p>
+						<lottie-player src="../bleaf/json/coming-soon.json" class="coming-media" background="transparent" speed="1" loop autoplay></lottie-player>
+					</div>
+					<div class="middle-content">
+						<h5 class="font-weight-400 m-b20">Subscribe to our mailing list to get latest updates</h5>
+						<form class="dzSubscribe m-b15" method="post">
+							<div class="dzSubscribeMsg text-white"></div>
+							<div class="input-group">
+								<input name="dzEmail" required="required" type="text" class="form-control bg-grey" placeholder="Enter Your Email">
+								<div class="input-group-addon">
+									<button name="submit" value="submit" type="submit" class="btn btn-primary btn-hover-2">
+										<span>Send Request</span><i class="fa-solid fa-paper-plane"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+						<div class="dz-social-icon text-center">
+							<ul>
+								<li>
+									<a target="_blank" class="text-dark" href="https://www.facebook.com/">
+										<i class="fab fa-facebook-f"></i>
+									</a>
+								</li>
+								<li>
+									<a target="_blank" class="text-dark" href="https://twitter.com/">
+										<i class="fab fa-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a target="_blank" class="text-dark" href="https://www.youtube.com/">
+										<i class="fa-brands fa-youtube"></i>
+									</a>
+								</li>
+								<li>
+									<a target="_blank" class="text-dark" href="https://www.instagram.com/">
+										<i class="fab fa-instagram"></i>
+									</a>
+								</li>
+								<li>
+									<a target="_blank" class="text-dark" href="https://www.linkedin.com/">
+										<i class="fa-brands fa-linkedin-in"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="coming-footer text-center">
+						<p>© Copyrights <span class="heart"></span> by <a href="https://dexignzone.com/" target="_blank">DexignZone</a> | 2024 All Rights Reserved</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@section bleaf_style
+	{
+	<!-- Stylesheet -->
+	<link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+	<link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+}
+@section bleaf_script
+	{
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+	<script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELEECT -->
+	<script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+	<script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+	<script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- TOUCHSPIN -->
+	<script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+	<script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- OWL-CAROUSEL -->
+	<script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
+	<script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+	<script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
+	<script src="https://unpkg.com/@Html.Raw("@")lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><!-- LOTTIE PLAYER -->
+	
+	<script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- CUSTOM JS -->
+	
+}

@@ -1,0 +1,237 @@
+$flaticon_bleaf-font: "flaticon_bleaf";
+
+@font-face {
+    font-family: $flaticon_bleaf-font;
+    src: url("./flaticon_bleaf.ttf?64497de560921368cd586e6c5ea1ea6e") format("truetype"),
+url("./flaticon_bleaf.woff?64497de560921368cd586e6c5ea1ea6e") format("woff"),
+url("./flaticon_bleaf.woff2?64497de560921368cd586e6c5ea1ea6e") format("woff2"),
+url("./flaticon_bleaf.eot?64497de560921368cd586e6c5ea1ea6e#iefix") format("embedded-opentype"),
+url("./flaticon_bleaf.svg?64497de560921368cd586e6c5ea1ea6e#flaticon_bleaf") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_bleaf !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_bleaf-map: (
+    "wine": "\f101",
+    "mirror-ball": "\f102",
+    "party": "\f103",
+    "play-button": "\f104",
+    "restaurant": "\f105",
+    "coffee-cup": "\f106",
+    "dessert": "\f107",
+    "cake": "\f108",
+    "email": "\f109",
+    "telephone": "\f10a",
+    "placeholder": "\f10b",
+    "share": "\f10c",
+    "right-quote": "\f10d",
+    "user": "\f10e",
+    "phone-call": "\f10f",
+    "email-1": "\f110",
+    "two-people": "\f111",
+    "calendar-date": "\f112",
+    "clock": "\f113",
+    "shopping-cart": "\f114",
+    "offer": "\f115",
+    "hamburger": "\f116",
+    "room-service": "\f117",
+    "martini": "\f118",
+    "burger": "\f119",
+    "fast-food": "\f11a",
+    "pizza-slice": "\f11b",
+    "salad": "\f11c",
+    "cupcake": "\f11d",
+    "chili-pepper": "\f11e",
+    "hamburger-1": "\f11f",
+    "fast-delivery": "\f120",
+    "clock-1": "\f121",
+    "chef": "\f122",
+    "pot": "\f123",
+    "juice": "\f124",
+    "burger-1": "\f125",
+    "pizza": "\f126",
+    "cake-slice": "\f127",
+    "pizza-box": "\f128",
+    "vegetable": "\f129",
+    "chef-hat": "\f12a",
+    "cocktail": "\f12b",
+    "cuisine": "\f12c",
+    "support": "\f12d",
+    "dinner-table": "\f12e",
+    "token": "\f12f",
+    "furniture": "\f130",
+    "team": "\f131",
+    "scooter": "\f132",
+    "shopping-bag": "\f133",
+    "shopping-bag-1": "\f134",
+    "chat-bubble": "\f135",
+);
+
+.flaticon-wine:before {
+    content: map-get($flaticon_bleaf-map, "wine");
+}
+.flaticon-mirror-ball:before {
+    content: map-get($flaticon_bleaf-map, "mirror-ball");
+}
+.flaticon-party:before {
+    content: map-get($flaticon_bleaf-map, "party");
+}
+.flaticon-play-button:before {
+    content: map-get($flaticon_bleaf-map, "play-button");
+}
+.flaticon-restaurant:before {
+    content: map-get($flaticon_bleaf-map, "restaurant");
+}
+.flaticon-coffee-cup:before {
+    content: map-get($flaticon_bleaf-map, "coffee-cup");
+}
+.flaticon-dessert:before {
+    content: map-get($flaticon_bleaf-map, "dessert");
+}
+.flaticon-cake:before {
+    content: map-get($flaticon_bleaf-map, "cake");
+}
+.flaticon-email:before {
+    content: map-get($flaticon_bleaf-map, "email");
+}
+.flaticon-telephone:before {
+    content: map-get($flaticon_bleaf-map, "telephone");
+}
+.flaticon-placeholder:before {
+    content: map-get($flaticon_bleaf-map, "placeholder");
+}
+.flaticon-share:before {
+    content: map-get($flaticon_bleaf-map, "share");
+}
+.flaticon-right-quote:before {
+    content: map-get($flaticon_bleaf-map, "right-quote");
+}
+.flaticon-user:before {
+    content: map-get($flaticon_bleaf-map, "user");
+}
+.flaticon-phone-call:before {
+    content: map-get($flaticon_bleaf-map, "phone-call");
+}
+.flaticon-email-1:before {
+    content: map-get($flaticon_bleaf-map, "email-1");
+}
+.flaticon-two-people:before {
+    content: map-get($flaticon_bleaf-map, "two-people");
+}
+.flaticon-calendar-date:before {
+    content: map-get($flaticon_bleaf-map, "calendar-date");
+}
+.flaticon-clock:before {
+    content: map-get($flaticon_bleaf-map, "clock");
+}
+.flaticon-shopping-cart:before {
+    content: map-get($flaticon_bleaf-map, "shopping-cart");
+}
+.flaticon-offer:before {
+    content: map-get($flaticon_bleaf-map, "offer");
+}
+.flaticon-hamburger:before {
+    content: map-get($flaticon_bleaf-map, "hamburger");
+}
+.flaticon-room-service:before {
+    content: map-get($flaticon_bleaf-map, "room-service");
+}
+.flaticon-martini:before {
+    content: map-get($flaticon_bleaf-map, "martini");
+}
+.flaticon-burger:before {
+    content: map-get($flaticon_bleaf-map, "burger");
+}
+.flaticon-fast-food:before {
+    content: map-get($flaticon_bleaf-map, "fast-food");
+}
+.flaticon-pizza-slice:before {
+    content: map-get($flaticon_bleaf-map, "pizza-slice");
+}
+.flaticon-salad:before {
+    content: map-get($flaticon_bleaf-map, "salad");
+}
+.flaticon-cupcake:before {
+    content: map-get($flaticon_bleaf-map, "cupcake");
+}
+.flaticon-chili-pepper:before {
+    content: map-get($flaticon_bleaf-map, "chili-pepper");
+}
+.flaticon-hamburger-1:before {
+    content: map-get($flaticon_bleaf-map, "hamburger-1");
+}
+.flaticon-fast-delivery:before {
+    content: map-get($flaticon_bleaf-map, "fast-delivery");
+}
+.flaticon-clock-1:before {
+    content: map-get($flaticon_bleaf-map, "clock-1");
+}
+.flaticon-chef:before {
+    content: map-get($flaticon_bleaf-map, "chef");
+}
+.flaticon-pot:before {
+    content: map-get($flaticon_bleaf-map, "pot");
+}
+.flaticon-juice:before {
+    content: map-get($flaticon_bleaf-map, "juice");
+}
+.flaticon-burger-1:before {
+    content: map-get($flaticon_bleaf-map, "burger-1");
+}
+.flaticon-pizza:before {
+    content: map-get($flaticon_bleaf-map, "pizza");
+}
+.flaticon-cake-slice:before {
+    content: map-get($flaticon_bleaf-map, "cake-slice");
+}
+.flaticon-pizza-box:before {
+    content: map-get($flaticon_bleaf-map, "pizza-box");
+}
+.flaticon-vegetable:before {
+    content: map-get($flaticon_bleaf-map, "vegetable");
+}
+.flaticon-chef-hat:before {
+    content: map-get($flaticon_bleaf-map, "chef-hat");
+}
+.flaticon-cocktail:before {
+    content: map-get($flaticon_bleaf-map, "cocktail");
+}
+.flaticon-cuisine:before {
+    content: map-get($flaticon_bleaf-map, "cuisine");
+}
+.flaticon-support:before {
+    content: map-get($flaticon_bleaf-map, "support");
+}
+.flaticon-dinner-table:before {
+    content: map-get($flaticon_bleaf-map, "dinner-table");
+}
+.flaticon-token:before {
+    content: map-get($flaticon_bleaf-map, "token");
+}
+.flaticon-furniture:before {
+    content: map-get($flaticon_bleaf-map, "furniture");
+}
+.flaticon-team:before {
+    content: map-get($flaticon_bleaf-map, "team");
+}
+.flaticon-scooter:before {
+    content: map-get($flaticon_bleaf-map, "scooter");
+}
+.flaticon-shopping-bag:before {
+    content: map-get($flaticon_bleaf-map, "shopping-bag");
+}
+.flaticon-shopping-bag-1:before {
+    content: map-get($flaticon_bleaf-map, "shopping-bag-1");
+}
+.flaticon-chat-bubble:before {
+    content: map-get($flaticon_bleaf-map, "chat-bubble");
+}

@@ -1,0 +1,67 @@
+﻿@{
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="BLeaf/_Meta" />
+    <title>@Configuration.GetSection("DefaultValue")["Title"]</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/bleaf/images/favicon.png">
+
+    <!-- Stylesheet -->
+    <link href="~/bleaf/vendor/animate/animate.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/tempus-dominus/css/tempus-dominus.min.css" rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="~/bleaf/vendor/rangeslider/rangeslider.css">
+    <link rel="stylesheet" href="~/bleaf/vendor/switcher/switcher.css">
+    <link rel="stylesheet" href="~/bleaf/css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body id="bg">
+    <partial name="BLeaf/_PreLoader" />
+    <div class="page-wraper">
+        <partial name="BLeaf/_Header" />
+        <partial name="BLeaf/_Login" />
+        <partial name="BLeaf/_Register" />
+        @RenderBody()
+        <partial name="BLeaf/_Footer" />
+    </div>
+    <!-- JAVASCRIPT FILES ========================================= -->
+    <script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+    <script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+    <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELEECT -->
+    <script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+    <script src="~/bleaf/vendor/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
+    <script src="~/bleaf/vendor/wow/wow.js"></script><!-- WOW JS -->
+    <script src="~/bleaf/vendor/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
+    <script src="~/bleaf/vendor/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
+    <script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+    <script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+    <script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- OWL-CAROUSEL -->
+    <script src="~/bleaf/vendor/particles/particles.js"></script>
+    <script src="~/bleaf/vendor/particles/particles-app.js"></script>
+    <script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
+    <script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+    <script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
+    
+    <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- CUSTOM JS -->
+    
+    <script>
+        jQuery(document).ready(function () {
+            dzSettingsOptions.themeFullColor_value = 'color_2';
+            new dzSettings(dzSettingsOptions);
+        });
+    </script>
+</body>
+</html>

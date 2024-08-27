@@ -1,0 +1,349 @@
+#loading-area{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999999999;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background: #fff;
+	
+	&.loading-page-5{
+		.loading-inner{
+			.loader{
+				list-style-type:none;
+				padding:0;
+				margin:0;
+				background:white;
+				width:(20px*2)+(20px*2)+(15px*2);
+				height:(20px*2)+(20px*2)+(15px*2);
+				position: relative;
+				
+				.dot{
+					transform-origin:50% #{-20px};
+					position:absolute;
+					top:(20px*2)+20px+15px; 
+					left:20px+(20px/2)+15px;
+					.dots{
+						background:var(--primary);
+						width:20px;
+						height:20px;
+						border-radius:100%;
+					}
+				}
+			}
+		}
+	}
+	&.loading-page-3{
+		background: #fff;
+		
+		lottie-player{
+			width: 180px;
+		}
+		.loader{
+			animation: rotate 1s infinite;
+			height: 50px;
+			width: 50px;
+			
+			&::before,
+			&::after{
+				border-radius: 50%;
+				content: "";
+				display: block;
+				height: 20px;
+				width: 20px;
+			}
+			&::before {
+				animation: ball1 1s infinite;
+				background-color: #000;
+				box-shadow: 30px 0 0 var(--primary);
+				margin-bottom: 10px;
+			}
+			&::after {
+				animation: ball2 1s infinite;
+				background-color: var(--primary);
+				box-shadow: 30px 0 0 #fff;
+			}
+		}
+	}
+}
+
+
+@for $i from 1 through 5{
+	$a:(3.14*2)/5*$i;
+	
+	@keyframes dot-anim-#{$i}{
+		0%{
+			transform:rotate(0);
+		}
+		#{percentage(0.5+((0.5/5)*$i))}{
+			transform:rotate(1080deg);
+		}
+		100%{
+			transform:rotate(1080deg);
+		}
+	}
+	.dot:nth-child(#{$i}){
+		transform:rotate(0); 
+		animation:dot-anim-#{$i} 4.5s ease-in-out infinite;
+	}
+}
+@keyframes rotate {
+	0%{
+		transform: rotate(0deg) scale(0.8);
+	}
+    50%{
+		transform: rotate(360deg) scale(1.2);
+	}
+    100%{
+		transform: rotate(720deg) scale(0.8);
+	}
+}
+@keyframes ball1 {
+    0% {
+		box-shadow: 30px 0 0 var(--primary);
+    }
+    50%{
+		box-shadow: 0 0 0 var(--primary);
+		margin-bottom: 0;
+		transform: translate(15px, 15px);
+    }
+    100%{
+		box-shadow: 30px 0 0 var(--primary);
+		margin-bottom: 10px;
+    }
+}
+@keyframes ball2{
+    0%{
+		box-shadow: 30px 0 0 #000;
+    }
+    50%{
+		box-shadow: 0 0 0 #000;
+		margin-top: -20px;
+		transform: translate(15px, 15px);
+    }
+    100%{
+		box-shadow: 30px 0 0 #000;
+		margin-top: 0;
+    }
+}
+@keyframes bounce {
+	0%,
+	100%{
+		font-size: 0.75px;
+	}
+	50%{
+		font-size: 1.5px;
+	}
+}
+
+.loading-page-1{
+	position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999999;
+    width: 100%;
+    height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	span{
+	    font-size: 150px;
+		color: #fff;
+		z-index: 1;
+		font-weight: 600;
+		letter-spacing: 5px;
+		@include transitionSlow;
+		transition-delay: 0.2s;
+	}
+	&::after,
+	&::before{
+		content: "";
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		@include transitionSlow;
+	}
+	&::after{
+		background-color: var(--primary);
+		transition-delay: 0.7s;
+	}
+	.load-text .text-load{
+		font-weight: 700;
+		letter-spacing: 15px;
+		display: inline-block;
+		color: rgba(255, 255, 255, 0.2);
+		position: relative;
+		font-size: 5vw;
+		line-height: 5vw;
+		letter-spacing: 1px;
+		text-align: center;
+		user-select: none;
+		text-transform: uppercase;
+		font-family: var(--font-family-title);
+		
+		&:before{
+			animation: letters-loading 4s infinite;
+			color: #fff;
+			content: attr(data-text);
+			left: 0;
+			opacity: 0;
+			top:0;
+			line-height: 5vw;
+			position: absolute;
+			text-transform: uppercase;
+		}
+		&:nth-child(2):before {animation-delay: 0.2s;}
+		&:nth-child(3):before {animation-delay: 0.4s;}
+		&:nth-child(4):before {animation-delay: 0.6s;}
+		&:nth-child(5):before {animation-delay: 0.8s;}
+		&:nth-child(6):before {animation-delay: 1s;}
+		&:nth-child(7):before {animation-delay: 1.2s;}
+		&:nth-child(8):before {animation-delay: 1.4s;}
+		
+		@include respond ('phone'){
+			font-size: 8vw;
+			line-height: 8vw;
+			
+			&:before{
+				line-height: 8vw;				
+			}
+		}
+	}
+	&.active{
+		&::after{
+			height: 0;
+			transform: translateY(-5vh);
+		}
+		&::before{
+			height: 0;
+			transform: rotate(5deg) scale(1.5) translateY(-20vh);
+			transform-origin: 25vw;
+		}
+		span{
+			transform: translateY(-50px);
+			opacity: 0;
+		}
+	}
+}
+@keyframes letters-loading{
+	0%,
+	75%,
+	100% {
+		opacity: 0;
+		transform: rotateY(-90deg);
+	}
+	25%,
+	50% {
+		opacity: 1;
+		transform: rotateY(0deg);
+	}
+}
+
+
+.loading-page-2{
+	position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999999;
+    width: 100%;
+    height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	.text{
+	    font-size: 32px;
+		color: #fff;
+		z-index: 1;
+		font-weight: 600;
+		letter-spacing: 5px;
+		
+		&.show{
+			opacity: 0;
+			animation-name: zoomLoader;
+			animation-timing-function: linear;
+			animation-duration: 2s;
+			animation-iteration-count: 1;
+		}
+		
+		@include respond('tab-port'){
+			font-size: 18px;
+			letter-spacing: 2px;
+		}
+		@include respond('phone'){
+			font-size: 14px;
+		}
+	}
+	
+	&::after,
+	&::before{
+		content: "";
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		@include transitionSlow;
+	}
+	&::after{
+		background-color: var(--primary);
+	}
+	&::before{
+		background-color: #fff;
+	}
+	&.active{
+		&::after{
+			width: 0;
+			transition-delay: 0.1s;
+			transform: translateX(-5vh);
+		}
+		&::before{
+			width: 0;
+			transition-delay: 0.2s;
+			transform: translateX(-5vh);
+		}
+	}
+}
+@keyframes zoomLoader{
+	0%{
+		transform: scale(1);
+		opacity: 1;
+	}
+	15%{
+		transform: scale(5);
+	}
+	25%{
+		transform: scale(9);
+	}
+	35%{
+		transform: scale(12);
+	}
+	45%{
+		transform: scale(15);
+	}
+	55%{
+		transform: scale(18);
+	}
+	65%{
+		transform: scale(18) translateX(-20%);
+	}
+	75%{
+		transform: scale(18) translateX(-40%);
+	}
+	85%{
+		transform: scale(18) translateX(-60%);
+	}
+	95%{
+		transform: scale(18) translateX(-80%);
+		opacity: 1;
+	}
+	100%{
+		transform: scale(18) translateX(-100%);
+	}
+}

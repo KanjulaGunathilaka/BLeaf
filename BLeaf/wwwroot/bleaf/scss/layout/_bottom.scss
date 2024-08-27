@@ -1,0 +1,38 @@
+.bottom {
+    background: #1b2a4e;
+	@include respond('phone'){
+		padding-bottom:0;
+	}
+    .bottom-logo {
+        p{
+            line-height: 30px;
+            font-weight: 400;
+            color        : lighten($body-color, 20%);
+        }
+    }
+
+    .bottom-widget {
+        @include respond("tab-port") {
+            margin-bottom: 30px;
+        }
+
+        .widget-title {
+            font-size     : 18px;
+            font-weight   : 600;
+            color         : #fff;
+            margin-bottom : 20px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            li {
+                a {
+                    color        : lighten($body-color, 20%);
+                    font-weight  : 400;
+                    margin-bottom: 10px;
+                    display      : inline-block;
+                }
+            }
+        }
+    }
+}

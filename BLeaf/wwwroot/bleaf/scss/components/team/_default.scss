@@ -1,0 +1,21 @@
+.dz-team{
+	transition: all 0.5s;
+	.dz-name{
+		a{
+			transition: all 0.5s;
+		}
+	}
+	.dz-content{
+		transition: all 0.5s;
+		position: relative;
+	}
+	.dz-media{
+		img{
+			width: 100%;
+			
+		}
+	}
+	.dz-position{
+		display: block;
+	}
+}

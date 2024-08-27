@@ -1,0 +1,59 @@
+.tempus-dominus-widget{
+	padding:1rem 0.5rem 0.5rem 0.5rem;
+	box-shadow:0 0 50px rgba(0,0,0,0.15);
+	border-radius:8px;
+	
+	.date-container-days .day {
+		border-radius: 0.475rem !important;
+	}
+	.picker-switch {
+		font-weight: 600;
+	}
+	.date-container-days div:not(.no-highlight){
+		font-size:15px;
+	}
+	button{
+		border-radius: 0.475rem !important;
+	}
+	.toggleMeridiem{
+		border: 0;
+		padding: 8px !important;
+	}
+
+	&.light{
+		.date-container-days{
+			div:not(.no-highlight).active{
+				background-color:var(--primary);
+			}
+			div:not(.no-highlight).today::before{
+				border-bottom-color:var(--primary);
+			}
+			.dow{
+				font-size:13px;
+				color:$dark;
+			}
+		}
+		button{
+			background-color: var(--primary);
+			border-color: var(--primary);
+		}
+		.date-container-days div.range-end:not(.no-highlight),
+		.date-container-days div.range-in:not(.no-highlight),
+		.date-container-days div.range-start:not(.no-highlight), 
+		.date-container-days div:not(.no-highlight).active, 
+		.date-container-decades div:not(.no-highlight).active,
+		.date-container-months div:not(.no-highlight).active, 
+		.date-container-years div:not(.no-highlight).active, 
+		.time-container-clock div:not(.no-highlight).active, 
+		.time-container-hour div:not(.no-highlight).active, 
+		.time-container-minute div:not(.no-highlight).active, 
+		.time-container-second div:not(.no-highlight).active {
+			background-color: var(--primary);
+		}
+	}
+}
+.separator{
+	&.no-highlight{
+		background:transparent;
+	}
+}
