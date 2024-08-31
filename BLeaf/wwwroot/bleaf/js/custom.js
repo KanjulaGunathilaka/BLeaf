@@ -1,11 +1,4 @@
-/**
-	Template Name 	 : bleaf
-	Author			 : DexignZone
-	Version			 : 1.1
-	Author Portfolio : https://themeforest.net/user/dexignzone/portfolio
-	
-	Core script to handle the entire theme and core functions
-**/
+
 
 var bleaf = function(){
 	'use strict';
@@ -60,12 +53,12 @@ var bleaf = function(){
 	
 	/* Cart Function*/
 	var cartButton = function(){
-		$(".item-close").on('click',function(){
-			$(this).closest(".cart-item").hide('500');
-		});
-		$('.cart-btn').unbind().on('click',function(){
-			$(".cart-list").slideToggle('slow');
-		})
+		//$(".item-close").on('click',function(){
+		//	$(this).closest(".cart-item").hide('500');
+		//});
+		//$('.cart-btn').unbind().on('click',function(){
+		//	$(".cart-list").slideToggle('slow');
+		//})
 		
 	}
 	
@@ -879,10 +872,10 @@ var bleaf = function(){
 	}
 	
 	/* Handle Support ============ */
-	var handleSupport = function(){
-		var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
-		jQuery('body').append(support);
-	}
+	//var handleSupport = function(){
+	//	var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
+	//	jQuery('body').append(support);
+	//}
 
 	/* Function ============ */
 	return {
