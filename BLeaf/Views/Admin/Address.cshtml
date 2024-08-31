@@ -1,0 +1,360 @@
+﻿@model IEnumerable<BLeaf.Models.Address>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Address Management</h2>
+        <button id="showAddAddressForm" class="btn btn-primary mb-3">Add Address</button>
+
+        <div id="addressMessage" class="alert" style="display: none;"></div>
+
+        <div id="addAddressForm" style="display: none;">
+            <h3 id="addressFormTitle">Enter Address Details</h3>
+            <form id="addressForm">
+                <input type="hidden" id="addressId" name="addressId" />
+                <div class="form-group">
+                    <label for="userId">User:</label>
+                    <select id="userId" name="userId" class="form-control">
+                        @foreach (var user in ViewBag.Users)
+                        {
+                            <option value="@user.UserId">@user.FullName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="addressLine1">Address Line 1:</label>
+                    <input type="text" id="addressLine1" name="addressLine1" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="addressLine2">Address Line 2:</label>
+                    <input type="text" id="addressLine2" name="addressLine2" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Zip Code:</label>
+                    <input type="text" id="zipCode" name="zipCode" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="isPrimary">Is Primary:</label>
+                    <input type="checkbox" id="isPrimary" name="isPrimary" class="form-control" />
+                </div>
+                <button id="submitAddress" type="button" class="btn btn-primary">Submit Address</button>
+                <button id="cancelAddressEdit" type="button" class="btn btn-secondary" style="display: none;">Cancel</button>
+            </form>
+        </div>
+
+        <div id="addressTable" class="mt-3">
+            <h3>View Addresses</h3>
+            <table id="addressDataTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>AddressId</th>
+                        <th>User</th>
+                        <th>Address Line 1</th>
+                        <th>Address Line 2</th>
+                        <th>Zip Code</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Phone Number</th>
+                        <th>Is Primary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var address in Model)
+                    {
+                        <tr>
+                            <td>@address.AddressId</td>
+                            <td>@address.User.FullName</td>
+                            <td>@address.AddressLine1</td>
+                            <td>@address.AddressLine2</td>
+                            <td>@address.ZipCode</td>
+                            <td>@address.City</td>
+                            <td>@address.State</td>
+                            <td>@address.Country</td>
+                            <td>@address.PhoneNumber</td>
+                            <td>@address.IsPrimary</td>
+                            <td>
+                                <button class="btn btn-secondary edit-address" data-id="@address.AddressId">Edit</button>
+                                <button class="btn btn-danger delete-address" data-id="@address.AddressId">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#showAddAddressForm").click(function () {
+                clearAddressForm();
+                $("#addAddressForm").toggle();
+                $("#addressFormTitle").text("Enter Address Details");
+                $("#submitAddress").text("Submit Address");
+                $("#addressId").val("");
+                $("#cancelAddressEdit").hide();
+                clearAddressMessage();
+            });
+
+            $("#submitAddress").click(function (event) {
+                event.preventDefault();
+
+                var formData = {
+                    userId: $("#userId").val(),
+                    addressLine1: $("#addressLine1").val(),
+                    addressLine2: $("#addressLine2").val(),
+                    zipCode: $("#zipCode").val(),
+                    city: $("#city").val(),
+                    state: $("#state").val(),
+                    country: $("#country").val(),
+                    phoneNumber: $("#phoneNumber").val(),
+                    isPrimary: $("#isPrimary").is(":checked")
+                };
+
+                var addressId = $("#addressId").val();
+
+                if (addressId) {
+                    formData.addressId = addressId;
+                    updateAddress(formData);
+                } else {
+                    addAddress(formData);
+                }
+            });
+
+            function addAddress(formData) {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/address",
+                    data: JSON.stringify(formData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        showAddressMessage("Address added successfully", "alert-success");
+                        loadAddresses();
+                        $("#addAddressForm").hide();
+                        setTimeout(clearAddressMessage, 5000);
+                    },
+                    error: function (xhr, status, error) {
+                        showAddressMessage("Failed to add address", "alert-danger");
+                        console.error("Failed to add address:", xhr.responseText);
+                        setTimeout(clearAddressMessage, 5000);
+                    }
+                });
+            }
+
+            function updateAddress(formData) {
+                var addressId = formData.addressId;
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/address/" + addressId,
+                    data: JSON.stringify(formData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        showAddressMessage("Address updated successfully", "alert-success");
+                        loadAddresses();
+                        $("#addAddressForm").hide();
+                        setTimeout(clearAddressMessage, 5000);
+                    },
+                    error: function (xhr, status, error) {
+                        showAddressMessage("Failed to update address", "alert-danger");
+                        console.error("Failed to update address:", xhr.responseText);
+                        setTimeout(clearAddressMessage, 5000);
+                    }
+                });
+            }
+
+            function loadAddresses() {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/address",
+                    success: function (addresses) {
+                        var table = $("#addressDataTable tbody");
+                        table.empty();
+                        $.each(addresses, function (i, address) {
+                            var row = $("<tr>");
+                            row.append($("<td>").text(address.addressId));
+                            row.append($("<td>").text(address.user.fullName));
+                            row.append($("<td>").text(address.addressLine1));
+                            row.append($("<td>").text(address.addressLine2));
+                            row.append($("<td>").text(address.zipCode));
+                            row.append($("<td>").text(address.city));
+                            row.append($("<td>").text(address.state));
+                            row.append($("<td>").text(address.country));
+                            row.append($("<td>").text(address.phoneNumber));
+                            row.append($("<td>").text(address.isPrimary));
+                            row.append($("<td>").html('<button class="btn btn-secondary edit-address" data-id="' + address.addressId + '">Edit</button> <button class="btn btn-danger delete-address" data-id="' + address.addressId + '">Delete</button>'));
+                            table.append(row);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Failed to load addresses:", error);
+                    }
+                });
+            }
+
+            loadAddresses();
+
+            $(document).on("click", ".edit-address", function () {
+                var addressId = $(this).data("id");
+                editAddress(addressId);
+            });
+
+            $(document).on("click", ".delete-address", function () {
+                var addressId = $(this).data("id");
+                showAddressDeleteConfirmation(addressId);
+            });
+
+            function editAddress(addressId) {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/address/" + addressId,
+                    success: function (address) {
+                        populateAddressForm(address);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Failed to fetch address:", error);
+                    }
+                });
+            }
+
+            function deleteAddress(addressId) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/address/" + addressId,
+                    success: function (response) {
+                        showAddressMessage("Address deleted successfully", "alert-success");
+                        loadAddresses();
+                        clearAddressMessage();
+                    },
+                    error: function (xhr, status, error) {
+                        showAddressMessage("Failed to delete address", "alert-danger");
+                        console.error("Failed to delete address:", xhr.responseText);
+                        clearAddressMessage();
+                    }
+                });
+            }
+
+            function showAddressDeleteConfirmation(addressId) {
+                var confirmationModal = `
+                    <div class="modal fade" tabindex="-1" role="dialog" id="deleteAddressConfirmationModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Confirm Deletion</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this address?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="confirmDeleteAddressCancelButton">Cancel</button>
+                                    <button type="button" class="btn btn-danger" id="confirmDeleteAddressButton">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $('body').append(confirmationModal);
+
+                $('#deleteAddressConfirmationModal').modal('show');
+
+                $('#confirmDeleteAddressButton').on('click', function () {
+                    deleteAddress(addressId);
+                    $('#deleteAddressConfirmationModal').modal('hide');
+                });
+
+                $('#confirmDeleteAddressCancelButton').on('click', function () {
+                    $('#deleteAddressConfirmationModal').modal('hide');
+                });
+
+                $('#deleteAddressConfirmationModal').on('hidden.bs.modal', function (e) {
+                    $(this).remove();
+                });
+            }
+
+            function populateAddressForm(address) {
+                $("#userId").val(address.userId);
+                $("#addressLine1").val(address.addressLine1);
+                $("#addressLine2").val(address.addressLine2);
+                $("#zipCode").val(address.zipCode);
+                $("#city").val(address.city);
+                $("#state").val(address.state);
+                $("#country").val(address.country);
+                $("#phoneNumber").val(address.phoneNumber);
+                $("#isPrimary").prop("checked", address.isPrimary);
+                $("#addressId").val(address.addressId);
+
+                $("#addAddressForm").show();
+                $("#addressFormTitle").text("Edit Address");
+                $("#submitAddress").text("Update Address");
+                $("#cancelAddressEdit").show();
+                clearAddressMessage();
+            }
+
+            $("#cancelAddressEdit").click(function () {
+                $("#addAddressForm").hide();
+                $("#addressFormTitle").text("Enter Address Details");
+                $("#submitAddress").text("Submit Address");
+                clearAddressForm();
+                clearAddressMessage();
+            });
+
+            function showAddressMessage(message, alertClass) {
+                var messageDiv = $("#addressMessage");
+                messageDiv.removeClass();
+                messageDiv.addClass("alert " + alertClass);
+                messageDiv.text(message);
+                messageDiv.show();
+            }
+
+            function clearAddressMessage() {
+                var messageDiv = $("#addressMessage");
+                messageDiv.removeClass();
+                messageDiv.text("");
+                messageDiv.hide();
+            }
+
+            function clearAddressForm() {
+                $("#userId").val("");
+                $("#addressLine1").val("");
+                $("#addressLine2").val("");
+                $("#zipCode").val("");
+                $("#city").val("");
+                $("#state").val("");
+                $("#country").val("");
+                $("#phoneNumber").val("");
+                $("#isPrimary").prop("checked", false);
+                $("#addressId").val("");
+            }
+        });
+    </script>
+</body>
+</html>

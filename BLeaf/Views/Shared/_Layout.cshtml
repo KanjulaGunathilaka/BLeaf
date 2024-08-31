@@ -26,6 +26,40 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav navbar-left">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Admin Panel
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Categories">Categories</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Items">Items</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reviews">Reviews</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Addresses">Addresses</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="OrderDetails">Order Details</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ShoppingCartItems">Shopping Cart Items</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Discounts">Discounts</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reservations">Reservations</a>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
