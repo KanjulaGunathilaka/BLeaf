@@ -913,7 +913,6 @@ var bleaf = function(){
 			handlePointerEffect();
 			handleBoxAware();
 			handledzNumber();
-			handleSupport();
 		},
 
 		load:function(){
@@ -982,31 +981,6 @@ jQuery(window).on('load',function () {
 			handleVisibilityChange();
 		}
 	}
-	
-	if(jQuery('#loading-area3').length > 0){
-		let isVisible = false;
-		
-		function handleVisibilityChange() {
-			if (!isVisible && !document.hidden) {
-				
-				setTimeout(function() {
-					jQuery('.text').addClass('show');
-				}, 100);
-				setTimeout(function (){
-					jQuery('#loading-area3').addClass('active');
-				}, 1500);
-				setTimeout(function() {
-					jQuery('#loading-area3').fadeOut();
-				}, 2000);
-				
-				isVisible = true;
-			}
-		}
-		document.addEventListener("visibilitychange", handleVisibilityChange);
-		
-		if ($("#loading-area3").is(":visible")) {
-			handleVisibilityChange();
-		}
 	}
 
 });
