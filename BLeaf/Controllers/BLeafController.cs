@@ -1,12 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLeaf.Data;
+using BLeaf.Models;
+using BLeaf.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BLeaf.Controllers
 {
 	public class BLeafController : Controller
 	{
+        private readonly ApplicationDbContext _context;
+
+		public BLeafController(ApplicationDbContext context)
+		{
+			_context = context;
+		}
+
 		public IActionResult Index()
 		{
-			return View();
+            IEnumerable<Item> items;
+            items = _context.Items.Include(i => i.Category).ToList();
+            return View(new BLeafViewModel(items));
 		}
 
 		public IActionResult AboutUs()

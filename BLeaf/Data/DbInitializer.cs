@@ -104,7 +104,7 @@ namespace BLeaf.Data
                     {
                         new Item{Name="Fish Cutlets", Description="Spicy fish cutlets", Ingredients="Fish, Potatoes, Spices", SpecialInformation="Contains Fish", Price=3.99M, ImageUrl="/images/fish_cutlets.jpg", ImageThumbnailUrl="/images/fish_cutlets_thumb.jpg", InStock=true, CategoryId=1, IsSpecial=false},
                         new Item{Name="Chicken Kottu", Description="Sri Lankan street food", Ingredients="Chicken, Roti, Vegetables", SpecialInformation="Spicy", Price=8.99M, ImageUrl="/images/chicken_kottu.jpg", ImageThumbnailUrl="/images/chicken_kottu_thumb.jpg", InStock=true, CategoryId=2, IsSpecial=true},
-                        new Item{Name="Watalappan", Description="Traditional Sri Lankan dessert", Ingredients="Coconut Milk, Jaggery, Eggs", SpecialInformation="Contains Eggs", Price=4.99M, ImageUrl="/images/watalappan.jpg", ImageThumbnailUrl="/images/watalappan_thumb.jpg", InStock=true, CategoryId=3, IsSpecial=false},
+                        new Item{Name="Watalappan", Description="Traditional Sri Lankan dessert", Ingredients="Coconut Milk, Jaggery, Eggs", SpecialInformation="Contains Eggs", Price=4.99M, ImageUrl="/images/watalappan.jpg", ImageThumbnailUrl="/images/watalappan_thumb.jpg", InStock=true, CategoryId=1, IsSpecial=false},
                         new Item{Name="King Coconut", Description="Refreshing king coconut water", Ingredients="King Coconut", SpecialInformation="Natural Drink", Price=2.99M, ImageUrl="/images/king_coconut.jpg", ImageThumbnailUrl="/images/king_coconut_thumb.jpg", InStock=true, CategoryId=4, IsSpecial=false}
                     };
 

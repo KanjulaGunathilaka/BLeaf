@@ -1,4 +1,6 @@
-﻿@{
+﻿@using BLeaf.ViewModels
+@model BLeafViewModel
+@{
 	Layout = "~/Views/Shared/_LayoutBLeafIndex.cshtml";
 }
 <div class="page-content bg-white">
@@ -219,8 +221,8 @@
 					<div class="site-filters style-2 clearfix">
 						<ul class="filters" data-bs-toggle="buttons">
 							<li data-filter=".All" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>All</a></li>
-							<li data-filter=".drink" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-cocktail"></i></span>COLD DRINK</a></li>
-							<li data-filter=".pizza" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-pizza-slice"></i></span>PIZZA</a></li>
+							<li data-filter=".Appetizers" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-cocktail"></i></span>COLD DRINK</a></li>
+							<li data-filter=".Desserts" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-pizza-slice"></i></span>PIZZA</a></li>
 							<li data-filter=".salad" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-salad"></i></span>SALAD</a></li>
 							<li data-filter=".sweet" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-cupcake"></i></span>SWEETS</a></li>
 							<li data-filter=".spicy" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-chili-pepper"></i></span>SPICY</a></li>
@@ -231,142 +233,42 @@
 			</div>
 			<div class="clearfix">
 				<ul id="masonry" class="row dlab-gallery-listing gallery">
-					<li class="card-container col-lg-6 col-md-6 m-b5 All drink sweet salad">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic1.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Pulled Chicken SandWich</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$30</span>
+					@foreach (var item in Model.Items.Where(d => d.CategoryId==1))
+					{
+						<li class="card-container col-lg-6 col-md-6 m-b5 All Appetizers">
+							<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
+								<div class="dz-media">
+									<img src="@item.ImageThumbnailUrl" alt="/">
 								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All pizza sweet">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic2.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">BBQ Chicken Sandwich</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$30</span>
+								<div class="dz-content">
+									<div class="dz-head">
+										<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">@item.Name</a></span>
+										<span class="img-line"></span>
+										<span class="header-price">@item.Price</span>
+									</div>
+									<p class="dz-body">@item.Description</p>
 								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
 							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All salad spicy">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.6s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic3.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Canada Dry Ginger Ale</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$60</span>
+						</li>
+					}
+					@foreach (var item in Model.Items.Where(d => d.CategoryId == 3))
+					{
+						<li class="card-container col-lg-6 col-md-6 m-b5 All Desserts">
+							<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
+								<div class="dz-media">
+									<img src="@item.ImageThumbnailUrl" alt="/">
 								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All drink spicy sweet">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.6s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic4.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Honey Mustard Pasta</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$20</span>
+								<div class="dz-content">
+									<div class="dz-head">
+										<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">@item.Name</a></span>
+										<span class="img-line"></span>
+										<span class="header-price">@item.Price</span>
+									</div>
+									<p class="dz-body">@item.Description</p>
 								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
 							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All burger">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.8s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic5.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Martinelli’s Apple Juice</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$80</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All pizza burger">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.8s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic6.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Chicken Honey Plate</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$80</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All burger salad">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.10s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic7.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Mango Mania Smoothie</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$30</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All drink">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.10s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic8.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Jamaican Jerk Sandwich</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$80</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
+						</li>
+					}
 				</ul>
 			</div>
 		</div>
