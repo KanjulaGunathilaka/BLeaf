@@ -17,7 +17,7 @@
                 </button>
 
                 <!-- EXTRA NAV -->
-                <div class="extra-nav">
+                <div class="extra-nav d-flex align-items-center">
                     <div class="extra-cell">
                         <form method="post">
                             <div class="input-group">
@@ -30,6 +30,24 @@
                             </div>
                         </form>
                     </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="extra-cell">
+                            <form method="post" asp-controller="Account" asp-action="Logout">
+                                <button type="submit" class="btn btn-white btn-square btn-shadow">
+                                    <i class="flaticon-user"></i> Logout
+                                </button>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="extra-cell">
+                            <a class="btn btn-white btn-square btn-shadow" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
+                                <i class="flaticon-user"></i> Login
+                            </a>
+                        </div>
+                    }
                 </div>
                 <!-- EXTRA NAV -->
                 <!-- Header Nav -->
@@ -87,38 +105,24 @@
                             </ul>
                         </li>
                         <li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="@Url.Action("AdminPanel", "Admin")" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Admin Panel
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Categories">Categories</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Items">Items</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reviews">Reviews</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Addresses">Addresses</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="OrderDetails">Order Details</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ShoppingCartItems">Shopping Cart Items</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Discounts">Discounts</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reservations">Reservations</a>
-                                    </div>
-                                </li>
-                            }
-                        }
-                        else
-                        {
-                            <li>
-                                <a class="btn btn-white btn-square btn-shadow" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
-                                    <i class="flaticon-user"></i>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="@Url.Action("AdminPanel", "Admin")" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin Panel
                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Categories">Categories</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Items">Items</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reviews">Reviews</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Addresses">Addresses</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="OrderDetails">Order Details</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ShoppingCartItems">Shopping Cart Items</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Discounts">Discounts</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reservations">Reservations</a>
+                                </div>
                             </li>
                         }
                     </ul>

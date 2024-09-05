@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BLeaf.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240825071359_InitialCreate")]
+    [Migration("20240905130626_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

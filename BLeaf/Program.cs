@@ -1,7 +1,10 @@
 using BLeaf.Data;
+using BLeaf.Models.IRepository;
+using BLeaf.Models.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NZPureJadeShop.Models.Repository;
 using System;
 using System.Threading.Tasks;
 
@@ -13,6 +16,9 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContextConnection")));
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
 // Add Identity services
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -52,45 +58,57 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=BLeaf}/{action=Index}/{id?}");
 
-DbInitializer.Seed(app);
+DbInitializer.Seed(app).Wait();
 await CreateRolesAndAdminUser(app.Services);
 
 app.Run();
 
 async Task CreateRolesAndAdminUser(IServiceProvider serviceProvider)
 {
-    using (var scope = serviceProvider.CreateScope())
-    {
-        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+	using (var scope = serviceProvider.CreateScope())
+	{
+		var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+		var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-        string[] roleNames = { "Admin", "User" };
-        IdentityResult roleResult;
+		string[] roleNames = { "Admin", "User" };
+		IdentityResult roleResult;
 
-        foreach (var roleName in roleNames)
-        {
-            var roleExist = await roleManager.RoleExistsAsync(roleName);
-            if (!roleExist)
-            {
-                roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
-            }
-        }
+		foreach (var roleName in roleNames)
+		{
+			var normalizedRoleName = roleName.ToUpper();
+			var roleExist = await roleManager.Roles.AnyAsync(r => r.NormalizedName == normalizedRoleName);
+			if (!roleExist)
+			{
+				Console.WriteLine($"Creating role: {roleName}");
+				roleResult = await roleManager.CreateAsync(new IdentityRole { Name = roleName, NormalizedName = normalizedRoleName });
+			}
+			else
+			{
+				Console.WriteLine($"Role already exists: {roleName}");
+			}
+		}
 
-        var adminUser = await userManager.FindByEmailAsync("admin@example.com");
-        if (adminUser == null)
-        {
-            var user = new IdentityUser
-            {
-                UserName = "admin@example.com",
-                Email = "admin@example.com",
-                EmailConfirmed = true
-            };
+		var adminUser = await userManager.FindByEmailAsync("admin@bleaf.com");
+		if (adminUser == null)
+		{
+			var user = new IdentityUser
+			{
+				UserName = "admin@bleaf.com",
+				Email = "admin@bleaf.com",
+				EmailConfirmed = true,
+				NormalizedEmail = "admin@bleaf.com".ToUpper(),
+				NormalizedUserName = "admin@bleaf.com".ToUpper()
+			};
 
-            var createUser = await userManager.CreateAsync(user, "Admin@123");
-            if (createUser.Succeeded)
-            {
-                await userManager.AddToRoleAsync(user, "Admin");
-            }
-        }
-    }
+			var createUser = await userManager.CreateAsync(user, "Admin@123");
+			if (createUser.Succeeded)
+			{
+				await userManager.AddToRoleAsync(user, "Admin");
+			}
+		}
+		else
+		{
+			Console.WriteLine("Admin user already exists.");
+		}
+	}
 }

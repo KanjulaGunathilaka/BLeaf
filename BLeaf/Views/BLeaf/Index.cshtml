@@ -220,47 +220,29 @@
 				<div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.4s">
 					<div class="site-filters style-2 clearfix">
 						<ul class="filters" data-bs-toggle="buttons">
-							<li data-filter=".All" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>All</a></li>
-							<li data-filter=".Appetizers" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-cocktail"></i></span>COLD DRINK</a></li>
-							<li data-filter=".Desserts" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-pizza-slice"></i></span>PIZZA</a></li>
-							<li data-filter=".salad" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-salad"></i></span>SALAD</a></li>
-							<li data-filter=".sweet" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-cupcake"></i></span>SWEETS</a></li>
-							<li data-filter=".spicy" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-chili-pepper"></i></span>SPICY</a></li>
-							<li data-filter=".burger" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-hamburger-1"></i></span>BURGER</a></li>
+							<li data-filter=".all" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>All</a></li>
+							@foreach (var category in Model.Categories)
+							{
+								var normalizedCategoryName = category.Name.Replace(" ", "-").ToLower();
+								<li data-filter=".@normalizedCategoryName" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>@category.Name.ToUpper()</a></li>
+							}
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="clearfix">
 				<ul id="masonry" class="row dlab-gallery-listing gallery">
-					@foreach (var item in Model.Items.Where(d => d.CategoryId==1))
+					@foreach (var item in Model.Items)
 					{
-						<li class="card-container col-lg-6 col-md-6 m-b5 All Appetizers">
+						var normalizedCategoryName = item.Category.Name.Replace(" ", "-").ToLower();
+						<li class="card-container col-lg-6 col-md-6 m-b5 all @normalizedCategoryName">
 							<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
 								<div class="dz-media">
-									<img src="@item.ImageThumbnailUrl" alt="/">
+									<img src="@item.ImageThumbnailUrl" alt="@item.Name" loading="lazy">
 								</div>
 								<div class="dz-content">
 									<div class="dz-head">
-										<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">@item.Name</a></span>
-										<span class="img-line"></span>
-										<span class="header-price">@item.Price</span>
-									</div>
-									<p class="dz-body">@item.Description</p>
-								</div>
-							</div>
-						</li>
-					}
-					@foreach (var item in Model.Items.Where(d => d.CategoryId == 3))
-					{
-						<li class="card-container col-lg-6 col-md-6 m-b5 All Desserts">
-							<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
-								<div class="dz-media">
-									<img src="@item.ImageThumbnailUrl" alt="/">
-								</div>
-								<div class="dz-content">
-									<div class="dz-head">
-										<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">@item.Name</a></span>
+										<span class="header-text"><a href="@Url.Action("OurMenu3","BLeaf")">@item.Name</a></span>
 										<span class="img-line"></span>
 										<span class="header-price">@item.Price</span>
 									</div>
