@@ -30,24 +30,6 @@
                             </div>
                         </form>
                     </div>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <div class="extra-cell">
-                            <form method="post" asp-controller="Account" asp-action="Logout">
-                                <button type="submit" class="btn btn-white btn-square btn-shadow">
-                                    <i class="flaticon-user"></i> Logout
-                                </button>
-                            </form>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="extra-cell">
-                            <a class="btn btn-white btn-square btn-shadow" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
-                                <i class="flaticon-user"></i> Login
-                            </a>
-                        </div>
-                    }
                 </div>
                 <!-- EXTRA NAV -->
                 <!-- Header Nav -->
@@ -105,6 +87,20 @@
                             </ul>
                         </li>
                         <li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="extra-cell">
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <button type="submit" class="btn btn-white btn-square btn-shadow">
+                                        <i class="flaticon-user"></i> Logout
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <li><a href="#offcanvasLogin" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasLogin">Login</a></li>
+                        }
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
