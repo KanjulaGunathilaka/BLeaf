@@ -15,16 +15,15 @@ namespace BLeaf.Models.Repository
 			_applicationDbContext = applicationDbContext;
         }
 
-        public IEnumerable<Item> AllItems
+        public IQueryable<Item> AllItems
         {
             get
             {
                 return _applicationDbContext.Items.Include(c => c.Category);
             }
-
         }
 
-        public IEnumerable<Item> PopularItemGifts
+        public IQueryable<Item> PopularItemGifts
         {
             get
             {

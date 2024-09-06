@@ -1,4 +1,7 @@
-﻿@{
+﻿@using BLeaf.ViewModels
+@model ItemDetailsViewModel
+
+@{
 	Layout = "~/Views/Shared/_LayoutBLeaf.cshtml";
 }
 <div class="page-content bg-white">
@@ -38,7 +41,7 @@
 							Pure veg
 						</span>
 						<div class="dz-head">
-							<h2 class="title">Double Patty Veg Burger</h2>
+							<h2 class="title">@Model.Item.Name</h2>
 							<div class="rating">
 								<i class="fa-solid fa-star"></i> <span><strong class="text-dark">4.5</strong> - 20 Reviews</span>
 							</div>

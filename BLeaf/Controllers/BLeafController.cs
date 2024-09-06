@@ -166,9 +166,16 @@ namespace BLeaf.Controllers
 		{
 			return View();
 		}
-		public IActionResult ProductDetail()
+		public IActionResult ProductDetail(int id)
 		{
-			return View();
+			var item = _itemRepository.GetItemById(id).Result;
+			if (item == null)
+			{
+				return NotFound();
+			}
+			var viewModel  = new ItemDetailsViewModel{ Item = item };
+
+			return View(viewModel);
 		}
 		public IActionResult ServiceDetail()
 		{

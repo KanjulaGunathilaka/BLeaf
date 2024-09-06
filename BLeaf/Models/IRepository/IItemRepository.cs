@@ -1,13 +1,14 @@
 ﻿using BLeaf.Models;
 using System.IO.Pipelines;
+using System.Linq;
 
 namespace BLeaf.Models.IRepository
 {
     public interface IItemRepository
     {
-        IEnumerable<Item> AllItems { get; }
+        IQueryable<Item> AllItems { get; }
 
-        IEnumerable<Item> PopularItemGifts { get; }
+        IQueryable<Item> PopularItemGifts { get; }
 
         Task<Item> GetItemById(int id);
 

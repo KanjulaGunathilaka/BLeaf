@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BLeaf.Models
 {
@@ -34,13 +36,14 @@ namespace BLeaf.Models
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; } = default!;
 
         public bool IsSpecial { get; set; } = false;
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public ICollection<Review> Reviews { get; set; }
+
+        //public ICollection<Review> Reviews { get; set; }
     }
 }

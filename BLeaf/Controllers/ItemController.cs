@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLeaf.Models;
+using BLeaf.Models.IRepository;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using BLeaf.Data;
 
 namespace BLeaf.Controllers
 {
@@ -12,88 +11,99 @@ namespace BLeaf.Controllers
     [ApiController]
     public class ItemController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IItemRepository _itemRepository;
 
-        public ItemController(ApplicationDbContext context)
+        public ItemController(IItemRepository itemRepository)
         {
-            _context = context;
+            _itemRepository = itemRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
+        public async Task<ActionResult<IEnumerable<Item>>> GetAllItems()
         {
-            return await _context.Items.Include(i => i.Category).ToListAsync();
+            var items = await _itemRepository.AllItems.ToListAsync();
+            return Ok(items);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetItem(int id)
+        public async Task<ActionResult<Item>> GetItemById(int id)
         {
-            var item = await _context.Items.Include(i => i.Category).FirstOrDefaultAsync(i => i.ItemId == id);
-
+            var item = await _itemRepository.GetItemById(id);
             if (item == null)
             {
                 return NotFound();
             }
-
-            return item;
+            return Ok(item);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Item>> PostItem(Item item)
-        {
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult<Item>> AddItem([FromBody] Item item)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        // Log the model state errors for debugging
+        //        foreach (var state in ModelState)
+        //        {
+        //            foreach (var error in state.Value.Errors)
+        //            {
+        //                Console.WriteLine($"Key: {state.Key}, Error: {error.ErrorMessage}");
+        //            }
+        //        }
+        //        return BadRequest(ModelState);
+        //    }
 
-            return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
+        //    var createdItem = await _itemRepository.SaveItem(item);
+        //    return CreatedAtAction(nameof(GetItemById), new { id = createdItem.ItemId }, createdItem);
+        //}
+
+        [HttpPost]
+        public async Task<ActionResult<Item>> AddItem([FromBody] Item item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var createdItem = await _itemRepository.SaveItem(item);
+            return CreatedAtAction(nameof(GetItemById), new { id = createdItem.ItemId }, createdItem);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutItem(int id, Item item)
+        public async Task<IActionResult> UpdateItem(int id, [FromBody] Item item)
         {
-            if (id != item.ItemId)
+            if (item == null || item.ItemId != id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(item).State = EntityState.Modified;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             try
             {
-                await _context.SaveChangesAsync();
+                var updatedItem = await _itemRepository.UpdateItem(item);
+                return Ok(updatedItem);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (KeyNotFoundException)
             {
-                if (!ItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
-
-            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
-            if (item == null)
+            try
+            {
+                var deletedItem = await _itemRepository.DeleteItem(id);
+                return Ok(deletedItem);
+            }
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ItemExists(int id)
-        {
-            return _context.Items.Any(e => e.ItemId == id);
         }
     }
 }
