@@ -48,7 +48,6 @@
                                         <li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
                                         <li><a href="@Url.Action("FAQ","BLeaf")">FAQ</a></li>
                                         <li><a href="@Url.Action("Team","BLeaf")">Team</a></li>
-                                        <li><a href="@Url.Action("TeamDetail","BLeaf")">Team Detail</a></li>
                                         <li><a href="@Url.Action("Testmonial","BLeaf")">Testimonial</a></li>
                                     </ul>
                                 </li>
@@ -56,20 +55,12 @@
                                     <a href="javascript:;">Pages</a>
                                     <ul>
                                         <li><a href="@Url.Action("Services","BLeaf")">Services</a></li>
-                                        <li><a href="@Url.Action("ServiceDetail","BLeaf")">Service Detail</a></li>
-                                        <li><a href="@Url.Action("Error404","BLeaf")">Error 404</a></li>
-                                        <li><a href="@Url.Action("CommingSoon","BLeaf")">Coming Soon</a></li>
-                                        <li><a href="@Url.Action("UnderMaintenance","BLeaf")">Under Maintenance</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="javascript:;">Our Menus</a>
                                     <ul>
-                                        <li><a href="@Url.Action("OurMenu1","BLeaf")">Menu Style 1</a></li>
-                                        <li><a href="@Url.Action("OurMenu2","BLeaf")">Menu Style 2</a></li>
-                                        <li><a href="@Url.Action("OurMenu3","BLeaf")">Menu Style 3</a></li>
-                                        <li><a href="@Url.Action("OurMenu4","BLeaf")">Menu Style 4</a></li>
-                                        <li><a href="@Url.Action("OurMenu5","BLeaf")">Menu Style 5</a></li>
+                                        <li><a href="@Url.Action("OurMenu3","BLeaf")">Our Menu</a></li>
                                     </ul>
                                 </li>
                                 <li class="header-adv p-0"><img src="~/bleaf/images/adv-media.jpg" alt="/"></li>
@@ -78,10 +69,7 @@
                         <li class="sub-menu-down">
                             <a href="javascript:void(0);">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="@Url.Action("ShopStyle1","BLeaf")">Shop Style 1</a></li>
-                                <li><a href="@Url.Action("ShopStyle2","BLeaf")">Shop Style 2</a></li>
                                 <li><a href="@Url.Action("ShopCart","BLeaf")">Shop Cart</a></li>
-                                <li><a href="@Url.Action("ShopWhislist","BLeaf")">Shop Wishlist</a></li>
                                 <li><a href="@Url.Action("ShopCheckout","BLeaf")">Shop Checkout</a></li>
                                 <li><a href="">Product Detail</a></li>
                             </ul>
@@ -91,7 +79,7 @@
                         {
                             <div class="extra-cell">
                                 <form method="post" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" class="btn btn-white btn-square btn-shadow">
+                                    <button type="submit" class="btn">
                                         <i class="flaticon-user"></i> Logout
                                     </button>
                                 </form>

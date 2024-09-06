@@ -1,9 +1,7 @@
 ﻿using BLeaf.Data;
-using BLeaf.Models;
-using Microsoft.EntityFrameworkCore;
 using BLeaf.Models.IRepository;
 
-namespace NZPureJadeShop.Models.Repository
+namespace BLeaf.Models.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {

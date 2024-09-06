@@ -1,12 +1,8 @@
 using BLeaf.Data;
 using BLeaf.Models.IRepository;
-using BLeaf.Models.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using NZPureJadeShop.Models.Repository;
-using System;
-using System.Threading.Tasks;
+using BLeaf.Models.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
