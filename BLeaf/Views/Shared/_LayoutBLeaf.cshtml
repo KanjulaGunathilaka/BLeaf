@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <partial name="BLeaf/_Meta" />
     <title>@Configuration.GetSection("DefaultValue")["Title"]</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="~/bleaf/images/favicon.png">
@@ -24,7 +23,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body id="bg">
-    <partial name="BLeaf/_PreLoader" />
     <div class="page-wraper">
         <partial name="BLeaf/_PageHeader" />
         <partial name="BLeaf/_Login" />
@@ -47,40 +45,6 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <!-- Add other public links here -->
-                </ul>
-                <ul class="navbar-nav navbar-left">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Account/Logout">Logout</a>
-                        </li>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Admin Panel
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                                    <a class="dropdown-item" href="/Admin/Categories">Categories</a>
-                                    <a class="dropdown-item" href="/Admin/Items">Items</a>
-                                    <a class="dropdown-item" href="/Admin/Reviews">Reviews</a>
-                                    <a class="dropdown-item" href="/Admin/Users">Users</a>
-                                    <a class="dropdown-item" href="/Admin/Addresses">Addresses</a>
-                                    <a class="dropdown-item" href="/Admin/Orders">Orders</a>
-                                    <a class="dropdown-item" href="/Admin/OrderDetails">Order Details</a>
-                                    <a class="dropdown-item" href="/Admin/ShoppingCartItems">Shopping Cart Items</a>
-                                    <a class="dropdown-item" href="/Admin/Discounts">Discounts</a>
-                                    <a class="dropdown-item" href="/Admin/Reservations">Reservations</a>
-                                </div>
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Account/Login">Login</a>
-                        </li>
-                    }
                 </ul>
             </div>
         </div>

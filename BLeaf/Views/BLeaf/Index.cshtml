@@ -1,4 +1,6 @@
-﻿@{
+﻿@using BLeaf.ViewModels
+@model BLeafViewModel
+@{
 	Layout = "~/Views/Shared/_LayoutBLeafIndex.cshtml";
 }
 <div class="page-content bg-white">
@@ -18,44 +20,8 @@
 								<div class="col-xl-7 col-lg-7 col-md-8">
 									<div class="banner-content">
 										<span class="sub-title text-primary">High Quality Test Station </span>
-										<h1 class="title text-white">We believe Good Food Offer Great Smile </h1>
-										<p class="bnr-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-										<div class="banner-btn d-flex align-items-center">
-											<a href="@Url.Action("ContactUs","BLeaf")" class="btn btn-primary btn-md shadow-primary m-r30 btn-hover-1"><span>Book a Table</span></a>
-											<a href="@Url.Action("AboutUs","BLeaf")" class="btn btn-outline-primary btn-md shadow-primary btn-hover-1"><span>View More</span></a>
-										</div>
-										<div class="food-card">
-											<div class="dz-head">
-												<h5 class="text-white title">Paneer Tikka</h5>
-												<ul class="rating">
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-												</ul>
-											</div>
-											<div class="dz-body">
-												<div class="dz-left">
-													<div class="profile-info">
-														<div class="dz-media">
-															<img src="~/bleaf/images/team/pic1.jpg" alt="/">
-														</div>
-														<div class="dz-content">
-															<h6 class="title text-white">John Doe</h6>
-															<p>Master Chief</p>
-														</div>
-													</div>
-													<p class="text">Lorem ipsum dolor shit amet...</p>
-												</div>
-												<div class="dz-right">
-													<h5 class="text-primary">$10.00</h5>
-													<a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-primary btn-cart"><i class="flaticon-shopping-cart"></i></a>
-												</div>
-											</div>
-											<img class="target-line" src="~/bleaf/images/main-slider/slider2/line.png" alt="/">
-										</div>
+										<h1 class="title text-white">Spice up your life with authentic Sri Lankan cuisine </h1>
+										<p class="bnr-text">Discover the vibrant spices and rich traditions of Sri Lankan cuisine, crafted with passion and authenticity.</p>
 									</div>
 								</div>
 								<div class="col-xl-5 col-lg-5 col-md-4">
@@ -74,45 +40,9 @@
 							<div class="row align-items-center" data-swiper-parallax="-100">
 								<div class="col-xl-7 col-lg-7 col-md-8">
 									<div class="banner-content">
-										<span class="sub-title text-primary">The Best Food Stations</span>
-										<h1 class="title text-white">Bringing Joy to Your Plate With Food </h1>
-										<p class="bnr-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-										<div class="banner-btn d-flex align-items-center">
-											<a href="@Url.Action("ContactUs","BLeaf")" class="btn btn-primary btn-md shadow-primary m-r30 btn-hover-1"><span>Book a Table</span></a>
-											<a href="@Url.Action("AboutUs","BLeaf")" class="btn btn-outline-primary btn-md shadow-primary btn-hover-1"><span>View More</span></a>
-										</div>
-										<div class="food-card">
-											<div class="dz-head">
-												<h5 class="text-white title">Dal Makhni</h5>
-												<ul class="rating">
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-												</ul>
-											</div>
-											<div class="dz-body">
-												<div class="dz-left">
-													<div class="profile-info">
-														<div class="dz-media">
-															<img src="~/bleaf/images/team/pic1.jpg" alt="/">
-														</div>
-														<div class="dz-content">
-															<h6 class="title text-white">Carry Mint</h6>
-															<p>Master Chief</p>
-														</div>
-													</div>
-													<p class="text">Lorem ipsum dolor shit amet...</p>
-												</div>
-												<div class="dz-right">
-													<h5 class="text-primary">$15.00</h5>
-													<a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-primary btn-cart"><i class="flaticon-shopping-cart"></i></a>
-												</div>
-											</div>
-											<img class="target-line" src="~/bleaf/images/main-slider/slider2/line.png" alt="/">
-										</div>
+										<span class="sub-title text-primary">Taste the tradition of Sri Lanka</span>
+										<h1 class="title text-white">Authentic flavors, unforgettable moments </h1>
+										<p class="bnr-text">Embark on a culinary journey to Sri Lanka, where every dish tells a story of tradition and flavor.</p>
 									</div>
 								</div>
 								<div class="col-xl-5 col-lg-5 col-md-4">
@@ -132,44 +62,8 @@
 								<div class="col-xl-7 col-lg-7 col-md-8">
 									<div class="banner-content">
 										<span class="sub-title text-primary">Exploring the Delicious World</span>
-										<h1 class="title text-white">Food that Makes You Happy And Healthy</h1>
-										<p class="bnr-text ow fadeInUp">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-										<div class="banner-btn d-flex align-items-center">
-											<a href="@Url.Action("ContactUs","BLeaf")" class="btn btn-primary btn-md shadow-primary m-r30 btn-hover-1"><span>Book a Table</span></a>
-											<a href="@Url.Action("AboutUs","BLeaf")" class="btn btn-outline-primary btn-md shadow-primary btn-hover-1"><span>View More</span></a>
-										</div>
-										<div class="food-card">
-											<div class="dz-head">
-												<h5 class="text-white title">Veg Biryani</h5>
-												<ul class="rating">
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-													<li><i class="fa-solid fa-star"></i></li>
-												</ul>
-											</div>
-											<div class="dz-body">
-												<div class="dz-left">
-													<div class="profile-info">
-														<div class="dz-media">
-															<img src="~/bleaf/images/team/pic1.jpg" alt="/">
-														</div>
-														<div class="dz-content">
-															<h6 class="title text-white">Kamy Klay</h6>
-															<p>Master Chief</p>
-														</div>
-													</div>
-													<p class="text">Lorem ipsum dolor shit amet...</p>
-												</div>
-												<div class="dz-right">
-													<h5 class="text-primary">$10.00</h5>
-													<a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-primary btn-cart"><i class="flaticon-shopping-cart"></i></a>
-												</div>
-											</div>
-											<img class="target-line" src="~/bleaf/images/main-slider/slider2/line.png" alt="/">
-										</div>
+										<h1 class="title text-white">Where tradition meets taste</h1>
+										<p class="bnr-text ow fadeInUp">Indulge in the exotic flavors of Sri Lanka, where every meal is a celebration of culture and taste.</p>
 									</div>
 								</div>
 								<div class="col-xl-5 col-lg-5 col-md-4">
@@ -233,191 +127,28 @@
 		</div>
 	</section>
 	<!-- Icon Wrapper 2 -->
-	<!-- Browser Our Menu -->
-	<section class="content-inner-1 overflow-hidden pt-0">
-		<div class="container">
-			<div class="section-head menu-align">
-				<h2 class="title mb-0 wow flipInX" data-wow-delay="0.2s" data-wow-delay="2s">Browse Our Menu</h2>
-				<div class="pagination-align wow fadeInUp" data-wow-delay="0.4s">
-					<div class="menu-button-prev1 btn-prev rounded-xl btn-hover-2"><i class="fa-solid fa-arrow-left"></i></div>
-					<div class="menu-button-next1 btn-next rounded-xl btn-hover-2"><i class="fa-solid fa-arrow-right"></i></div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="swiper menu-swiper swiper-visible swiper-item-4">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.4s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic1.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Burger</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$10.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.4s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic2.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Hot Rice</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$15.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.6s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic3.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Momos</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$25.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.8s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic4.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Pasta</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$45.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.10s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic5.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Panner</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$20.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.12s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic6.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Soya Rice</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$90.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.4s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic1.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Burger</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$10.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-img-box style-4 box-hover wow fadeInUp" data-wow-delay="0.4s">
-							<div class="menu-detail">
-								<div class="dz-media">
-									<img src="~/bleaf/images/menu-small/pic2.png" alt="/">
-								</div>
-								<div class="dz-content">
-									<h6 class="title"><a href="@Url.Action("ProductDetail","BLeaf")">Hot Rice</a></h6>
-									<p>Delicious and Spicy</p>
-								</div>
-							</div>
-							<div class="menu-footer">
-								<span>Regular Price</span>
-								<span class="price">$15.00</span>
-							</div>
-							<a class="detail-btn" href="@Url.Action("ProductDetail","BLeaf")"><i class="fa-solid fa-plus"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Browser Our Menu -->
 	<!--Today's Special-->
 	<section class="section-wrapper-5 content-inner overflow-hidden bg-parallax" style="background-image:url('bleaf/images/background/pic1.png'); background-attachment: fixed;">
 		<div class="container">
 			<div class="section-head text-center">
-				<h2 class="title text-white wow flipInX" data-wow-delay="0.2s" data-wow-delay="2s">Today's Special</h2>
+				<h2 class="title text-white wow flipInX" data-wow-delay="0.2s" data-wow-delay="2s">Weekly Special</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
 					<div class="dz-img-box style-5">
 						<div class="dz-content">
 							<div class="weight">
-								<span>Pizza</span>
-								<span>756g</span>
+								<span>This Saturday</span>
+								<span></span>
 							</div>
 							<div class="price">
-								<h6>Pepperoni</h6>
-								<h6 class="text-primary">$15.00</h6>
+								<h6>Rice and Curry</h6>
+								<h6 class="text-primary">$24.00</h6>
 							</div>
 						</div>
 						<div class="dz-media">
 							<img src="~/bleaf/images/gallery/grid3/pic1.jpg" alt="/">
-							<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+							<a class="detail-btn" href="@Url.Action("OurMenu3","BLeaf")"><i class="fa-solid fa-plus"></i></a>
 						</div>
 					</div>
 				</div>
@@ -425,17 +156,17 @@
 					<div class="dz-img-box style-5">
 						<div class="dz-content">
 							<div class="weight">
-								<span>Pancake</span>
-								<span>756g</span>
+								<span>This Saturday</span>
+								<span></span>
 							</div>
 							<div class="price">
-								<h6>Pancake stack</h6>
-								<h6 class="text-primary">$18.00</h6>
+								<h6>Rice & Curry</h6>
+								<h6 class="text-primary">$24.00</h6>
 							</div>
 						</div>
 						<div class="dz-media">
 							<img src="~/bleaf/images/gallery/grid3/pic2.jpg" alt="/">
-							<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+							<a class="detail-btn" href="@Url.Action("OurMenu3","BLeaf")"><i class="fa-solid fa-plus"></i></a>
 						</div>
 					</div>
 				</div>
@@ -443,17 +174,17 @@
 					<div class="dz-img-box style-5">
 						<div class="dz-content">
 							<div class="weight">
-								<span>Salad</span>
-								<span>756g</span>
+								<span>This Sunday</span>
+								<span></span>
 							</div>
 							<div class="price">
-								<h6>Halumini</h6>
-								<h6 class="text-primary">$10.00</h6>
+								<h6>LumpRice</h6>
+								<h6 class="text-primary">$24.00</h6>
 							</div>
 						</div>
 						<div class="dz-media">
 							<img src="~/bleaf/images/gallery/grid3/pic3.jpg" alt="/">
-							<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+							<a class="detail-btn" href="@Url.Action("OurMenu3","BLeaf")"><i class="fa-solid fa-plus"></i></a>
 						</div>
 					</div>
 				</div>
@@ -461,17 +192,17 @@
 					<div class="dz-img-box style-5">
 						<div class="dz-content">
 							<div class="weight">
-								<span>Egg</span>
-								<span>756g</span>
+								<span>Today</span>
+								<span></span>
 							</div>
 							<div class="price">
-								<h6>Eggs</h6>
-								<h6 class="text-primary">$12.00</h6>
+								<h6>Rice & Curry</h6>
+								<h6 class="text-primary">$24.00</h6>
 							</div>
 						</div>
 						<div class="dz-media">
 							<img src="~/bleaf/images/gallery/grid3/pic4.jpg" alt="/">
-							<a class="detail-btn" href="@Url.Action("OurMenu1","BLeaf")"><i class="fa-solid fa-plus"></i></a>
+							<a class="detail-btn" href="@Url.Action("OurMenu3","BLeaf")"><i class="fa-solid fa-plus"></i></a>
 						</div>
 					</div>
 				</div>
@@ -479,210 +210,68 @@
 		</div>
 	</section>
 	<!--Today's Special-->
-	<!-- Are Menu-->
+	<!-- Our Menu-->
 	<section class="content-inner-1">
 		<div class="container">
 			<div class="section-head text-center">
-				<h2 class="title wow flipInX" data-wow-delay="0.2s" data-wow-delay="2s">Are Menu</h2>
+				<h2 class="title wow flipInX" data-wow-delay="0.2s" data-wow-delay="2s">Our Menu</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.4s">
 					<div class="site-filters style-2 clearfix">
 						<ul class="filters" data-bs-toggle="buttons">
-							<li data-filter=".All" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>All</a></li>
-							<li data-filter=".drink" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-cocktail"></i></span>COLD DRINK</a></li>
-							<li data-filter=".pizza" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-pizza-slice"></i></span>PIZZA</a></li>
-							<li data-filter=".salad" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-salad"></i></span>SALAD</a></li>
-							<li data-filter=".sweet" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-cupcake"></i></span>SWEETS</a></li>
-							<li data-filter=".spicy" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-chili-pepper"></i></span>SPICY</a></li>
-							<li data-filter=".burger" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-hamburger-1"></i></span>BURGER</a></li>
+							<li data-filter=".all" class="btn active"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>All</a></li>
+							@foreach (var category in Model.Categories)
+							{
+								var normalizedCategoryName = category.Name.Replace(" ", "-").ToLower();
+								<li data-filter=".@normalizedCategoryName" class="btn"><a href="javascript:void(0);"><span><i class="flaticon-fast-food"></i></span>@category.Name.ToUpper()</a></li>
+							}
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="clearfix">
 				<ul id="masonry" class="row dlab-gallery-listing gallery">
-					<li class="card-container col-lg-6 col-md-6 m-b5 All drink sweet salad">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic1.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Pulled Chicken SandWich</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$30</span>
+					@foreach (var item in Model.Items)
+					{
+						var normalizedCategoryName = item.Category.Name.Replace(" ", "-").ToLower();
+						<li class="card-container col-lg-6 col-md-6 m-b5 all @normalizedCategoryName">
+							<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
+								<div class="dz-media">
+									<img src="@item.ImageUrl" alt="@item.Name" loading="lazy" style="max-height: 30px">
 								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All pizza sweet">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic2.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">BBQ Chicken Sandwich</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$30</span>
+								<div class="dz-content">
+									<div class="dz-head">
+										<span class="header-text"><a href="@Url.Action("OurMenu3","BLeaf")">@item.Name</a></span>
+										<span class="img-line"></span>
+										<span class="header-price">@item.Price</span>
+									</div>
+									<p class="dz-body">@item.Description</p>
 								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
 							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All salad spicy">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.6s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic3.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Canada Dry Ginger Ale</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$60</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All drink spicy sweet">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.6s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic4.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Honey Mustard Pasta</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$20</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All burger">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.8s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic5.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Martinelli’s Apple Juice</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$80</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All pizza burger">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.8s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic6.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Chicken Honey Plate</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$80</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All burger salad">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.10s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic7.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Mango Mania Smoothie</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$30</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-6 col-md-6 m-b5 All drink">
-						<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.10s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/menu-small/grid/pic8.png" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="dz-head">
-									<span class="header-text"><a href="@Url.Action("OurMenu1","BLeaf")">Jamaican Jerk Sandwich</a></span>
-									<span class="img-line"></span>
-									<span class="header-price">$80</span>
-								</div>
-								<p class="dz-body">
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-								</p>
-							</div>
-						</div>
-					</li>
+						</li>
+					}
 				</ul>
 			</div>
 		</div>
 	</section>
-	<!-- Are Menu-->
+	<!-- Our Menu-->
 	<!-- Team Section 1 -->
 	<section class="section-wrapper-4 content-inner overflow-hidden bg-parallax" style="background-image:url('bleaf/images/background/pic10.png'); background-attachment: fixed;">
 		<div class="container">
 			<div class="section-head text-center">
-				<h2 class="title wow flipInX" data-wow-delay="0.2s">Meet The</h2>
+				<h2 class="title wow flipInX" data-wow-delay="0.2s">Meet The Team</h2>
 			</div>
 			<div class="swiper team-swiper swiper-btn-lr swiper-visible">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
-						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.4s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/team/pic1.jpg" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Sarah Albert</a></h6>
-									<span class="dz-position">Senior Chef</span>
-								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
 						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.6s">
 							<div class="dz-media">
 								<img src="~/bleaf/images/team/pic2.jpg" alt="/">
 							</div>
 							<div class="dz-content">
 								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">John Doe</a></h6>
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Neha Perera</a></h6>
 									<span class="dz-position">Senior Chef</span>
 								</div>
 								<ul class="team-social">
@@ -706,32 +295,8 @@
 							</div>
 							<div class="dz-content">
 								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Jemy Carline</a></h6>
-									<span class="dz-position">Junior Chef</span>
-								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.10s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/team/pic4.jpg" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Cotlin Care</a></h6>
-									<span class="dz-position">Senior Chef</span>
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Kamal Alponsu</a></h6>
+									<span class="dz-position">Chef</span>
 								</div>
 								<ul class="team-social">
 									<li>
@@ -754,56 +319,8 @@
 							</div>
 							<div class="dz-content">
 								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Sarah Albert</a></h6>
-									<span class="dz-position">Senior Chef</span>
-								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.6s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/team/pic2.jpg" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">John Doe</a></h6>
-									<span class="dz-position">Senior Chef</span>
-								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.8s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/team/pic3.jpg" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Jemy Carline</a></h6>
-									<span class="dz-position">Junior Chef</span>
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Dihan Predeep</a></h6>
+									<span class="dz-position">Chef/Owner</span>
 								</div>
 								<ul class="team-social">
 									<li>
@@ -826,8 +343,32 @@
 							</div>
 							<div class="dz-content">
 								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Cotlin Care</a></h6>
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Tharindu Perera</a></h6>
 									<span class="dz-position">Senior Chef</span>
+								</div>
+								<ul class="team-social">
+									<li>
+										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
+										<ul class="sub-team-social">
+											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.12s">
+							<div class="dz-media">
+								<img src="~/bleaf/images/team/pic4.jpg" alt="/">
+							</div>
+							<div class="dz-content">
+								<div class="clearfix">
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Saman Kumara</a></h6>
+									<span class="dz-position">Cashier</span>
 								</div>
 								<ul class="team-social">
 									<li>
@@ -852,74 +393,6 @@
 		</div>
 	</section>
 	<!-- Team Section 1 -->
-	<!-- Testimonials -->
-	<section class="content-inner-2 overflow-hidden">
-		<div class="container">
-			<div class="section-head text-center">
-				<h2 class="title wow flipInX" data-wow-delay="0.2s">Customer's Comment</h2>
-			</div>
-			<div class="swiper testimonial-two-swiper swiper-btn-lr swiper-single swiper-visible">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<div class="testimonial-2">
-							<div class="dz-media">
-								<img src="~/bleaf/images/testimonial/large/pic1.jpg" alt="/">
-							</div>
-							<div class="testimonial-detail">
-								<div class="testimonial-text wow fadeInUp" data-wow-delay="0.4s">
-									<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-								</div>
-								<div class="testimonial-info wow fadeInUp" data-wow-delay="0.6s">
-									<h5 class="testimonial-name">Carry Mint</h5>
-									<span class="testimonial-position">Food Expert</span>
-								</div>
-								<i class="flaticon-right-quote quote"></i>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="testimonial-2">
-							<div class="dz-media">
-								<img src="~/bleaf/images/testimonial/large/pic2.jpg" alt="/">
-							</div>
-							<div class="testimonial-detail">
-								<div class="testimonial-text wow fadeInUp" data-wow-delay="0.4s">
-									<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-								</div>
-								<div class="testimonial-info wow fadeInUp" data-wow-delay="0.6s">
-									<h5 class="testimonial-name">John Doe</h5>
-									<span class="testimonial-position">Food Expert</span>
-								</div>
-								<i class="flaticon-right-quote quote"></i>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="testimonial-2">
-							<div class="dz-media">
-								<img src="~/bleaf/images/testimonial/large/pic3.jpg" alt="/">
-							</div>
-							<div class="testimonial-detail">
-								<div class="testimonial-text wow fadeInUp" data-wow-delay="0.4s">
-									<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-								</div>
-								<div class="testimonial-info wow fadeInUp" data-wow-delay="0.6s">
-									<h5 class="testimonial-name">Marn Kamk</h5>
-									<span class="testimonial-position">Food Expert</span>
-								</div>
-								<i class="flaticon-right-quote quote"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="pagination">
-					<div class="testimonial-2-button-prev btn-prev rounded-xl btn-hover-2"><i class="fa-solid fa-arrow-left"></i></div>
-					<div class="testimonial-2-button-next btn-next rounded-xl btn-hover-2"><i class="fa-solid fa-arrow-right"></i></div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Testimonial -->
 	<!-- Our Blog  -->
 	<section class="content-inner overflow-hidden">
 		<div class="container">
@@ -930,27 +403,10 @@
 					</div>
 					<div class="dz-card style-2 blog-half wow fadeInUp m-b30" data-wow-delay="0.4s">
 						<div class="dz-media">
-							<a href="@Url.Action("BlogStandard","BLeaf")"><img src="~/bleaf/images/blog/grid2/pic1.jpg" alt="/"></a>
-							<div class="dz-date">12 Feb 2023</div>
+							<a href="@Url.Action("BlogStandard","BLeaf")"><img src="~/bleaf/images/blog/grid2/king_coconut_drink.jpg" alt="/"></a>
 						</div>
 						<div class="dz-info">
-							<h4 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")">Chill Out with These Refreshing</a></h4>
-							<div class="dz-meta">
-								<ul>
-									<li class="dz-user">
-										<a href="javascript:void(0);">
-											<i class="fa-solid fa-user"></i>
-											By <span>RK Gupta</span>
-										</a>
-									</li>
-									<li class="dz-comment">
-										<a href="javascript:void(0);">
-											<i class="fa-solid fa-message"></i>
-											10 Comments
-										</a>
-									</li>
-								</ul>
-							</div>
+							<h4 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")">Chill Out with These Unique Refreshing Drinks</a></h4>
 							<div class="btn-wrapper p-t10">
 								<a href="@Url.Action("BlogStandard","BLeaf")" class="btn btn-primary btn-hover-2">Read More</a>
 							</div>
@@ -958,27 +414,10 @@
 					</div>
 					<div class="dz-card style-2 blog-half wow fadeInUp m-b30" data-wow-delay="0.6s">
 						<div class="dz-media">
-							<a href="@Url.Action("BlogStandard","BLeaf")"><img src="~/bleaf/images/blog/grid2/pic2.jpg" alt="/"></a>
-							<div class="dz-date">24 Feb 2023</div>
+							<a href="@Url.Action("BlogStandard","BLeaf")"><img src="~/bleaf/images/blog/grid2/chicken_koththu_home.jpg" alt="/"></a>
 						</div>
 						<div class="dz-info">
-							<h4 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")">Taste Excitement: A Sneak Peek into the</a></h4>
-							<div class="dz-meta">
-								<ul>
-									<li class="dz-user">
-										<a href="javascript:void(0);">
-											<i class="fa-solid fa-user"></i>
-											By <span>KK Sharma</span>
-										</a>
-									</li>
-									<li class="dz-comment">
-										<a href="javascript:void(0);">
-											<i class="fa-solid fa-message"></i>
-											24 Comments
-										</a>
-									</li>
-								</ul>
-							</div>
+							<h4 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")">Taste Excitement: A Sneak Peek into Sri Lankan Authentic Cuisine</a></h4>
 							<div class="btn-wrapper p-t10">
 								<a href="@Url.Action("BlogStandard","BLeaf")" class="btn btn-primary btn-hover-2">Read More</a>
 							</div>
@@ -991,24 +430,7 @@
 							<source src="~/bleaf/video/video.mp4" type="video/mp4">
 						</video>
 						<div class="dz-info">
-							<h3 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")" class="text-white">Exploring the World of Pizza</a></h3>
-							<div class="dz-meta">
-								<ul>
-									<li class="dz-date">14 Feb 2023</li>
-									<li class="dz-user">
-										<a href="javascript:void(0);">
-											<i class="fa-solid fa-user"></i>
-											By <span>KK Sharma</span>
-										</a>
-									</li>
-									<li class="dz-comment">
-										<a href="javascript:void(0);">
-											<i class="fa-solid fa-message"></i>
-											15 Comments
-										</a>
-									</li>
-								</ul>
-							</div>
+							<h3 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")" class="text-white">Exploring the World of Rice</a></h3>
 						</div>
 					</div>
 				</div>

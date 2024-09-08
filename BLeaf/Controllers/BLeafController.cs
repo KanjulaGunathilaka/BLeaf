@@ -1,12 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLeaf.Data;
+using BLeaf.Models;
+using BLeaf.Models.IRepository;
+using BLeaf.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BLeaf.Controllers
 {
 	public class BLeafController : Controller
 	{
+		private readonly IItemRepository _itemRepository;
+		private readonly ICategoryRepository _categoryRepository;
+
+		public BLeafController(IItemRepository itemRepository, ICategoryRepository categoryRepository)
+		{
+			_categoryRepository = categoryRepository;
+			_itemRepository = itemRepository;
+		}
+
 		public IActionResult Index()
 		{
-			return View();
+			var items = _itemRepository.AllItems;
+			var categories = _categoryRepository.AllCategories;
+
+			return View(new BLeafViewModel(categories, items));
 		}
 
 		public IActionResult AboutUs()
@@ -113,7 +130,16 @@ namespace BLeaf.Controllers
 		}
 		public IActionResult OurMenu1()
 		{
-			return View();
+			var categories = _categoryRepository.AllCategories;
+			var items = _itemRepository.AllItems;
+
+			var viewModel = new BLeafViewModel
+			{
+				Categories = categories,
+				Items = items
+			};
+
+			return View(viewModel);
 		}
 		public IActionResult OurMenu2()
 		{
@@ -121,8 +147,17 @@ namespace BLeaf.Controllers
 		}
 		public IActionResult OurMenu3()
 		{
-			return View();
-		}
+            var categories = _categoryRepository.AllCategories;
+            var items = _itemRepository.AllItems;
+
+            var viewModel = new BLeafViewModel
+            {
+                Categories = categories,
+                Items = items
+            };
+
+            return View(viewModel);
+        }
 		public IActionResult OurMenu4()
 		{
 			return View();
@@ -131,9 +166,16 @@ namespace BLeaf.Controllers
 		{
 			return View();
 		}
-		public IActionResult ProductDetail()
+		public IActionResult ProductDetail(int id)
 		{
-			return View();
+			var item = _itemRepository.GetItemById(id).Result;
+			if (item == null)
+			{
+				return NotFound();
+			}
+			var viewModel  = new ItemDetailsViewModel{ Item = item };
+
+			return View(viewModel);
 		}
 		public IActionResult ServiceDetail()
 		{

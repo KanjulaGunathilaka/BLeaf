@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace BLeaf.Controllers
 {
@@ -27,7 +26,12 @@ namespace BLeaf.Controllers
             var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                var user = await _userManager.FindByEmailAsync(email);
+                if (user != null && await _userManager.IsInRoleAsync(user, "Admin"))
+                {
+                    return RedirectToAction("AdminPanel", "Admin");
+                }
+                return RedirectToAction("Index", "BLeaf");
             }
 
             ModelState.AddModelError("", "Invalid login attempt");
@@ -38,7 +42,7 @@ namespace BLeaf.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "BLeaf");
         }
     }
 }

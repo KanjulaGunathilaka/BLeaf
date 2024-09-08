@@ -1,108 +1,126 @@
 ﻿<header class="site-header mo-left header header-transparent transparent-white style-2">
-	<!-- Main Header -->
-	<div class="sticky-header main-bar-wraper navbar-expand-lg">
-		<div class="main-bar clearfix ">
-			<div class="container-fluid clearfix">
+    <!-- Main Header -->
+    <div class="sticky-header main-bar-wraper navbar-expand-lg">
+        <div class="main-bar clearfix ">
+            <div class="container-fluid clearfix">
 
-				<!-- Website Logo -->
-				<div class="logo-header mostion">
-					<a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/"></a>
-				</div>
+                <!-- Website Logo -->
+                <div class="logo-header mostion">
+                    <a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/"></a>
+                </div>
 
-				<!-- Nav Toggle Button -->
-				<button class="navbar-toggler navbar-toggler navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-					<span></span>
-					<span></span>
-					<span></span>
-				</button>
+                <!-- Nav Toggle Button -->
+                <button class="navbar-toggler navbar-toggler navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-				<!-- EXTRA NAV -->
-				<div class="extra-nav">
-					<div class="extra-cell">
-						<form method="post">
-							<div class="input-group">
-								<input required="required" type="text" class="form-control" placeholder="Search">
-								<div class="input-group-addon">
-									<button name="submit" value="submit" type="submit" class="btn btn-primary btn-hover-2">
-										<span><i class="fa-solid fa-magnifying-glass"></i></span>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- EXTRA NAV -->
-				<!-- Header Nav -->
-				<div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
-					<div class="logo-header">
-						<a href="@Url.Action("Index","BLeaf")"><img src="~/bleaf/images/logo.png" alt="/"></a>
-					</div>
-					<ul class="nav navbar-nav navbar navbar-left">
-						<li><a href="@Url.Action("Index","BLeaf")">Home</a></li>
-						<li class="has-mega-menu">
-							<a href="javascript:void(0);">Pages</a>
-							<ul class="mega-menu">
-								<li>
-									<a href="javascript:;">Pages</a>
-									<ul>
-										<li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
-										<li><a href="@Url.Action("FAQ","BLeaf")">FAQ</a></li>
-										<li><a href="@Url.Action("Team","BLeaf")">Team</a></li>
-										<li><a href="@Url.Action("TeamDetail","BLeaf")">Team Detail</a></li>
-										<li><a href="@Url.Action("Testmonial","BLeaf")">Testimonial</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="javascript:;">Pages</a>
-									<ul>
-										<li><a href="@Url.Action("Services","BLeaf")">Services</a></li>
-										<li><a href="@Url.Action("ServiceDetail","BLeaf")">Service Detail</a></li>
-										<li><a href="@Url.Action("Error404","BLeaf")">Error 404</a></li>
-										<li><a href="@Url.Action("CommingSoon","BLeaf")">Coming Soon</a></li>
-										<li><a href="@Url.Action("UnderMaintenance","BLeaf")">Under Maintenance</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="javascript:;">Our Menus</a>
-									<ul>
-										<li><a href="@Url.Action("OurMenu1","BLeaf")">Menu Style 1</a></li>
-										<li><a href="@Url.Action("OurMenu2","BLeaf")">Menu Style 2</a></li>
-										<li><a href="@Url.Action("OurMenu3","BLeaf")">Menu Style 3</a></li>
-										<li><a href="@Url.Action("OurMenu4","BLeaf")">Menu Style 4</a></li>
-										<li><a href="@Url.Action("OurMenu5","BLeaf")">Menu Style 5</a></li>
-									</ul>
-								</li>
-								<li class="header-adv p-0"><img src="~/bleaf/images/adv-media.jpg" alt="/"></li>
-							</ul>
-						</li>
-						<li class="sub-menu-down">
-							<a href="javascript:void(0);">Shop</a>
-							<ul class="sub-menu">
-								<li><a href="@Url.Action("ShopStyle1","BLeaf")">Shop Style 1</a></li>
-								<li><a href="@Url.Action("ShopStyle2","BLeaf")">Shop Style 2</a></li>
-								<li><a href="@Url.Action("ShopCart","BLeaf")">Shop Cart</a></li>
-								<li><a href="@Url.Action("ShopWhislist","BLeaf")">Shop Wishlist</a></li>
-								<li><a href="@Url.Action("ShopCheckout","BLeaf")">Shop Checkout</a></li>
-								<li><a href="">Product Detail</a></li>
-							</ul>
-						</li>
-
-						<li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
-						
-						//todo - add the login page controller here
-						<li><a href="@Url.Action("ShopCheckout","BLeaf")">Login</a></li>
-					</ul>
-					<div class="dz-social-icon">
-						<ul>
-							<li><a target="_blank" class="fab fa-facebook-f" href=https://www.facebook.com/BLeafNZ/"></a></li>
-							<li><a target="_blank" class="fab fa-twitter" href="https://twitter.com/"></a></li>
-							<li><a target="_blank" class="fab fa-linkedin-in" href="https://www.linkedin.com/"></a></li>
-							<li><a target="_blank" class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Main Header End -->
+                <!-- EXTRA NAV -->
+                <div class="extra-nav d-flex align-items-center">
+                    <div class="extra-cell">
+                        <form method="post">
+                            <div class="input-group">
+                                <input required="required" type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-addon">
+                                    <button name="submit" value="submit" type="submit" class="btn btn-primary btn-hover-2">
+                                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- EXTRA NAV -->
+                <!-- Header Nav -->
+                <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+                    <div class="logo-header">
+                        <a href="@Url.Action("Index","BLeaf")"><img src="~/bleaf/images/logo.png" alt="/"></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar navbar-left">
+                        <li><a href="@Url.Action("Index","BLeaf")">Home</a></li>
+                        <li class="has-mega-menu">
+                            <a href="javascript:void(0);">Pages</a>
+                            <ul class="mega-menu">
+                                <li>
+                                    <a href="javascript:;">Pages</a>
+                                    <ul>
+                                        <li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
+                                        <li><a href="@Url.Action("FAQ","BLeaf")">FAQ</a></li>
+                                        <li><a href="@Url.Action("Team","BLeaf")">Team</a></li>
+                                        <li><a href="@Url.Action("Testmonial","BLeaf")">Testimonial</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">Pages</a>
+                                    <ul>
+                                        <li><a href="@Url.Action("Services","BLeaf")">Services</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">Our Menus</a>
+                                    <ul>
+                                        <li><a href="@Url.Action("OurMenu3","BLeaf")">Our Menu</a></li>
+                                    </ul>
+                                </li>
+                                <li class="header-adv p-0"><img src="~/bleaf/images/adv-media.jpg" alt="/"></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down">
+                            <a href="javascript:void(0);">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="@Url.Action("ShopCart","BLeaf")">Shop Cart</a></li>
+                                <li><a href="@Url.Action("ShopCheckout","BLeaf")">Shop Checkout</a></li>
+                                <li><a href="">Product Detail</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="extra-cell">
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <button type="submit" class="btn">
+                                        <i class="flaticon-user"></i> Logout
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <li><a href="#offcanvasLogin" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasLogin">Login</a></li>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="@Url.Action("AdminPanel", "Admin")" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin Panel
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Categories">Categories</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Items">Items</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reviews">Reviews</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Addresses">Addresses</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="OrderDetails">Order Details</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ShoppingCartItems">Shopping Cart Items</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Discounts">Discounts</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reservations">Reservations</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <div class="dz-social-icon">
+                        <ul>
+                            <li><a target="_blank" class="fab fa-facebook-f" href="https://www.facebook.com/BLeafNZ/"></a></li>
+                            <li><a target="_blank" class="fab fa-twitter" href="https://twitter.com/"></a></li>
+                            <li><a target="_blank" class="fab fa-linkedin-in" href="https://www.linkedin.com/"></a></li>
+                            <li><a target="_blank" class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Header End -->
 </header>
