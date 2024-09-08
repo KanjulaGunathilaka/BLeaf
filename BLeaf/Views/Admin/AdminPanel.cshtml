@@ -1,225 +1,166 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-        .sidebar {
-            height: 100vh;
-            background-color: #343a40;
-            color: #fff;
-            position: fixed;
-            width: 250px;
-        }
-        .sidebar a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .sidebar .nav-link {
-            padding: 15px;
-        }
-        .sidebar .nav-link:hover {
-            background-color: #495057;
-        }
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-        .navbar {
-            margin-left: 250px;
-        }
-        .card {
-            margin-bottom: 20px;
-        }
-        .icon-bx-wraper {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        .icon-bx-wraper:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        .icon-bx .icon-cell {
-            font-size: 40px;
-            color: #28a745;
-            margin-bottom: 15px;
-        }
-    </style>
-</head>
-<body>
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBLeaf.cshtml";
+}
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header text-center py-4">
-            <h4>Admin Panel</h4>
-        </div>
-        <nav class="nav flex-column">
-            <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-            <a class="nav-link" href="@Url.Action("ManageCategories", "Admin")"><i class="fas fa-list"></i> Manage Categories</a>
-            <a class="nav-link" href="@Url.Action("ManageItems", "Admin")"><i class="fas fa-box"></i> Manage Items</a>
-            <a class="nav-link" href="@Url.Action("ManageReviews", "Admin")"><i class="fas fa-star"></i> Manage Reviews</a>
-            <a class="nav-link" href="@Url.Action("ManageDiscounts", "Admin")"><i class="fas fa-tags"></i> Manage Discounts</a>
-            <a class="nav-link" href="@Url.Action("ManageUsers", "Admin")"><i class="fas fa-users"></i> Manage Users</a>
-            <a class="nav-link" href="@Url.Action("ManageAddresses", "Admin")"><i class="fas fa-map-marker-alt"></i> Manage Addresses</a>
-            <a class="nav-link" href="@Url.Action("ManageOrders", "Admin")"><i class="fas fa-shopping-cart"></i> Manage Orders</a>
-            <a class="nav-link" href="@Url.Action("ManageOrderDetails", "Admin")"><i class="fas fa-info-circle"></i> Manage Order Details</a>
-            <a class="nav-link" href="@Url.Action("ManageShoppingCartItems", "Admin")"><i class="fas fa-cart-plus"></i> Manage Shopping Cart Items</a>
-            <a class="nav-link" href="@Url.Action("ManageReservations", "Admin")"><i class="fas fa-calendar-alt"></i> Manage Reservations</a>
-        </nav>
-    </div>
-
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Admin Panel</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Settings</a>
-                    </li>
-                </ul>
+<div class="page-content bg-white">
+    <!-- Banner  -->
+    <div class="dz-bnr-inr style-1 text-center bg-parallax bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center; height: 200px;">
+        <div class="container">
+            <div class="dz-bnr-inr-entry">
+                <h1>Admin Panel</h1>
             </div>
-        </nav>
+        </div>
+    </div>
+    <!-- Banner End -->
 
-        <!-- Page Content -->
-        <div class="page-content bg-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-list"></i>
-                                </div>
-                            </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageCategories", "Admin")">Manage Categories</a></h5>
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <div class="sidebar-header text-center py-4">
+                        <h4>Admin Panel</h4>
                     </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-box"></i>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a class="nav-link" href="@Url.Action("ManageCategories", "Admin")"><i class="fas fa-list"></i> Manage Categories</a>
+                        <a class="nav-link" href="@Url.Action("ManageItems", "Admin")"><i class="fas fa-box"></i> Manage Items</a>
+                        <a class="nav-link" href="@Url.Action("ManageReviews", "Admin")"><i class="fas fa-star"></i> Manage Reviews</a>
+                        <a class="nav-link" href="@Url.Action("ManageDiscounts", "Admin")"><i class="fas fa-tags"></i> Manage Discounts</a>
+                        <a class="nav-link" href="@Url.Action("ManageUsers", "Admin")"><i class="fas fa-users"></i> Manage Users</a>
+                        <a class="nav-link" href="@Url.Action("ManageAddresses", "Admin")"><i class="fas fa-map-marker-alt"></i> Manage Addresses</a>
+                        <a class="nav-link" href="@Url.Action("ManageOrders", "Admin")"><i class="fas fa-shopping-cart"></i> Manage Orders</a>
+                        <a class="nav-link" href="@Url.Action("ManageOrderDetails", "Admin")"><i class="fas fa-info-circle"></i> Manage Order Details</a>
+                        <a class="nav-link" href="@Url.Action("ManageShoppingCartItems", "Admin")"><i class="fas fa-cart-plus"></i> Manage Shopping Cart Items</a>
+                        <a class="nav-link" href="@Url.Action("ManageReservations", "Admin")"><i class="fas fa-calendar-alt"></i> Manage Reservations</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="page-content bg-white">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-list"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageCategories", "Admin")">Manage Categories</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageItems", "Admin")">Manage Items</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-star"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-box"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageItems", "Admin")">Manage Items</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageReviews", "Admin")">Manage Reviews</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-tags"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageReviews", "Admin")">Manage Reviews</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageDiscounts", "Admin")">Manage Discounts</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-users"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-tags"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageDiscounts", "Admin")">Manage Discounts</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageUsers", "Admin")">Manage Users</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-map-marker-alt"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageUsers", "Admin")">Manage Users</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageAddresses", "Admin")">Manage Addresses</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-shopping-cart"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageAddresses", "Admin")">Manage Addresses</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageOrders", "Admin")">Manage Orders</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-info-circle"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageOrders", "Admin")">Manage Orders</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageOrderDetails", "Admin")">Manage Order Details</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-cart-plus"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageOrderDetails", "Admin")">Manage Order Details</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageShoppingCartItems", "Admin")">Manage Shopping Cart Items</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 m-b30">
-                        <div class="icon-bx-wraper style-3">
-                            <div class="icon-bx">
-                                <div class="icon-cell">
-                                    <i class="fas fa-calendar-alt"></i>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageShoppingCartItems", "Admin")">Manage Shopping Cart Items</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-content">
-                                <h5 class="title"><a href="@Url.Action("ManageReservations", "Admin")">Manage Reservations</a></h5>
+                            <div class="col-lg-4 col-sm-6 m-b30">
+                                <div class="icon-bx-wraper style-3">
+                                    <div class="icon-bx">
+                                        <div class="icon-cell">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h5 class="title"><a href="@Url.Action("ManageReservations", "Admin")">Manage Reservations</a></h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -228,8 +169,35 @@
         </div>
     </div>
 
-    <!-- JavaScript Files -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    @section bleaf_style
+    {
+        <!-- Stylesheet -->
+        <link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+        <link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+        <link href="~/bleaf/vendor/lightgallery/dist/css/lightgallery.css" rel="stylesheet">
+        <link href="~/bleaf/vendor/lightgallery/dist/css/lg-thumbnail.css" rel="stylesheet">
+        <link href="~/bleaf/vendor/lightgallery/dist/css/lg-zoom.css" rel="stylesheet">
+    }
+    @section bleaf_script
+    {
+        <!-- JAVASCRIPT FILES ========================================= -->
+        <script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+        <script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+        <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT -->
+        <script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
+        <script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+        <script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+        <script src="~/bleaf/vendor/wow/wow.js"></script><!-- WOW JS -->
+        <script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+        <script src="~/bleaf/vendor/lightgallery/dist/lightgallery.min.js"></script>
+        <script src="~/bleaf/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+        <script src="~/bleaf/vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+        <script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+        <script src="~/bleaf/vendor/particles/particles.js"></script>
+        <script src="~/bleaf/vendor/particles/particles-app.js"></script>
+        <script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
+        <script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+        <script src="~/bleaf/js/custom.js"></script><!-- CUSTOM JS -->
+        <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER JS -->
+    }
