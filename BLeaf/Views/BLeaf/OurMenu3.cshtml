@@ -5,18 +5,10 @@
 }
 <div class="page-content bg-white">
     <!-- Banner  -->
-    <div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr3.jpg'); background-size:cover; background-position:center;">
+    <div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr3.jpg'); background-size:cover; background-position:center; height: 200px;">
         <div class="container">
             <div class="dz-bnr-inr-entry">
-                <h1>Our Menu 3</h1>
-                <!-- Breadcrumb Row -->
-                <nav aria-label="breadcrumb" class="breadcrumb-row">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index","BLeaf")">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Our Menu 3</li>
-                    </ul>
-                </nav>
-                <!-- Breadcrumb Row End -->
+                <h1>Our Menu</h1>
             </div>
         </div>
     </div>
@@ -37,76 +29,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-3 col-md-12 text-lg-end mb-lg-0 m-b30 d-flex d-lg-block align-items-center justify-content-between">
-                    <strong class="filter-item-show d-lg-none">@Model.Items.Count() items</strong>
-                    <a data-bs-toggle="offcanvas" href="#offcanvasFilter" role="button" aria-controls="offcanvasFilter" class="btn btn-primary filter-btn btn-hover-2">
-                        Filter <span><i class="icon-filter m-l5"></i></span>
-                    </a>
-                </div>
-                <div class="offcanvas offcanvas-end filter-category-sidebar" tabindex="-1" id="offcanvasFilter">
-                    <button type="button" class="btn-close style-1" data-bs-dismiss="offcanvas" aria-label="Close"><i class="la la-close"></i></button>
-                    <div class="offcanvas-body">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4 class="title">Refine By Categories</h4>
-                            </div>
-                            <div class="category-check-list">
-                                @foreach (var category in Model.Categories)
-                                {
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="productCheckBox-@category.CategoryId">
-                                        <label class="form-check-label" for="productCheckBox-@category.CategoryId">
-                                            @category.Name
-                                        </label>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                        <div class="widget rating-filter">
-                            <div class="widget-title">
-                                <h4 class="title">Rating</h4>
-                            </div>
-                            <ul>
-                                <li><span>5 Star</span></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                            </ul>
-                            <ul>
-                                <li><span>4 Star</span></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                            </ul>
-                            <ul>
-                                <li><span>3 Star</span></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                            </ul>
-                            <ul>
-                                <li><span>2 Star</span></li>
-                                <li><i class="icon-star-on"></i></li>
-                                <li><i class="icon-star-on"></i></li>
-                            </ul>
-                            <ul>
-                                <li><span>1 Star</span></li>
-                                <li><i class="icon-star-on"></i></li>
-                            </ul>
-                        </div>
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4 class="title">Price Range</h4>
-                            </div>
-                            <div class="range-slider style-1">
-                                <div id="slider-tooltips"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <ul id="masonry" class="row">
                 @foreach (var item in Model.Items)
@@ -116,17 +38,11 @@
                         <div class="dz-img-box style-7">
                             <div class="dz-media">
                                 <img src="@item.ImageUrl" alt="@item.Name" class="responsive-img" style="max-height: 300px">
-                                <div class="dz-meta">
-                                    <ul>
-                                        <li class="seller">Top Seller</li>
-                                        <li class="rating"><i class="fa-solid fa-star"></i> 4.5</li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="dz-content">
                                 <h5 class="title"><a href="@Url.Action( "ProductDetail","BLeaf")/@item.ItemId">@item.Name</a></h5>
                                 <p>@item.Description</p>
-                                <span class="price">@item.Price</span>
+                                <span class="price">$@item.Price</span>
                             </div>
                         </div>
                     </li>
