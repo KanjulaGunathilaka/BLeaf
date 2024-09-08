@@ -6,7 +6,7 @@
 
                 <!-- Website Logo -->
                 <div class="logo-header mostion">
-                    <a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/"></a>
+                    <a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/" class="responsive-img" style="max-height: 54px"></a>
                 </div>
 
                 <!-- Nav Toggle Button -->
@@ -39,33 +39,8 @@
                     </div>
                     <ul class="nav navbar-nav navbar navbar-left">
                         <li><a href="@Url.Action("Index","BLeaf")">Home</a></li>
-                        <li class="has-mega-menu">
-                            <a href="javascript:void(0);">Pages</a>
-                            <ul class="mega-menu">
-                                <li>
-                                    <a href="javascript:;">Pages</a>
-                                    <ul>
-                                        <li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
-                                        <li><a href="@Url.Action("FAQ","BLeaf")">FAQ</a></li>
-                                        <li><a href="@Url.Action("Team","BLeaf")">Team</a></li>
-                                        <li><a href="@Url.Action("Testmonial","BLeaf")">Testimonial</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Pages</a>
-                                    <ul>
-                                        <li><a href="@Url.Action("Services","BLeaf")">Services</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Our Menus</a>
-                                    <ul>
-                                        <li><a href="@Url.Action("OurMenu3","BLeaf")">Our Menu</a></li>
-                                    </ul>
-                                </li>
-                                <li class="header-adv p-0"><img src="~/bleaf/images/adv-media.jpg" alt="/"></li>
-                            </ul>
-                        </li>
+                        <li><a href="@Url.Action("OurMenu3","BLeaf")">Menu</a></li>
+                        <li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
                         <li class="sub-menu-down">
                             <a href="javascript:void(0);">Shop</a>
                             <ul class="sub-menu">
@@ -75,40 +50,7 @@
                             </ul>
                         </li>
                         <li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <div class="extra-cell">
-                                <form method="post" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" class="btn">
-                                        <i class="flaticon-user"></i> Logout
-                                    </button>
-                                </form>
-                            </div>
-                        }
-                        else
-                        {
-                            <li><a href="#offcanvasLogin" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasLogin">Login</a></li>
-                        }
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="@Url.Action("AdminPanel", "Admin")" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Admin Panel
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Categories">Categories</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Items">Items</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reviews">Reviews</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Addresses">Addresses</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="OrderDetails">Order Details</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ShoppingCartItems">Shopping Cart Items</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Discounts">Discounts</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reservations">Reservations</a>
-                                </div>
-                            </li>
-                        }
+                        @await Html.PartialAsync("BLeaf/_UserMenu")
                     </ul>
                     <div class="dz-social-icon">
                         <ul>

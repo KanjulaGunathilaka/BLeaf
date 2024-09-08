@@ -3,18 +3,10 @@
 }
 <div class="page-content bg-white">
 	<!-- Banner  -->
-	<div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center;">
+	<div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center;  height: 200px;">
 		<div class="container">
 			<div class="dz-bnr-inr-entry">
 				<h1>Contact Us</h1>
-				<!-- Breadcrumb Row -->
-				<nav aria-label="breadcrumb" class="breadcrumb-row">
-					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="@Url.Action("Index","BLeaf")">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Contact Us</li>
-					</ul>
-				</nav>
-				<!-- Breadcrumb Row End -->
 			</div>
 		</div>
 	</div>
@@ -94,13 +86,13 @@
 					<div class="col-lg-6 col-md-6 m-b30 m-sm-b50">
 						<label class="form-label text-primary">Your Name</label>
 						<div class="input-group input-line input-black">
-							<input name="dzName" required type="text" class="form-control" placeholder="John">
+							<input name="dzName" required type="text" class="form-control" placeholder="Saman">
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 m-b30 m-sm-b50">
 						<label class="form-label text-primary">Your Email</label>
 						<div class="input-group input-line input-black">
-							<input name="dzEmail" required type="text" class="form-control" placeholder="john@example.com">
+							<input name="dzEmail" required type="text" class="form-control" placeholder="saman@example.com">
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 m-b30 m-sm-b50">
@@ -119,12 +111,6 @@
 						<label class="form-label text-primary">Message</label>
 						<div class="input-group input-line input-black">
 							<textarea name="dzMessage" required class="form-control" placeholder="Hi, do you Have a moment to talk About !"></textarea>
-						</div>
-					</div>
-					<div class="col-sm-12 m-b20">
-						<div class="input-recaptcha">
-							<div class="g-recaptcha" data-sitekey="6Lf1KykpAAAAAE1zshitq_jP0QE8nODP93n8xYf3" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-							<input class="form-control d-none" style="display:none;" data-recaptcha="true" required data-error="Please complete the Captcha">
 						</div>
 					</div>
 					<div class="col-12 text-center">

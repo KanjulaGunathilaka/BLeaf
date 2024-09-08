@@ -1,0 +1,35 @@
+﻿@* Views/Shared/BLeaf/_UserMenu.cshtml *@
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="extra-cell">
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <button type="submit" class="btn">
+                <i class="flaticon-user"></i> Logout
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <li><a href="#offcanvasLogin" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasLogin">Login</a></li>
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="@Url.Action("AdminPanel", "Admin")" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin Panel
+        </a>
+        <div class="dropdown-menu" aria-labelledby="adminDropdown">
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Categories">Categories</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Items">Items</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reviews">Reviews</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Addresses">Addresses</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="OrderDetails">Order Details</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ShoppingCartItems">Shopping Cart Items</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Discounts">Discounts</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Reservations">Reservations</a>
+        </div>
+    </li>
+}

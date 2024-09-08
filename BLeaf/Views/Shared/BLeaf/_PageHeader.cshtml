@@ -6,8 +6,8 @@
 			<div class="container clearfix">
 				<!-- Website Logo -->
 				<div class="logo-header mostion">
-					<a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/"></a>
-					<a href="@Url.Action("Index","BLeaf")" class="logo-white"><img src="~/bleaf/images/logo-white.png" alt="/"></a>
+					<a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/" class="responsive-img" style="max-height: 54px"></a>
+					<a href="@Url.Action("Index","BLeaf")" class="logo-white"><img src="~/bleaf/images/logo-white.png" alt="/" class="responsive-img" style="max-height: 54px"></a>
 				</div>
 
 				<!-- Nav Toggle Button -->
@@ -26,64 +26,6 @@
 									<i class="flaticon-user"></i>
 								</a>
 							</li>
-							<li>
-								<button type="button" class="btn btn-white btn-square btn-shadow cart-btn">
-									<i class="flaticon-shopping-bag-1"></i>
-									<span class="badge">6</span>
-								</button>
-								<ul class="dropdown-menu cart-list">
-									<li class="cart-item">
-										<div class="media">
-											<div class="media-left">
-												<a href="@Url.Action("ProductDetail","BLeaf")">
-													<img alt="/" class="media-object" src="~/bleaf/images/shop/pic2.jpg">
-												</a>
-											</div>
-											<div class="media-body">
-												<h6 class="dz-title"><a href="@Url.Action("ProductDetail","BLeaf")" class="media-heading">Double Burger</a></h6>
-												<span class="dz-price">$28.00</span>
-												<span class="item-close">&times;</span>
-											</div>
-										</div>
-									</li>
-									<li class="cart-item">
-										<div class="media">
-											<div class="media-left">
-												<a href="@Url.Action("ProductDetail","BLeaf")">
-													<img alt="/" class="media-object" src="~/bleaf/images/shop/pic3.jpg">
-												</a>
-											</div>
-											<div class="media-body">
-												<h6 class="dz-title"><a href="@Url.Action("ProductDetail","BLeaf")" class="media-heading">Cheese Burger</a></h6>
-												<span class="dz-price">$20.00</span>
-												<span class="item-close">&times;</span>
-											</div>
-										</div>
-									</li>
-									<li class="cart-item">
-										<div class="media">
-											<div class="media-left">
-												<a href="@Url.Action("ProductDetail","BLeaf")">
-													<img alt="/" class="media-object" src="~/bleaf/images/shop/pic4.jpg">
-												</a>
-											</div>
-											<div class="media-body">
-												<h6 class="dz-title"><a href="@Url.Action("ProductDetail","BLeaf")" class="media-heading">Burger</a></h6>
-												<span class="dz-price">$15.00</span>
-												<span class="item-close">&times;</span>
-											</div>
-										</div>
-									</li>
-									<li class="cart-item text-center d-flex justify-content-between">
-										<h6 class="text-primary mb-0">Total:</h6>
-										<h6 class="text-primary mb-0">$63</h6>
-									</li>
-									<li class="text-center d-flex">
-										<a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-primary me-2 w-100 d-block btn-hover-1"><span>View Cart</span></a>
-										<a href="@Url.Action("OurMenu1","BLeaf")" class="btn btn-outline-primary w-100 d-block btn-hover-1"><span>Menu</span></a>
-									</li>
-								</ul>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -95,58 +37,18 @@
 					</div>
 					<ul class="nav navbar-nav navbar white">
 						<li><a href="@Url.Action("Index","BLeaf")">Home</a></li>
-						<li class="has-mega-menu">
-							<a href="javascript:void(0);">Pages</a>
-							<ul class="mega-menu">
-								<li>
-									<a href="javascript:;">Pages</a>
-									<ul>
-										<li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
-										<li><a href="@Url.Action("FAQ","BLeaf")">FAQ</a></li>
-										<li><a href="@Url.Action("Team","BLeaf")">Team</a></li>
-										<li><a href="@Url.Action("TeamDetail","BLeaf")">Team Detail</a></li>
-										<li><a href="@Url.Action("Testmonial","BLeaf")">Testimonial</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="javascript:;">Pages</a>
-									<ul>
-										<li><a href="@Url.Action("Services","BLeaf")">Services</a></li>
-										<li><a href="@Url.Action("ServiceDetail","BLeaf")">Service Detail</a></li>
-										<li><a href="@Url.Action("Error404","BLeaf")">Error 404</a></li>
-										<li><a href="@Url.Action("CommingSoon","BLeaf")">Coming Soon</a></li>
-										<li><a href="@Url.Action("UnderMaintenance","BLeaf")">Under Maintenance</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="javascript:;">Our Menus</a>
-									<ul>
-										<li><a href="@Url.Action("OurMenu1","BLeaf")">Menu Style 1</a></li>
-										<li><a href="@Url.Action("OurMenu2","BLeaf")">Menu Style 2</a></li>
-										<li><a href="@Url.Action("OurMenu3","BLeaf")">Menu Style 3</a></li>
-										<li><a href="@Url.Action("OurMenu4","BLeaf")">Menu Style 4</a></li>
-										<li><a href="@Url.Action("OurMenu5","BLeaf")">Menu Style 5</a></li>
-									</ul>
-								</li>
-								<li class="header-adv p-0"><img src="~/bleaf/images/adv-media.jpg" alt="/"></li>
-							</ul>
-						</li>
+						<li><a href="@Url.Action("OurMenu3","BLeaf")">Menu</a></li>
+						<li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
 						<li class="sub-menu-down">
 							<a href="javascript:void(0);">Shop</a>
 							<ul class="sub-menu">
-								<li><a href="@Url.Action("ShopStyle1","BLeaf")">Shop Style 1</a></li>
-								<li><a href="@Url.Action("ShopStyle2","BLeaf")">Shop Style 2</a></li>
 								<li><a href="@Url.Action("ShopCart","BLeaf")">Shop Cart</a></li>
-								<li><a href="@Url.Action("ShopWhislist","BLeaf")">Shop Wishlist</a></li>
 								<li><a href="@Url.Action("ShopCheckout","BLeaf")">Shop Checkout</a></li>
-								<li><a href="@Url.Action("ProductDetail","BLeaf")">Product Detail</a></li>
+								<li><a href="">Product Detail</a></li>
 							</ul>
 						</li>
-						
 						<li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
-
-						//todo - add the login page controller here
-						<li><a href="@Url.Action("ShopCheckout","BLeaf")">Login</a></li>
+						@await Html.PartialAsync("BLeaf/_UserMenu")
 					</ul>
 					<div class="dz-social-icon">
 						<ul>

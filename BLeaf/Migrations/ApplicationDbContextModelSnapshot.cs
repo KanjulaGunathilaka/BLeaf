@@ -780,7 +780,7 @@ namespace BLeaf.Migrations
             modelBuilder.Entity("BLeaf.Models.Review", b =>
                 {
                     b.HasOne("BLeaf.Models.Item", "Item")
-                        .WithMany("Reviews")
+                        .WithMany()
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -866,11 +866,6 @@ namespace BLeaf.Migrations
             modelBuilder.Entity("BLeaf.Models.Category", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("BLeaf.Models.Item", b =>
-                {
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("BLeaf.Models.Order", b =>
