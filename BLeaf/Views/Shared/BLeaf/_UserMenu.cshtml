@@ -11,7 +11,17 @@
 }
 else
 {
-    <li><a href="#offcanvasLogin" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasLogin">Login</a></li>
+    <div class="extra-nav">
+        <div class="extra-cell">
+            <ul>
+                <li>
+                    <a class="btn btn-white btn-square btn-shadow" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
+                        <i class="flaticon-user"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
