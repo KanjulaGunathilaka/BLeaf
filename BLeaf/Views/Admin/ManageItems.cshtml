@@ -60,6 +60,7 @@
                     <label for="itemCategoryId">Category:</label>
                     <select id="itemCategoryId" name="itemCategoryId" class="form-control">
                         @foreach (var category in Model.Categories)
+
                         {
                             <option value="@category.CategoryId">@category.Name</option>
                         }
@@ -70,41 +71,44 @@
             </form>
         </div>
 
-        <div id="itemTable" class="mt-3">
+        <div id="itemTable" class="mt-3 table-responsive">
             <h3>View Items</h3>
             <table id="itemDataTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>ItemId</th>
-                        <th>Item Name</th>
-                        <th>Description</th>
-                        <th>Ingredients</th>
-                        <th>Special Information</th>
-                        <th>Price</th>
-                        <th>Image URL</th>
-                        <th>Image Thumbnail URL</th>
-                        <th>In Stock</th>
-                        <th>Category</th>
-                        <th>Actions</th>
+                        <th style="width: 5%;">ItemId</th>
+                        <th style="width: 10%;">Item Name</th>
+                        <th style="width: 15%;">Description</th>
+                        <th style="width: 15%;">Ingredients</th>
+                        <th style="width: 15%;">Special Information</th>
+                        <th style="width: 10%;">Price</th>
+                        <th style="width: 10%;">Image URL</th>
+                        <th style="width: 10%;">Image Thumbnail URL</th>
+                        <th style="width: 5%;">In Stock</th>
+                        <th style="width: 10%;">Category</th>
+                        <th style="width: 10%;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Items)
+
                     {
                         <tr>
                             <td>@item.ItemId</td>
-                            <td>@item.Name</td>
-                            <td>@item.Description</td>
-                            <td>@item.Ingredients</td>
-                            <td>@item.SpecialInformation</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.Name">@item.Name</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.Description">@item.Description</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.Ingredients">@item.Ingredients</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.SpecialInformation">@item.SpecialInformation</td>
                             <td>@item.Price</td>
-                            <td>@item.ImageUrl</td>
-                            <td>@item.ImageThumbnailUrl</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.ImageUrl">@item.ImageUrl</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.ImageThumbnailUrl">@item.ImageThumbnailUrl</td>
                             <td>@item.InStock</td>
                             <td>@item.Category.Name</td>
                             <td>
-                                <button class="btn btn-secondary edit-item" data-id="@item.ItemId">Edit</button>
-                                <button class="btn btn-danger delete-item" data-id="@item.ItemId">Delete</button>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-secondary edit-item" data-id="@item.ItemId">Edit</button>
+                                    <button class="btn btn-danger delete-item" data-id="@item.ItemId">Delete</button>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -115,6 +119,7 @@
 </div>
 
 @section bleaf_style
+
 {
     <!-- Stylesheet -->
     <link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
@@ -123,9 +128,38 @@
     <link href="~/bleaf/vendor/lightgallery/dist/css/lightgallery.css" rel="stylesheet">
     <link href="~/bleaf/vendor/lightgallery/dist/css/lg-thumbnail.css" rel="stylesheet">
     <link href="~/bleaf/vendor/lightgallery/dist/css/lg-zoom.css" rel="stylesheet">
+    <style>
+        .table td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px; /* Adjust as needed */
+        }
+
+        .btn-group .btn {
+            margin-right: 5px;
+        }
+
+        .text-truncate {
+            max-width: 150px; /* Adjust as needed */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-responsive {
+            max-width: 100%; /* Adjust as needed */
+            overflow-x: auto;
+        }
+
+        .btn-group .btn:last-child {
+            margin-right: 0;
+        }
+    </style>
 }
 
 @section bleaf_script
+
 {
     <!-- JAVASCRIPT FILES ========================================= -->
     <script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
@@ -147,4 +181,13 @@
     <script src="~/bleaf/js/custom.js"></script><!-- CUSTOM JS -->
     <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER JS -->
     <script src="~/bleaf/js/manageItems.js"></script><!-- Custom JS for Manage Items -->
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                trigger: 'hover',
+                placement: 'top',
+                container: 'body'
+            });
+        });
+    </script>
 }
