@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLeaf.Models
 {
@@ -16,6 +18,6 @@ namespace BLeaf.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public ICollection<Item> Items { get; set; }
+        public ICollection<Item>? Items { get; set; }
     }
 }

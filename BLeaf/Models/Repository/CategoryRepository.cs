@@ -7,10 +7,9 @@ namespace BLeaf.Models.Repository
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        //Press Alt+Enter to generate constructor
         public CategoryRepository(ApplicationDbContext applicationDbContext)
         {
-			_applicationDbContext = applicationDbContext;
+            _applicationDbContext = applicationDbContext;
         }
 
         public IEnumerable<Category> AllCategories => _applicationDbContext.Categories.OrderBy(p => p.Name);
@@ -48,4 +47,3 @@ namespace BLeaf.Models.Repository
         }
     }
 }
-

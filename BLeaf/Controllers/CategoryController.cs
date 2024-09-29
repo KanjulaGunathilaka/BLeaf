@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BLeaf.Models;
+﻿using BLeaf.Models;
+using BLeaf.Models.IRepository;
+using BLeaf.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BLeaf.Data;
 
 namespace BLeaf.Controllers
 {
@@ -12,88 +12,79 @@ namespace BLeaf.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Category>>> GetAllCategories()
         {
-            return await _context.Categories.ToListAsync();
+            var categories = _categoryRepository.AllCategories.ToList();
+            return Ok(categories);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<Category>> GetCategoryById(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-
+            var category = await _categoryRepository.FindCategoryById(id);
             if (category == null)
             {
                 return NotFound();
             }
-
-            return category;
+            return Ok(category);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<Category>> AddCategory([FromBody] Category category)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
+            var createdCategory = await _categoryRepository.SaveCategory(category);
+            return CreatedAtAction(nameof(GetCategoryById), new { id = createdCategory.CategoryId }, createdCategory);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, Category category)
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
         {
-            if (id != category.CategoryId)
+            if (category == null || category.CategoryId != id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             try
             {
-                await _context.SaveChangesAsync();
+                var updatedCategory = await _categoryRepository.UpdateCategory(category);
+                return Ok(updatedCategory);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (KeyNotFoundException)
             {
-                if (!CategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
-
-            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            try
+            {
+                var deletedCategory = await _categoryRepository.DeleteCategory(id);
+                return Ok(deletedCategory);
+            }
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool CategoryExists(int id)
-        {
-            return _context.Categories.Any(e => e.CategoryId == id);
         }
     }
 }

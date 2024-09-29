@@ -1,0 +1,36 @@
+﻿@* Views/Shared/BLeaf/_UserMenu.cshtml *@
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="extra-cell">
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <button type="submit" class="btn">
+                <i class="flaticon-user"></i> Logout
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="extra-nav">
+        <div class="extra-cell">
+            <ul>
+                <li>
+                    <a class="btn btn-white btn-square btn-shadow" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
+                        <i class="flaticon-user"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("AdminPanel", "Admin")">
+                Admin Panel
+            </a>
+        </li>
+    }
+}

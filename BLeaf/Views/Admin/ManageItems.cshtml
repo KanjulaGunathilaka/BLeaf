@@ -1,16 +1,21 @@
 ﻿@model BLeaf.ViewModels.BLeafViewModel
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Management</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+@{
+    Layout = "~/Views/Shared/_LayoutBLeaf.cshtml";
+}
+
+<div class="page-content bg-white">
+    <!-- Banner  -->
+    <div class="dz-bnr-inr style-1 text-center bg-parallax bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center; height: 200px;">
+        <div class="container">
+            <div class="dz-bnr-inr-entry">
+                <h1>Item Management</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
     <div class="container mt-5">
-        <h2>Item Management</h2>
         <button id="showAddItemForm" class="btn btn-primary mb-3">Add Item</button>
 
         <div id="itemMessage" class="alert" style="display: none;"></div>
@@ -55,6 +60,7 @@
                     <label for="itemCategoryId">Category:</label>
                     <select id="itemCategoryId" name="itemCategoryId" class="form-control">
                         @foreach (var category in Model.Categories)
+
                         {
                             <option value="@category.CategoryId">@category.Name</option>
                         }
@@ -65,41 +71,44 @@
             </form>
         </div>
 
-        <div id="itemTable" class="mt-3">
+        <div id="itemTable" class="mt-3 table-responsive">
             <h3>View Items</h3>
             <table id="itemDataTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>ItemId</th>
-                        <th>Item Name</th>
-                        <th>Description</th>
-                        <th>Ingredients</th>
-                        <th>Special Information</th>
-                        <th>Price</th>
-                        <th>Image URL</th>
-                        <th>Image Thumbnail URL</th>
-                        <th>In Stock</th>
-                        <th>Category</th>
-                        <th>Actions</th>
+                        <th style="width: 5%;">ItemId</th>
+                        <th style="width: 10%;">Item Name</th>
+                        <th style="width: 15%;">Description</th>
+                        <th style="width: 15%;">Ingredients</th>
+                        <th style="width: 15%;">Special Information</th>
+                        <th style="width: 10%;">Price</th>
+                        <th style="width: 10%;">Image URL</th>
+                        <th style="width: 10%;">Image Thumbnail URL</th>
+                        <th style="width: 5%;">In Stock</th>
+                        <th style="width: 10%;">Category</th>
+                        <th style="width: 10%;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Items)
+
                     {
                         <tr>
                             <td>@item.ItemId</td>
-                            <td>@item.Name</td>
-                            <td>@item.Description</td>
-                            <td>@item.Ingredients</td>
-                            <td>@item.SpecialInformation</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.Name">@item.Name</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.Description">@item.Description</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.Ingredients">@item.Ingredients</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.SpecialInformation">@item.SpecialInformation</td>
                             <td>@item.Price</td>
-                            <td>@item.ImageUrl</td>
-                            <td>@item.ImageThumbnailUrl</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.ImageUrl">@item.ImageUrl</td>
+                            <td class="text-truncate" data-toggle="popover" data-content="@item.ImageThumbnailUrl">@item.ImageThumbnailUrl</td>
                             <td>@item.InStock</td>
                             <td>@item.Category.Name</td>
                             <td>
-                                <button class="btn btn-secondary edit-item" data-id="@item.ItemId">Edit</button>
-                                <button class="btn btn-danger delete-item" data-id="@item.ItemId">Delete</button>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-secondary edit-item" data-id="@item.ItemId">Edit</button>
+                                    <button class="btn btn-danger delete-item" data-id="@item.ItemId">Delete</button>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -107,257 +116,78 @@
             </table>
         </div>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@section bleaf_style
+
+{
+    <!-- Stylesheet -->
+    <link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/lightgallery/dist/css/lightgallery.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/lightgallery/dist/css/lg-thumbnail.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/lightgallery/dist/css/lg-zoom.css" rel="stylesheet">
+    <style>
+        .table td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px; /* Adjust as needed */
+        }
+
+        .btn-group .btn {
+            margin-right: 5px;
+        }
+
+        .text-truncate {
+            max-width: 150px; /* Adjust as needed */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-responsive {
+            max-width: 100%; /* Adjust as needed */
+            overflow-x: auto;
+        }
+
+        .btn-group .btn:last-child {
+            margin-right: 0;
+        }
+    </style>
+}
+
+@section bleaf_script
+
+{
+    <!-- JAVASCRIPT FILES ========================================= -->
+    <script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+    <script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+    <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT -->
+    <script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
+    <script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+    <script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+    <script src="~/bleaf/vendor/wow/wow.js"></script><!-- WOW JS -->
+    <script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+    <script src="~/bleaf/vendor/lightgallery/dist/lightgallery.min.js"></script>
+    <script src="~/bleaf/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    <script src="~/bleaf/vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+    <script src="~/bleaf/vendor/particles/particles.js"></script>
+    <script src="~/bleaf/vendor/particles/particles-app.js"></script>
+    <script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
+    <script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+    <script src="~/bleaf/js/custom.js"></script><!-- CUSTOM JS -->
+    <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER JS -->
+    <script src="~/bleaf/js/manageItems.js"></script><!-- Custom JS for Manage Items -->
     <script>
-        $(document).ready(function () {
-            $("#showAddItemForm").click(function () {
-                clearItemForm();
-                $("#addItemForm").toggle();
-                $("#itemFormTitle").text("Enter Item Details");
-                $("#submitItem").text("Submit Item");
-                $("#itemId").val("");
-                $("#cancelItemEdit").hide();
-                clearItemMessage();
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                trigger: 'hover',
+                placement: 'top',
+                container: 'body'
             });
-
-            $("#submitItem").click(function (event) {
-                event.preventDefault();
-
-                var formData = {
-                    name: $("#itemName").val(),
-                    description: $("#itemDescription").val(),
-                    ingredients: $("#itemIngredients").val(),
-                    specialInformation: $("#itemSpecialInformation").val(),
-                    price: $("#itemPrice").val(),
-                    imageUrl: $("#itemImageUrl").val(),
-                    imageThumbnailUrl: $("#itemImageThumbnailUrl").val(),
-                    inStock: $("#itemInStock").is(":checked"),
-                    categoryId: parseInt($("#itemCategoryId").val()),
-                    isSpecial: false, // Or set this based on your form
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString()
-                };
-
-                var itemId = $("#itemId").val();
-
-                if (itemId) {
-                    formData.itemId = itemId;
-                    updateItem(formData);
-                } else {
-                    addItem(formData);
-                }
-            });
-
-            function addItem(formData) {
-                $.ajax({
-                    type: "POST",
-                    url: "/api/item",
-                    data: JSON.stringify(formData),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        showItemMessage("Item added successfully", "alert-success");
-                        loadItems();
-                        $("#addItemForm").hide();
-                        setTimeout(clearItemMessage, 5000);
-                    },
-                    error: function (xhr, status, error) {
-                        showItemMessage("Failed to add item", "alert-danger");
-                        console.error("Failed to add item:", xhr.responseText);
-                        setTimeout(clearItemMessage, 5000);
-                    }
-                });
-            }
-
-            function updateItem(formData) {
-                var itemId = formData.itemId;
-                $.ajax({
-                    type: "PUT",
-                    url: "/api/item/" + itemId,
-                    data: JSON.stringify(formData),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        showItemMessage("Item updated successfully", "alert-success");
-                        loadItems();
-                        $("#addItemForm").hide();
-                        setTimeout(clearItemMessage, 5000);
-                    },
-                    error: function (xhr, status, error) {
-                        showItemMessage("Failed to update item", "alert-danger");
-                        console.error("Failed to update item:", xhr.responseText);
-                        setTimeout(clearItemMessage, 5000);
-                    }
-                });
-            }
-
-            function loadItems() {
-                $.ajax({
-                    type: "GET",
-                    url: "/api/item",
-                    success: function (items) {
-                        var table = $("#itemDataTable tbody");
-                        table.empty();
-                        $.each(items, function (i, item) {
-                            var row = $("<tr>");
-                            row.append($("<td>").text(item.itemId));
-                            row.append($("<td>").text(item.name));
-                            row.append($("<td>").text(item.description));
-                            row.append($("<td>").text(item.ingredients));
-                            row.append($("<td>").text(item.specialInformation));
-                            row.append($("<td>").text(item.price));
-                            row.append($("<td>").text(item.imageUrl));
-                            row.append($("<td>").text(item.imageThumbnailUrl));
-                            row.append($("<td>").text(item.inStock));
-                            row.append($("<td>").text(item.category.name));
-                            row.append($("<td>").html('<button class="btn btn-secondary edit-item" data-id="' + item.itemId + '">Edit</button> <button class="btn btn-danger delete-item" data-id="' + item.itemId + '">Delete</button>'));
-                            table.append(row);
-                        });
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Failed to load items:", error);
-                    }
-                });
-            }
-
-            loadItems();
-
-            $(document).on("click", ".edit-item", function () {
-                var itemId = $(this).data("id");
-                editItem(itemId);
-            });
-
-            $(document).on("click", ".delete-item", function () {
-                var itemId = $(this).data("id");
-                showItemDeleteConfirmation(itemId);
-            });
-
-            function editItem(itemId) {
-                $.ajax({
-                    type: "GET",
-                    url: "/api/item/" + itemId,
-                    success: function (item) {
-                        populateItemForm(item);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Failed to fetch item:", error);
-                    }
-                });
-            }
-
-            function deleteItem(itemId) {
-                $.ajax({
-                    type: "DELETE",
-                    url: "/api/item/" + itemId,
-                    success: function (response) {
-                        showItemMessage("Item deleted successfully", "alert-success");
-                        loadItems();
-                        clearItemMessage();
-                    },
-                    error: function (xhr, status, error) {
-                        showItemMessage("Failed to delete item", "alert-danger");
-                        console.error("Failed to delete item:", xhr.responseText);
-                        clearItemMessage();
-                    }
-                });
-            }
-
-            function showItemDeleteConfirmation(itemId) {
-                var confirmationModal = `
-                            <div class="modal fade" tabindex="-1" role="dialog" id="deleteItemConfirmationModal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                       <div class="modal-header">
-                                                    <h5 class="modal-title">Confirm Deletion</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete this item?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" id="confirmDeleteItemCancelButton">Cancel</button>
-                                                    <button type="button" class="btn btn-danger" id="confirmDeleteItemButton">Delete</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
-                $('body').append(confirmationModal);
-
-                $('#deleteItemConfirmationModal').modal('show');
-
-                $('#confirmDeleteItemButton').on('click', function () {
-                    deleteItem(itemId);
-                    $('#deleteItemConfirmationModal').modal('hide');
-                });
-
-                $('#confirmDeleteItemCancelButton').on('click', function () {
-                    $('#deleteItemConfirmationModal').modal('hide');
-                });
-
-                $('#deleteItemConfirmationModal').on('hidden.bs.modal', function (e) {
-                    $(this).remove();
-                });
-            }
-
-            function populateItemForm(item) {
-                $("#itemName").val(item.name);
-                $("#itemDescription").val(item.description);
-                $("#itemIngredients").val(item.ingredients);
-                $("#itemSpecialInformation").val(item.specialInformation);
-                $("#itemPrice").val(item.price);
-                $("#itemImageUrl").val(item.imageUrl);
-                $("#itemImageThumbnailUrl").val(item.imageThumbnailUrl);
-                $("#itemInStock").prop("checked", item.inStock);
-                $("#itemCategoryId").val(item.categoryId);
-                $("#itemId").val(item.itemId);
-
-                $("#addItemForm").show();
-                $("#itemFormTitle").text("Edit Item");
-                $("#submitItem").text("Update Item");
-                $("#cancelItemEdit").show();
-                clearItemMessage();
-            }
-
-            $("#cancelItemEdit").click(function () {
-                $("#addItemForm").hide();
-                $("#itemFormTitle").text("Enter Item Details");
-                $("#submitItem").text("Submit Item");
-                clearItemForm();
-                clearItemMessage();
-            });
-
-            function showItemMessage(message, alertClass) {
-                var messageDiv = $("#itemMessage");
-                messageDiv.removeClass();
-                messageDiv.addClass("alert " + alertClass);
-                messageDiv.text(message);
-                messageDiv.show();
-            }
-
-            function clearItemMessage() {
-                var messageDiv = $("#itemMessage");
-                messageDiv.removeClass();
-                messageDiv.text("");
-                messageDiv.hide();
-            }
-
-            function clearItemForm() {
-                $("#itemName").val("");
-                $("#itemDescription").val("");
-                $("#itemIngredients").val("");
-                $("#itemSpecialInformation").val("");
-                $("#itemPrice").val("");
-                $("#itemImageUrl").val("");
-                $("#itemImageThumbnailUrl").val("");
-                $("#itemInStock").prop("checked", false);
-                $("#itemCategoryId").val("");
-                $("#itemId").val("");
-            }
         });
     </script>
-</body>
-</html>
+}

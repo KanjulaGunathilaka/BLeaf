@@ -92,8 +92,8 @@
 							</span>
 						</div>
 						<div class="icon-content">
-							<h5 class="dz-title"><a href="@Url.Action("Services","BLeaf")">Discount Voucher</a></h5>
-							<p>lorem ipsum dolor shit amet lorem ipsum</p>
+							<h5 class="dz-title">Special Discounts</h5>
+							<p>Enjoy special discounts and offers on our delicious Sri Lankan dishes. Check our promotions for the best deals.</p>
 						</div>
 					</div>
 				</div>
@@ -105,8 +105,8 @@
 							</span>
 						</div>
 						<div class="icon-content">
-							<h5 class="dz-title"><a href="@Url.Action("Services","BLeaf")">Fresh Healthy Food</a></h5>
-							<p>lorem ipsum dolor shit amet lorem ipsum</p>
+							<h5 class="dz-title">Fresh Healthy Food</h5>
+							<p>We prioritize your health by using the freshest ingredients to prepare nutritious and delicious Sri Lankan meals.</p>
 						</div>
 					</div>
 				</div>
@@ -118,8 +118,8 @@
 							</span>
 						</div>
 						<div class="icon-content">
-							<h5 class="dz-title"><a href="@Url.Action("Services","BLeaf")">Fast Serve On Table</a></h5>
-							<p>lorem ipsum dolor shit amet lorem ipsum</p>
+							<h5 class="dz-title">Fast Serve On Table</h5>
+							<p>Our efficient service ensures that your food is served quickly and with the utmost care, so you can enjoy your meal without delay.</p>
 						</div>
 					</div>
 				</div>
@@ -238,7 +238,7 @@
 						<li class="card-container col-lg-6 col-md-6 m-b5 all @normalizedCategoryName">
 							<div class="dz-img-box style-6 wow fadeInUp" data-wow-delay="0.4s">
 								<div class="dz-media">
-									<img src="@item.ImageUrl" alt="@item.Name" loading="lazy" style="max-height: 30px">
+									<img src="@item.ImageUrl" alt="@item.Name" loading="lazy" class="responsive-img" style="max-height: 90px">
 								</div>
 								<div class="dz-content">
 									<div class="dz-head">
@@ -265,26 +265,28 @@
 			<div class="swiper team-swiper swiper-btn-lr swiper-visible">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
+						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.4s">
+							<div class="dz-media">
+								<img src="~/bleaf/images/team/pic1.jpg" alt="/">
+							</div>
+							<div class="dz-content">
+								<div class="clearfix">
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Dihan Predeep</a></h6>
+									<span class="dz-position">Chef/Owner</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
 						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.6s">
 							<div class="dz-media">
 								<img src="~/bleaf/images/team/pic2.jpg" alt="/">
 							</div>
 							<div class="dz-content">
 								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Neha Perera</a></h6>
-									<span class="dz-position">Senior Chef</span>
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Yinoshi weerasinghe</a></h6>
+									<span class="dz-position">Chef/Co-Owner</span>
 								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
 							</div>
 						</div>
 					</div>
@@ -295,44 +297,9 @@
 							</div>
 							<div class="dz-content">
 								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Kamal Alponsu</a></h6>
-									<span class="dz-position">Chef</span>
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Revish Karunasinghe</a></h6>
+									<span class="dz-position">Front of House</span>
 								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.4s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/team/pic1.jpg" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Dihan Predeep</a></h6>
-									<span class="dz-position">Chef/Owner</span>
-								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
 							</div>
 						</div>
 					</div>
@@ -343,44 +310,9 @@
 							</div>
 							<div class="dz-content">
 								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Tharindu Perera</a></h6>
-									<span class="dz-position">Senior Chef</span>
+									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Gimesha Weerasinghe</a></h6>
+									<span class="dz-position">Pastry Chef</span>
 								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="dz-team style-1 m-b30 wow fadeInUp" data-wow-delay="0.12s">
-							<div class="dz-media">
-								<img src="~/bleaf/images/team/pic4.jpg" alt="/">
-							</div>
-							<div class="dz-content">
-								<div class="clearfix">
-									<h6 class="dz-name"><a href="@Url.Action("TeamDetail","BLeaf")">Saman Kumara</a></h6>
-									<span class="dz-position">Cashier</span>
-								</div>
-								<ul class="team-social">
-									<li>
-										<a class="share-btn" href="javascript:void(0);"><i class="flaticon-share"></i></a>
-										<ul class="sub-team-social">
-											<li><a class="fb-btn" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a class="tw-btn" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-											<li><a class="in-btn" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-											<li><a class="lin-btn" href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-										</ul>
-									</li>
-								</ul>
 							</div>
 						</div>
 					</div>
@@ -406,9 +338,9 @@
 							<a href="@Url.Action("BlogStandard","BLeaf")"><img src="~/bleaf/images/blog/grid2/king_coconut_drink.jpg" alt="/"></a>
 						</div>
 						<div class="dz-info">
-							<h4 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")">Chill Out with These Unique Refreshing Drinks</a></h4>
+							<h4 class="dz-title"><a>Chill Out with These Unique Refreshing Drinks</a></h4>
 							<div class="btn-wrapper p-t10">
-								<a href="@Url.Action("BlogStandard","BLeaf")" class="btn btn-primary btn-hover-2">Read More</a>
+								<a class="btn btn-primary btn-hover-2">Read More</a>
 							</div>
 						</div>
 					</div>
@@ -417,9 +349,9 @@
 							<a href="@Url.Action("BlogStandard","BLeaf")"><img src="~/bleaf/images/blog/grid2/chicken_koththu_home.jpg" alt="/"></a>
 						</div>
 						<div class="dz-info">
-							<h4 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")">Taste Excitement: A Sneak Peek into Sri Lankan Authentic Cuisine</a></h4>
+							<h4 class="dz-title"><a>Taste Excitement: A Sneak Peek into Sri Lankan Authentic Cuisine</a></h4>
 							<div class="btn-wrapper p-t10">
-								<a href="@Url.Action("BlogStandard","BLeaf")" class="btn btn-primary btn-hover-2">Read More</a>
+								<a class="btn btn-primary btn-hover-2">Read More</a>
 							</div>
 						</div>
 					</div>
@@ -430,7 +362,7 @@
 							<source src="~/bleaf/video/video.mp4" type="video/mp4">
 						</video>
 						<div class="dz-info">
-							<h3 class="dz-title"><a href="@Url.Action("BlogStandard","BLeaf")" class="text-white">Exploring the World of Rice</a></h3>
+							<h3 class="dz-title"><a class="text-white">Exploring the World of Rice</a></h3>
 						</div>
 					</div>
 				</div>
