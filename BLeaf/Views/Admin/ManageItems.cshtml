@@ -6,7 +6,7 @@
 
 <div class="page-content bg-white">
     <!-- Banner  -->
-    <div class="dz-bnr-inr style-1 text-center bg-parallax bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center; height: 200px;">
+    <div class="dz-bnr-inr style-1 text-center bg-parallax bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center; max-height: 200px; height: 100vh;">
         <div class="container">
             <div class="dz-bnr-inr-entry">
                 <h1>Item Management</h1>
@@ -78,7 +78,7 @@
                     <tr>
                         <th style="width: 5%;">ItemId</th>
                         <th style="width: 10%;">Item Name</th>
-                        <th style="width: 15%;">Description</th>
+                        <th style="width: 20%;">Description</th>
                         <th style="width: 15%;">Ingredients</th>
                         <th style="width: 15%;">Special Information</th>
                         <th style="width: 10%;">Price</th>
@@ -86,7 +86,7 @@
                         <th style="width: 10%;">Image Thumbnail URL</th>
                         <th style="width: 5%;">In Stock</th>
                         <th style="width: 10%;">Category</th>
-                        <th style="width: 10%;">Actions</th>
+                        <th style="width: 20%;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,19 +95,19 @@
                     {
                         <tr>
                             <td>@item.ItemId</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@item.Name">@item.Name</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@item.Description">@item.Description</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@item.Ingredients">@item.Ingredients</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@item.SpecialInformation">@item.SpecialInformation</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@item.Name">@item.Name</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@item.Description">@item.Description</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@item.Ingredients">@item.Ingredients</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@item.SpecialInformation">@item.SpecialInformation</td>
                             <td>@item.Price</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@item.ImageUrl">@item.ImageUrl</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@item.ImageThumbnailUrl">@item.ImageThumbnailUrl</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@item.ImageUrl">@item.ImageUrl</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@item.ImageThumbnailUrl">@item.ImageThumbnailUrl</td>
                             <td>@item.InStock</td>
-                            <td>@item.Category.Name</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@item.Category">@item.Category.Name</td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-secondary edit-item" data-id="@item.ItemId">Edit</button>
-                                    <button class="btn btn-danger delete-item" data-id="@item.ItemId">Delete</button>
+                                <div class="d-flex">
+                                    <button class="btn btn-secondary edit-item m-1" data-id="@item.ItemId">Edit</button>
+                                    <button class="btn btn-danger delete-item m-1" data-id="@item.ItemId">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -128,34 +128,7 @@
     <link href="~/bleaf/vendor/lightgallery/dist/css/lightgallery.css" rel="stylesheet">
     <link href="~/bleaf/vendor/lightgallery/dist/css/lg-thumbnail.css" rel="stylesheet">
     <link href="~/bleaf/vendor/lightgallery/dist/css/lg-zoom.css" rel="stylesheet">
-    <style>
-        .table td {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 150px; /* Adjust as needed */
-        }
-
-        .btn-group .btn {
-            margin-right: 5px;
-        }
-
-        .text-truncate {
-            max-width: 150px; /* Adjust as needed */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .table-responsive {
-            max-width: 100%; /* Adjust as needed */
-            overflow-x: auto;
-        }
-
-        .btn-group .btn:last-child {
-            margin-right: 0;
-        }
-    </style>
+    <link href="~/bleaf/css/custom.css" rel="stylesheet">
 }
 
 @section bleaf_script
@@ -181,13 +154,4 @@
     <script src="~/bleaf/js/custom.js"></script><!-- CUSTOM JS -->
     <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER JS -->
     <script src="~/bleaf/js/manageItems.js"></script><!-- Custom JS for Manage Items -->
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover({
-                trigger: 'hover',
-                placement: 'top',
-                container: 'body'
-            });
-        });
-    </script>
 }

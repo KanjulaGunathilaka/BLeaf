@@ -1,0 +1,52 @@
+﻿/* custom.css */
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on touch devices */
+}
+
+.table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 210px; /* Adjust as needed */
+}
+
+.btn-group .btn {
+    margin-right: 5px;
+}
+
+.text-truncate {
+    max-width: 150px; /* Adjust as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.d-flex .btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+    .d-flex .btn:last-child {
+        margin-right: 0;
+    }
+
+.dz-bnr-inr {
+    height: 200px; /* Default height */
+    max-height: 200px; /* Maximum height */
+}
+
+@media (max-width: 768px) {
+    .dz-bnr-inr {
+        height: 150px; /* Adjust height for smaller screens */
+        max-height: 150px; /* Maximum height for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .dz-bnr-inr {
+        height: 100px; /* Adjust height for even smaller screens */
+        max-height: 100px; /* Maximum height for even smaller screens */
+    }
+}

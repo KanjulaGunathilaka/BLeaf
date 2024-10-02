@@ -86,11 +86,12 @@
                 $.each(categories, function (i, category) {
                     var row = $("<tr>");
                     row.append($("<td>").text(category.categoryId));
-                    row.append($("<td>").text(category.name));
-                    row.append($("<td>").text(category.description));
-                    row.append($("<td>").html('<button class="btn btn-secondary edit-category" data-id="' + category.categoryId + '">Edit</button> <button class="btn btn-danger delete-category" data-id="' + category.categoryId + '">Delete</button>'));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", category.name).text(category.name));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", category.description).text(category.description));
+                    row.append($("<td>").html('<div class="d-flex flex-wrap"><button class="btn btn-secondary edit-category m-1" data-id="' + category.categoryId + '">Edit</button> <button class="btn btn-danger delete-category m-1" data-id="' + category.categoryId + '">Delete</button></div>'));
                     table.append(row);
                 });
+                $('[data-toggle="tooltip"]').tooltip(); // Initialize tooltips after loading categories
             },
             error: function (xhr, status, error) {
                 console.error("Failed to load categories:", error);
@@ -220,4 +221,8 @@
         $("#categoryDescription").val("");
         $("#categoryId").val("");
     }
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 });

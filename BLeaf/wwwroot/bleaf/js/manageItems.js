@@ -92,18 +92,19 @@
                 $.each(items, function (i, item) {
                     var row = $("<tr>");
                     row.append($("<td>").text(item.itemId));
-                    row.append($("<td>").text(item.name));
-                    row.append($("<td>").text(item.description));
-                    row.append($("<td>").text(item.ingredients));
-                    row.append($("<td>").text(item.specialInformation));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", item.name).text(item.name));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", item.description).text(item.description));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", item.ingredients).text(item.ingredients));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", item.specialInformation).text(item.specialInformation));
                     row.append($("<td>").text(item.price));
-                    row.append($("<td>").text(item.imageUrl));
-                    row.append($("<td>").text(item.imageThumbnailUrl));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", item.imageUrl).text(item.imageUrl));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", item.imageThumbnailUrl).text(item.imageThumbnailUrl));
                     row.append($("<td>").text(item.inStock));
-                    row.append($("<td>").text(item.category.name));
-                    row.append($("<td>").html('<button class="btn btn-secondary edit-item" data-id="' + item.itemId + '">Edit</button> <button class="btn btn-danger delete-item" data-id="' + item.itemId + '">Delete</button>'));
+                    row.append($("<td>").addClass("text-truncate").attr("data-toggle", "tooltip").attr("title", item.category.name).text(item.category.name));
+                    row.append($("<td>").html('<div class="d-flex"><button class="btn btn-secondary edit-item m-1" data-id="' + item.itemId + '">Edit</button> <button class="btn btn-danger delete-item m-1" data-id="' + item.itemId + '">Delete</button></div>'));
                     table.append(row);
                 });
+                $('[data-toggle="tooltip"]').tooltip(); // Initialize tooltips after loading items
             },
             error: function (xhr, status, error) {
                 console.error("Failed to load items:", error);
@@ -247,4 +248,12 @@
         $("#itemCategoryId").val("");
         $("#itemId").val("");
     }
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            trigger: 'hover',
+            placement: 'top',
+            container: 'body'
+        });
+    });
 });

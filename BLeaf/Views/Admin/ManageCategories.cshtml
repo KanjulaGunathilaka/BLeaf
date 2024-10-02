@@ -6,7 +6,7 @@
 
 <div class="page-content bg-white">
     <!-- Banner  -->
-    <div class="dz-bnr-inr style-1 text-center bg-parallax bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center; height: 200px;">
+    <div class="dz-bnr-inr style-1 text-center bg-parallax bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center; max-height: 200px; height: 100vh;">
         <div class="container">
             <div class="dz-bnr-inr-entry">
                 <h1>Category Management</h1>
@@ -55,12 +55,12 @@
                     {
                         <tr>
                             <td>@category.CategoryId</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@category.Name">@category.Name</td>
-                            <td class="text-truncate" data-toggle="popover" data-content="@category.Description">@category.Description</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@category.Name">@category.Name</td>
+                            <td class="text-truncate" data-toggle="tooltip" title="@category.Description">@category.Description</td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-secondary edit-category" data-id="@category.CategoryId">Edit</button>
-                                    <button class="btn btn-danger delete-category" data-id="@category.CategoryId">Delete</button>
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <button class="btn btn-secondary edit-category m-1" data-id="@category.CategoryId">Edit</button>
+                                    <button class="btn btn-danger delete-category m-1" data-id="@category.CategoryId">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -80,34 +80,7 @@
     <link href="~/bleaf/vendor/lightgallery/dist/css/lightgallery.css" rel="stylesheet">
     <link href="~/bleaf/vendor/lightgallery/dist/css/lg-thumbnail.css" rel="stylesheet">
     <link href="~/bleaf/vendor/lightgallery/dist/css/lg-zoom.css" rel="stylesheet">
-    <style>
-        .table td {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 150px; /* Adjust as needed */
-        }
-
-        .btn-group .btn {
-            margin-right: 5px;
-        }
-
-        .text-truncate {
-            max-width: 150px; /* Adjust as needed */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .table-responsive {
-            max-width: 100%; /* Adjust as needed */
-            overflow-x: auto;
-        }
-
-        .btn-group .btn:last-child {
-            margin-right: 0;
-        }
-    </style>
+    <link href="~/bleaf/css/custom.css" rel="stylesheet">
 }
 
 @section bleaf_script
@@ -132,13 +105,4 @@
     <script src="~/bleaf/js/custom.js"></script><!-- CUSTOM JS -->
     <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER JS -->
     <script src="~/bleaf/js/manageCategories.js"></script>
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover({
-                trigger: 'hover',
-                placement: 'top',
-                container: 'body'
-            });
-        });
-    </script>
 }
