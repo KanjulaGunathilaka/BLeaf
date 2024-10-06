@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLeaf", "BLeaf\BLeaf.csproj", "{F3AB8DC7-5160-4551-BB94-0FB8C1C97F5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bleaf.UnitTests", "Bleaf.UnitTests\Bleaf.UnitTests.csproj", "{82C67279-79A9-413E-83D8-0F7A87A05793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F3AB8DC7-5160-4551-BB94-0FB8C1C97F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3AB8DC7-5160-4551-BB94-0FB8C1C97F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3AB8DC7-5160-4551-BB94-0FB8C1C97F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82C67279-79A9-413E-83D8-0F7A87A05793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C67279-79A9-413E-83D8-0F7A87A05793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C67279-79A9-413E-83D8-0F7A87A05793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C67279-79A9-413E-83D8-0F7A87A05793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
