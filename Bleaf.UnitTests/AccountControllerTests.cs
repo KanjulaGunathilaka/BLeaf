@@ -57,7 +57,7 @@ namespace Bleaf.UnitTests
 			Assert.IsNotNull(actualModel);
 			Assert.AreEqual(2, actualModel.Items.Count());
 		}
-		[TestMethod]
+		
 
 	}
 }

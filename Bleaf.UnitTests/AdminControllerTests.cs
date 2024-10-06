@@ -30,7 +30,7 @@ namespace Bleaf.UnitTests
 
 			var actualModel = view.Model as BLeafViewModel;
 			Assert.IsNotNull(actualModel);
-			Assert.AreEqual(2,actualModel.Categories.Count());
+			Assert.AreEqual(2, actualModel.Categories.Count());
 		}
 
 
@@ -40,7 +40,7 @@ namespace Bleaf.UnitTests
 			//arrange
 			var fakeCategoryRepository = new Moq.Mock<ICategoryRepository>();
 			var fakeItemRepository = new Moq.Mock<IItemRepository>();
-			fakeItemRepository.Setup(x=>x.AllItems).Returns(new List<Item>()
+			fakeItemRepository.Setup(x => x.AllItems).Returns(new List<Item>()
 			{
 				new Item { ItemId = 1, Name = "Item 1" },
 				new Item { ItemId = 2, Name = "Item 2" }
@@ -55,6 +55,45 @@ namespace Bleaf.UnitTests
 			var actualModel = view.Model as BLeafViewModel;
 			Assert.IsNotNull(actualModel);
 			Assert.AreEqual(2, actualModel.Items.Count());
+		}
+
+		[TestMethod]
+		public void WhenMangedItemsCalled_NoCategories_ReturnsEmptyList()
+		{
+			//arrange
+			var fakeCategoryRepository = new Moq.Mock<ICategoryRepository>();
+			var fakeItemRepository = new Moq.Mock<IItemRepository>();
+			fakeCategoryRepository.Setup(x => x.AllCategories).Returns(new List<Category>());
+
+			var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object);
+			//act
+
+			var view = adminController.ManageItems() as ViewResult;
+			//assert
+
+			var actualModel = view.Model as BLeafViewModel;
+			Assert.IsNotNull(actualModel);
+			Assert.AreEqual(0, actualModel.Categories.Count());
+		}
+
+		[TestMethod]
+		public void WhenMangedItemsCalled_NoItems_ReturnsEmptyList()
+		{
+			//arrange
+			var fakeCategoryRepository = new Moq.Mock<ICategoryRepository>();
+			var fakeItemRepository = new Moq.Mock<IItemRepository>();
+			List<Item> items = new List<Item>();
+			fakeItemRepository.Setup(x => x.AllItems).Returns(items.AsQueryable());
+
+			var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object);
+			//act
+
+			var view = adminController.ManageItems() as ViewResult;
+			//assert
+
+			var actualModel = view.Model as BLeafViewModel;
+			Assert.IsNotNull(actualModel);
+			Assert.AreEqual(0, actualModel.Items.Count());
 		}
 	}
 }

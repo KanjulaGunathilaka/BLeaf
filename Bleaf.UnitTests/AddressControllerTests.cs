@@ -17,7 +17,6 @@ namespace Bleaf.UnitTests
 		[TestMethod]
 		public async Task WhenGetAddressIsCalled_CorrectAddressIsReturnedAsync()
 		{
-
 			var dbcontext = GetDbContext();
 			//arrange
 			var addressController = new AddressController(dbcontext);
@@ -29,7 +28,33 @@ namespace Bleaf.UnitTests
 			Assert.AreEqual("Wellinton", actualAddress.Value.City);
 		}
 
-		
+		[TestMethod]
+		public async Task WhenGetAddressIsCalled_InvalidAddressId_ReturnsNullAsync()
+		{
+			var dbcontext = GetDbContext();
+			//arrange
+			var addressController = new AddressController(dbcontext);
+
+			//act
+			var actualAddress = await addressController.GetAddress(99);
+
+			//assert
+			Assert.IsNull(actualAddress.Value);
+		}
+
+		[TestMethod]
+		public async Task WhenGetAddressIsCalled_InvalidAddressId_ReturnsNotFoundAsync()
+		{
+			var dbcontext = GetDbContext();
+			//arrange
+			var addressController = new AddressController(dbcontext);
+
+			//act
+			var actualAddress = await addressController.GetAddress(99);
+
+			//assert
+			Assert.IsInstanceOfType(actualAddress.Result, typeof(Microsoft.AspNetCore.Mvc.NotFoundResult));
+		}
 
 		private ApplicationDbContext GetDbContext()
 		{
@@ -39,12 +64,10 @@ namespace Bleaf.UnitTests
 
 			var context = new ApplicationDbContext(options);
 
-				context.Users.Add(new User { UserId = 1,FullName="Jpe Blogs", BillingAddress = "", Email="", PasswordHash="", PhoneNumber="" });
-				context.Addresses.Add(new Address { AddressId = 1, City = "Wellinton", UserId = 1, AddressLine1="", AddressLine2="", Country="", PhoneNumber="", State="", ZipCode="" });
-				context.SaveChanges();
-				return context;
-
+			context.Users.Add(new User { UserId = 1, FullName = "Jpe Blogs", BillingAddress = "", Email = "", PasswordHash = "", PhoneNumber = "" });
+			context.Addresses.Add(new Address { AddressId = 1, City = "Wellinton", UserId = 1, AddressLine1 = "", AddressLine2 = "", Country = "", PhoneNumber = "", State = "", ZipCode = "" });
+			context.SaveChanges();
+			return context;
 		}
-
 	}
 }
