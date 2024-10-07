@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using BLeaf.ViewModels;
 
 namespace BLeaf.Controllers
 {
@@ -17,16 +18,21 @@ namespace BLeaf.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return View("Login", new LoginViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
+            if (!ModelState.IsValid)
+            {
+                return View("Login", model);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByEmailAsync(email);
+                var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null && await _userManager.IsInRoleAsync(user, "Admin"))
                 {
                     return RedirectToAction("AdminPanel", "Admin");
@@ -34,8 +40,8 @@ namespace BLeaf.Controllers
                 return RedirectToAction("Index", "BLeaf");
             }
 
-            ModelState.AddModelError("", "Invalid login attempt");
-            return View();
+            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            return View("Login", model);
         }
 
         [HttpPost]
@@ -43,6 +49,37 @@ namespace BLeaf.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "BLeaf");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View("Register", new RegisterViewModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Register", model);
+            }
+
+            var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction("Index", "BLeaf");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View("Register", model);
         }
     }
 }

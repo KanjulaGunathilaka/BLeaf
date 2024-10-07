@@ -19,13 +19,14 @@ namespace Bleaf.UnitTests
 			//arrange
 			var fakeCategoryRepository = new Moq.Mock<ICategoryRepository>();
 			var fakeItemRepository = new Moq.Mock<IItemRepository>();
+			var fakeUserRepository = new Moq.Mock<IUserRepository>();	
 			fakeCategoryRepository.Setup(x => x.AllCategories).Returns(new List<Category>()
 			{
 				new Category { CategoryId = 1, Name = "Category 1" },
 				new Category { CategoryId = 2, Name = "Category 2" }
 			});
 
-			var adminController = new BLeaf.Controllers.AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object);
+			var adminController = new BLeaf.Controllers.AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object);
 			//act
 
 			var view = adminController.ManageItems() as ViewResult;
@@ -41,13 +42,14 @@ namespace Bleaf.UnitTests
 			//arrange
 			var fakeCategoryRepository = new Moq.Mock<ICategoryRepository>();
 			var fakeItemRepository = new Moq.Mock<IItemRepository>();
-			fakeItemRepository.Setup(x => x.AllItems).Returns(new List<Item>()
+            var fakeUserRepository = new Moq.Mock<IUserRepository>();
+            fakeItemRepository.Setup(x => x.AllItems).Returns(new List<Item>()
 			{
 				new Item { ItemId = 1, Name = "Item 1" },
 				new Item { ItemId = 2, Name = "Item 2" }
 			}.AsQueryable);
 
-			var adminController = new BLeaf.Controllers.AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object);
+			var adminController = new BLeaf.Controllers.AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object);
 			//act
 
 			var view = adminController.ManageItems() as ViewResult;

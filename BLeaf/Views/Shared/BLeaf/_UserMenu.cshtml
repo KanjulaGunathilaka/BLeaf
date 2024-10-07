@@ -25,12 +25,9 @@ else
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
-    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-    {
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("AdminPanel", "Admin")">
-                Admin Panel
-            </a>
-        </li>
-    }
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("AdminPanel", "Admin")">
+            Admin Panel
+        </a>
+    </li>
 }
