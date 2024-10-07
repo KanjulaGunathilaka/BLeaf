@@ -11,19 +11,22 @@ namespace BLeaf.Controllers
 	{
 		private readonly IItemRepository _itemRepository;
 		private readonly ICategoryRepository _categoryRepository;
+		private readonly IUserRepository _userRepository;
 
-		public BLeafController(IItemRepository itemRepository, ICategoryRepository categoryRepository)
+		public BLeafController(IItemRepository itemRepository, ICategoryRepository categoryRepository, IUserRepository userRepository)
 		{
 			_categoryRepository = categoryRepository;
 			_itemRepository = itemRepository;
+			_userRepository = userRepository;	
 		}
 
 		public IActionResult Index()
 		{
 			var items = _itemRepository.AllItems;
 			var categories = _categoryRepository.AllCategories;
+			var users = _userRepository.AllUsers;
 
-			return View(new BLeafViewModel(categories, items));
+			return View(new BLeafViewModel(categories, items, users));
 		}
 
 		public IActionResult AboutUs()

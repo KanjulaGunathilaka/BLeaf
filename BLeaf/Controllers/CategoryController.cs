@@ -1,10 +1,6 @@
 ﻿using BLeaf.Models;
 using BLeaf.Models.IRepository;
-using BLeaf.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BLeaf.Controllers
 {

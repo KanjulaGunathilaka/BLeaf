@@ -797,7 +797,6 @@ var bleaf = function () {
 			handlePlaceholderAnimation();
 			handleParallaxScroll();
 			handleTempusDominus();
-			handlePointerEffect();
 			handleBoxAware();
 			handledzNumber();
 		},

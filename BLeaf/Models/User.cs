@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLeaf.Models
 {
@@ -30,9 +31,9 @@ namespace BLeaf.Models
         [StringLength(50)]
         public string Role { get; set; } = "Customer";
 
-        public ICollection<Address> Addresses { get; set; }
-        public ICollection<Order> Orders { get; set; }
-        public ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
-        public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<Address> Addresses { get; set; } = new List<Address>();
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public ICollection<ShoppingCartItem> ShoppingCartItems { get; set; } = new List<ShoppingCartItem>();
+        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }

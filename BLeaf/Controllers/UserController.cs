@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BLeaf.Models;
+using BLeaf.Models.IRepository;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BLeaf.Data;
 
 namespace BLeaf.Controllers
 {
@@ -12,88 +11,85 @@ namespace BLeaf.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(ApplicationDbContext context)
+        public UserController(IUserRepository userRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            var users = _userRepository.AllUsers.ToList();
+            return Ok(users);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<User>> GetUserById(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-
+            var user = await _userRepository.FindUserById(id);
             if (user == null)
             {
                 return NotFound();
             }
-
-            return user;
+            return Ok(user);
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> AddUser([FromBody] User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            // Set a default password hash if not provided
+            if (string.IsNullOrEmpty(user.PasswordHash))
+            {
+                user.PasswordHash = "default_password_hash"; // Replace with actual password hashing logic
+            }
+
+            var createdUser = await _userRepository.SaveUser(user);
+            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.UserId }, createdUser);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] User user)
         {
-            if (id != user.UserId)
+            if (user == null || user.UserId != id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             try
             {
-                await _context.SaveChangesAsync();
+                var updatedUser = await _userRepository.UpdateUser(user);
+                return Ok(updatedUser);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (KeyNotFoundException)
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
-
-            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            try
+            {
+                var deletedUser = await _userRepository.DeleteUser(id);
+                return Ok(deletedUser);
+            }
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }

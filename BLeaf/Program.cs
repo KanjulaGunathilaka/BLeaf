@@ -1,8 +1,8 @@
 using BLeaf.Data;
 using BLeaf.Models.IRepository;
+using BLeaf.Models.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using BLeaf.Models.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Add Identity services
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -61,50 +62,50 @@ app.Run();
 
 async Task CreateRolesAndAdminUser(IServiceProvider serviceProvider)
 {
-	using (var scope = serviceProvider.CreateScope())
-	{
-		var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-		var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    using (var scope = serviceProvider.CreateScope())
+    {
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-		string[] roleNames = { "Admin", "User" };
-		IdentityResult roleResult;
+        string[] roleNames = { "Admin", "User" };
+        IdentityResult roleResult;
 
-		foreach (var roleName in roleNames)
-		{
-			var normalizedRoleName = roleName.ToUpper();
-			var roleExist = await roleManager.Roles.AnyAsync(r => r.NormalizedName == normalizedRoleName);
-			if (!roleExist)
-			{
-				Console.WriteLine($"Creating role: {roleName}");
-				roleResult = await roleManager.CreateAsync(new IdentityRole { Name = roleName, NormalizedName = normalizedRoleName });
-			}
-			else
-			{
-				Console.WriteLine($"Role already exists: {roleName}");
-			}
-		}
+        foreach (var roleName in roleNames)
+        {
+            var normalizedRoleName = roleName.ToUpper();
+            var roleExist = await roleManager.Roles.AnyAsync(r => r.NormalizedName == normalizedRoleName);
+            if (!roleExist)
+            {
+                Console.WriteLine($"Creating role: {roleName}");
+                roleResult = await roleManager.CreateAsync(new IdentityRole { Name = roleName, NormalizedName = normalizedRoleName });
+            }
+            else
+            {
+                Console.WriteLine($"Role already exists: {roleName}");
+            }
+        }
 
-		var adminUser = await userManager.FindByEmailAsync("admin@bleaf.com");
-		if (adminUser == null)
-		{
-			var user = new IdentityUser
-			{
-				UserName = "admin@bleaf.com",
-				Email = "admin@bleaf.com",
-				EmailConfirmed = true,
-				NormalizedEmail = "admin@bleaf.com".ToUpper(),
-				NormalizedUserName = "admin@bleaf.com".ToUpper()
-			};
+        var adminUser = await userManager.FindByEmailAsync("admin@bleaf.com");
+        if (adminUser == null)
+        {
+            var user = new IdentityUser
+            {
+                UserName = "admin@bleaf.com",
+                Email = "admin@bleaf.com",
+                EmailConfirmed = true,
+                NormalizedEmail = "admin@bleaf.com".ToUpper(),
+                NormalizedUserName = "admin@bleaf.com".ToUpper()
+            };
 
-			var createUser = await userManager.CreateAsync(user, "Admin@123");
-			if (createUser.Succeeded)
-			{
-				await userManager.AddToRoleAsync(user, "Admin");
-			}
-		}
-		else
-		{
-			Console.WriteLine("Admin user already exists.");
-		}
-	}
+            var createUser = await userManager.CreateAsync(user, "Admin@123");
+            if (createUser.Succeeded)
+            {
+                await userManager.AddToRoleAsync(user, "Admin");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Admin user already exists.");
+        }
+    }
 }
