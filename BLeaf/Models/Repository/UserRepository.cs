@@ -49,5 +49,10 @@ namespace BLeaf.Models.Repository
         {
             return await _applicationDbContext.Users.FindAsync(userId);
         }
+
+        public async Task<User> FindUserByEmail(string email)
+        {
+            return await _applicationDbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
+        }
     }
 }

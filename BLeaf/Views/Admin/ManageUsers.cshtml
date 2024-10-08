@@ -43,8 +43,10 @@
                 <div class="form-group">
                     <label for="role">Role:</label>
                     <select id="role" name="role" class="form-control">
-                        <option value="Customer">Customer</option>
-                        <option value="Admin">Admin</option>
+                        @foreach (var role in Model.Roles)
+                        {
+                            <option value="@role">@role</option>
+                        }
                     </select>
                 </div>
                 <button id="submitUser" type="button" class="btn btn-primary">Submit User</button>
@@ -79,7 +81,15 @@
                             <td>
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <button class="btn btn-secondary edit-user m-1" data-id="@user.UserId">Edit</button>
-                                    <button class="btn btn-danger delete-user m-1" data-id="@user.UserId">Delete</button>
+                                    <form asp-controller="Admin" asp-action="DeleteUser" method="post" class="m-1">
+                                        <input type="hidden" name="email" value="@user.Email" />
+                                        <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                    </form>
+                                    <form asp-controller="Admin" asp-action="ChangeUserRole" method="post" class="m-1">
+                                        <input type="hidden" name="email" value="@user.Email" />
+                                        @Html.DropDownListFor(m => user.Role, new SelectList(Model.Roles, user.Role), new { @class = "form-control" })
+                                        <button type="submit" class="btn btn-primary mt-1">Change Role</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

@@ -240,4 +240,32 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
+
+    $(document).ready(function () {
+        $('#userDataTable').on('submit', 'form', function (e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var email = form.find('input[name="email"]').val();
+            var newRole = form.find('select[name="newRole"]').val();
+
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: {
+                    email: email,
+                    newRole: newRole
+                },
+                success: function (response) {
+                    // Handle success response
+                    alert('Role updated successfully');
+                    location.reload(); // Reload the page to reflect changes
+                },
+                error: function (response) {
+                    // Handle error response
+                    alert('Error updating role');
+                }
+            });
+        });
+    });
 });

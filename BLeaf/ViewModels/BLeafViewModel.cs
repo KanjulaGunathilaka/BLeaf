@@ -8,6 +8,7 @@ namespace BLeaf.ViewModels
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<Item> Items { get; set; }
         public IEnumerable<User> Users { get; set; }
+        public List<string> Roles { get; set; }
 
         public BLeafViewModel()
         {

@@ -15,5 +15,7 @@ namespace BLeaf.Models.IRepository
         Task<User> DeleteUser(int userId);
 
         Task<User> FindUserById(int userId);
+
+        Task<User> FindUserByEmail(string email);
     }
 }

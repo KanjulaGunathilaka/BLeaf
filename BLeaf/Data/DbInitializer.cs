@@ -17,7 +17,7 @@ namespace BLeaf.Data
 				context.Database.EnsureCreated();
 
 				// Seed Roles
-				string[] roleNames = { "Admin", "User" };
+				string[] roleNames = { "Admin", "Customer" };
 				foreach (var roleName in roleNames)
 				{
 					var normalizedRoleName = roleName.ToUpper();

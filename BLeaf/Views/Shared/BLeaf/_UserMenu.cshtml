@@ -1,33 +1,37 @@
-﻿@* Views/Shared/BLeaf/_UserMenu.cshtml *@
-@if (User.Identity.IsAuthenticated)
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
 {
-    <div class="extra-cell">
-        <form method="post" asp-controller="Account" asp-action="Logout">
-            <button type="submit" class="btn">
-                <i class="flaticon-user"></i> Logout
-            </button>
-        </form>
-    </div>
+        <div class="extra-cell">
+            <form method="post" asp-controller="Account" asp-action="Logout">
+                <button type="submit" class="btn">
+                    <i class="flaticon-user"></i> Logout
+                </button>
+            </form>
+        </div>
+
+    @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin"))
+    {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("AdminPanel", "Admin")">
+                        Admin Panel
+                    </a>
+                </li>
+    }
 }
 else
 {
-    <div class="extra-nav">
-        <div class="extra-cell">
-            <ul>
-                <li>
-                    <a id="bleafLoginBtn" class="btn btn-white btn-square btn-shadow" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
-                        <i class="flaticon-user"></i>
-                    </a>
-                </li>
-            </ul>
+        <div class="extra-nav">
+            <div class="extra-cell">
+                <ul>
+                    <li>
+                        <a id="bleafLoginBtn" class="btn btn-white btn-square btn-shadow" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
+                            <i class="flaticon-user"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-}
-@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-{
-    <li class="nav-item">
-        <a class="nav-link" href="@Url.Action("AdminPanel", "Admin")">
-            Admin Panel
-        </a>
-    </li>
 }

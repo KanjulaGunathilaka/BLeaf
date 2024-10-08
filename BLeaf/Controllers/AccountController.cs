@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using BLeaf.ViewModels;
 using BLeaf.Models;
 using BLeaf.Data;
+using System.Threading.Tasks;
 
 namespace BLeaf.Controllers
 {
@@ -81,6 +82,9 @@ namespace BLeaf.Controllers
 
             if (result.Succeeded)
             {
+                // Assign the default role (Customer) to the new user
+                await _userManager.AddToRoleAsync(identityUser, "Customer");
+
                 // Create and save the custom User model
                 var user = new User
                 {
