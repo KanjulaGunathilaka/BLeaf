@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using BLeaf.ViewModels;
+using BLeaf.Models;
+using BLeaf.Data;
 
 namespace BLeaf.Controllers
 {
@@ -8,17 +10,19 @@ namespace BLeaf.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
-        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            return View("Login", new LoginViewModel());
+            return PartialView("BLeaf/_Login", new LoginViewModel());
         }
 
         [HttpPost]
@@ -26,7 +30,7 @@ namespace BLeaf.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Login", model);
+                return PartialView("BLeaf/_Login", new LoginViewModel());
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
@@ -65,12 +69,31 @@ namespace BLeaf.Controllers
                 return View("Register", model);
             }
 
-            var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-            var result = await _userManager.CreateAsync(user, model.Password);
+            var existingUser = await _userManager.FindByEmailAsync(model.Email);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError(string.Empty, "A user with this email already exists.");
+                return View("Register", model);
+            }
+
+            var identityUser = new IdentityUser { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(identityUser, model.Password);
 
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                // Create and save the custom User model
+                var user = new User
+                {
+                    FullName = model.FullName,
+                    Email = model.Email,
+                    PasswordHash = identityUser.PasswordHash,
+                    Role = "Customer",
+                    //BillingAddress = model.BillingAddress
+                };
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                await _signInManager.SignInAsync(identityUser, isPersistent: false);
                 return RedirectToAction("Index", "BLeaf");
             }
 

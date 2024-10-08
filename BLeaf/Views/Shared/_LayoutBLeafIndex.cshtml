@@ -30,8 +30,8 @@
 <body id="bg">
     <div class="page-wraper">
         <partial name="BLeaf/_Header" />
-        <partial name="BLeaf/_Login" />
-        <partial name="BLeaf/_Register" />
+        <partial name="BLeaf/_Login" model="new BLeaf.ViewModels.LoginViewModel()" />
+        <partial name="BLeaf/_Register" model="new BLeaf.ViewModels.RegisterViewModel()" />
         @RenderBody()
         <partial name="BLeaf/_Footer" />
     </div>
@@ -61,5 +61,6 @@
             new dzSettings(dzSettingsOptions);
         });
     </script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

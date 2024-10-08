@@ -32,6 +32,6 @@ namespace BLeaf.Models
         public DateTime? EstimatedDelivery { get; set; }
         public DateTime? DeliveredAt { get; set; }
 
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public ICollection<OrderDetail>? OrderDetails { get; set; }
     }
 }

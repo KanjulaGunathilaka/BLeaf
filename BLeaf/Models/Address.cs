@@ -39,6 +39,6 @@ namespace BLeaf.Models
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         // Add this navigation property
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }
