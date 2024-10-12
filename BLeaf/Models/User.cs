@@ -20,8 +20,7 @@ public class User
     [StringLength(255)]
     public string? BillingAddress { get; set; }
 
-    [Required]
-    public string PasswordHash { get; set; }
+    public string? PasswordHash { get; set; }
 
     public DateTime JoinedAt { get; set; } = DateTime.Now;
 

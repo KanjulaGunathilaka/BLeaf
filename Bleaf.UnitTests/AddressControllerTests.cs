@@ -65,7 +65,7 @@ namespace Bleaf.UnitTests
 			var context = new ApplicationDbContext(options);
 
 			context.Users.Add(new User { UserId = 1, FullName = "Jpe Blogs", BillingAddress = "", Email = "", PasswordHash = "", PhoneNumber = "" });
-			context.Addresses.Add(new Address { AddressId = 1, City = "Wellinton", UserId = 1, AddressLine1 = "", AddressLine2 = "", Country = "", PhoneNumber = "", State = "", ZipCode = "" });
+			context.Addresses.Add(new Address { AddressId = 1, City = "Wellinton", AddressLine1 = "", AddressLine2 = "",  PhoneNumber = "", State = "", ZipCode = "" });
 			context.SaveChanges();
 			return context;
 		}

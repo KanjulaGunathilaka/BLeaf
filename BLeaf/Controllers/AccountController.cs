@@ -25,7 +25,8 @@ namespace BLeaf.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return PartialView("BLeaf/_Login", new LoginViewModel());
+            //return PartialView("BLeaf/_Login", new LoginViewModel());
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
@@ -33,7 +34,8 @@ namespace BLeaf.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("BLeaf/_Login", new LoginViewModel());
+                //return PartialView("BLeaf/_Login", new LoginViewModel());
+                return View(model);
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
@@ -49,7 +51,7 @@ namespace BLeaf.Controllers
             }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt");
-            return View("Login", model);
+            return View( model);
         }
 
         [HttpPost]

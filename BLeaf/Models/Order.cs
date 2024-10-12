@@ -23,9 +23,6 @@ namespace BLeaf.Models
         public string OrderStatus { get; set; } = "Pending";
 
         [StringLength(50)]
-        public string PaymentMethod { get; set; } = "Credit Card";
-
-        [StringLength(50)]
         public string PaymentStatus { get; set; } = "Unpaid";
 
         public DateTime OrderPlacedAt { get; set; } = DateTime.Now;

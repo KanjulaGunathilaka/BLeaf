@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BLeaf.Models;
+﻿using BLeaf.Models;
+using BLeaf.Models.IRepository;
+using BLeaf.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BLeaf.Data;
 
 namespace BLeaf.Controllers
 {
@@ -12,66 +13,69 @@ namespace BLeaf.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrderController(ApplicationDbContext context)
+        public OrderController(IOrderRepository orderRepository)
         {
-            _context = context;
+            _orderRepository = orderRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.Include(o => o.User).Include(o => o.Address).ToListAsync();
+            return Ok(await _orderRepository.GetAllAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _context.Orders.Include(o => o.User).Include(o => o.Address).FirstOrDefaultAsync(o => o.OrderId == id);
+            var order = await _orderRepository.GetByIdAsync(id);
 
             if (order == null)
             {
                 return NotFound();
             }
 
-            return order;
+            return Ok(order);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> CreateOrder([FromBody] OrderViewModel orderViewModel)
         {
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+            if (orderViewModel == null || !orderViewModel.Items.Any())
+            {
+                return BadRequest("Invalid order data.");
+            }
 
-            return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
+            var order = new Order
+            {
+                User = orderViewModel.User,
+                Address = orderViewModel.Address,
+                OrderTotal = orderViewModel.OrderTotal,
+                OrderStatus = "Pending",
+                PaymentStatus = "Unpaid",
+                OrderPlacedAt = DateTime.Now,
+                OrderDetails = orderViewModel.Items.Select(i => new OrderDetail
+                {
+                    ItemId = i.Item.ItemId,
+                    Quantity = i.Quantity
+                }).ToList()
+            };
+
+            await _orderRepository.AddAsync(order);
+
+            return CreatedAtAction(nameof(GetOrder), new { id = order.OrderId }, order);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> UpdateOrder(int id, [FromBody] Order order)
         {
             if (id != order.OrderId)
             {
-                return BadRequest();
+                return BadRequest("Order ID mismatch.");
             }
 
-            _context.Entry(order).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _orderRepository.UpdateAsync(order);
 
             return NoContent();
         }
@@ -79,21 +83,9 @@ namespace BLeaf.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
+            await _orderRepository.DeleteAsync(id);
 
             return NoContent();
-        }
-
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.OrderId == id);
         }
     }
 }

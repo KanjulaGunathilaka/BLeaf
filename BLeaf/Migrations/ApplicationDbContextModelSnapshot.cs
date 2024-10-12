@@ -45,11 +45,6 @@ namespace BLeaf.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -75,7 +70,7 @@ namespace BLeaf.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("ZipCode")
@@ -276,13 +271,6 @@ namespace BLeaf.Migrations
                     b.Property<decimal>("OrderTotal")
                         .HasColumnType("decimal(10, 2)");
 
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("Credit Card");
-
                     b.Property<string>("PaymentStatus")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -447,7 +435,6 @@ namespace BLeaf.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<int?>("UserId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ShoppingCartItemId");
@@ -685,7 +672,6 @@ namespace BLeaf.Migrations
                         .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -706,13 +692,9 @@ namespace BLeaf.Migrations
 
             modelBuilder.Entity("BLeaf.Models.Address", b =>
                 {
-                    b.HasOne("User", "User")
+                    b.HasOne("User", null)
                         .WithMany("Addresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("BLeaf.Models.Item", b =>
@@ -796,9 +778,7 @@ namespace BLeaf.Migrations
 
                     b.HasOne("User", "User")
                         .WithMany("ShoppingCartItems")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Item");
 

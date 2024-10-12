@@ -17,6 +17,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IShoppingCartItemRepository, ShoppingCartItemRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 // Add Identity services
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>

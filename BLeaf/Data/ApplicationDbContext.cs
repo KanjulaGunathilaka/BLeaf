@@ -97,10 +97,6 @@ namespace BLeaf.Data
                 .HasDefaultValue("Pending");
 
             modelBuilder.Entity<Order>()
-                .Property(o => o.PaymentMethod)
-                .HasDefaultValue("Credit Card");
-
-            modelBuilder.Entity<Order>()
                 .Property(o => o.PaymentStatus)
                 .HasDefaultValue("Unpaid");
 

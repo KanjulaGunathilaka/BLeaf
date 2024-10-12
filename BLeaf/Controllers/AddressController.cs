@@ -22,13 +22,13 @@ namespace BLeaf.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddresses()
         {
-            return await _context.Addresses.Include(a => a.User).ToListAsync();
+            return await _context.Addresses.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
-            var address = await _context.Addresses.Include(a => a.User).FirstOrDefaultAsync(a => a.AddressId == id);
+            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.AddressId == id);
 
             if (address == null)
             {

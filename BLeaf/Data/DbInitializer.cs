@@ -78,8 +78,8 @@ namespace BLeaf.Data
 				{
 					var addresses = new Address[]
 					{
-						new Address{UserId=1, AddressLine1="123 Main St", AddressLine2="", ZipCode="12345", City="Colombo", State="Western Province", Country="Sri Lanka", PhoneNumber="1234567890", IsPrimary=true},
-						new Address{UserId=2, AddressLine1="456 Admin St", AddressLine2="", ZipCode="67890", City="Kandy", State="Central Province", Country="Sri Lanka", PhoneNumber="0987654321", IsPrimary=true}
+						new Address{ AddressLine1="123 Main St", AddressLine2="", ZipCode="12345", City="Colombo", State="Western Province", PhoneNumber="1234567890", IsPrimary=true},
+						new Address{ AddressLine1="456 Admin St", AddressLine2="", ZipCode="67890", City="Kandy", State="Central Province", PhoneNumber="0987654321", IsPrimary=true}
 					};
 
 					foreach (var a in addresses)
@@ -210,8 +210,8 @@ namespace BLeaf.Data
 				{
 					var orders = new Order[]
 					{
-						new Order{UserId=1, AddressId=1, OrderTotal=15.97M, OrderStatus="Completed", PaymentMethod="Credit Card", PaymentStatus="Paid", OrderPlacedAt=DateTime.Now, EstimatedDelivery=DateTime.Now.AddHours(1), DeliveredAt=DateTime.Now.AddHours(1)},
-						new Order{UserId=2, AddressId=2, OrderTotal=8.99M, OrderStatus="Pending", PaymentMethod="PayPal", PaymentStatus="Unpaid", OrderPlacedAt=DateTime.Now, EstimatedDelivery=DateTime.Now.AddHours(2)}
+						new Order{UserId=1, AddressId=1, OrderTotal=15.97M, OrderStatus="Completed", PaymentStatus="Paid", OrderPlacedAt=DateTime.Now, EstimatedDelivery=DateTime.Now.AddHours(1), DeliveredAt=DateTime.Now.AddHours(1)},
+						new Order{UserId=2, AddressId=2, OrderTotal=8.99M, OrderStatus="Pending", PaymentStatus="Unpaid", OrderPlacedAt=DateTime.Now, EstimatedDelivery=DateTime.Now.AddHours(2)}
 					};
 
 					foreach (var o in orders)
