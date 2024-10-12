@@ -443,11 +443,11 @@ namespace BLeaf.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SpecialInstructions")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ShoppingCartItemId");

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BLeaf.Models;
-using BLeaf.Data;
+using BLeaf.Models.IRepository;
+using BLeaf.ViewModels;
+using BLeaf.DTOs;
 
 namespace BLeaf.Controllers
 {
@@ -9,23 +10,40 @@ namespace BLeaf.Controllers
     [ApiController]
     public class ShoppingCartItemController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IShoppingCartItemRepository _repository;
+        private readonly IUserRepository _userRepository;
 
-        public ShoppingCartItemController(ApplicationDbContext context)
+        public ShoppingCartItemController(IShoppingCartItemRepository repository, IUserRepository userRepository)
         {
-            _context = context;
+            _repository = repository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ShoppingCartItem>>> GetShoppingCartItems()
+        public async Task<ActionResult<ShoppingCartViewModel>> GetShoppingCartItems()
         {
-            return await _context.ShoppingCartItems.Include(sci => sci.User).Include(sci => sci.Item).ToListAsync();
+            var items = await _repository.GetAllAsync();
+            var totalPrice = items.Sum(item => item.Item.Price * item.Quantity);
+            var deliveryCharges = 0.00m; // Example value, you can calculate based on your logic
+            var taxes = totalPrice * 0.00m; // Example tax calculation
+            var grandTotal = totalPrice + deliveryCharges + taxes;
+
+            var viewModel = new ShoppingCartViewModel
+            {
+                Items = items,
+                TotalPrice = totalPrice,
+                DeliveryCharges = deliveryCharges,
+                Taxes = taxes,
+                GrandTotal = grandTotal
+            };
+
+            return Ok(viewModel);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ShoppingCartItem>> GetShoppingCartItem(int id)
         {
-            var shoppingCartItem = await _context.ShoppingCartItems.Include(sci => sci.User).Include(sci => sci.Item).FirstOrDefaultAsync(sci => sci.ShoppingCartItemId == id);
+            var shoppingCartItem = await _repository.GetByIdAsync(id);
 
             if (shoppingCartItem == null)
             {
@@ -36,11 +54,45 @@ namespace BLeaf.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ShoppingCartItem>> PostShoppingCartItem(ShoppingCartItem shoppingCartItem)
+        public async Task<ActionResult<ShoppingCartItem>> PostShoppingCartItem([FromBody] ShoppingCartItemDto shoppingCartItemDto)
         {
-            _context.ShoppingCartItems.Add(shoppingCartItem);
-            await _context.SaveChangesAsync();
+            if (shoppingCartItemDto == null)
+            {
+                return BadRequest("Invalid data.");
+            }
 
+            int? userId = shoppingCartItemDto.UserId;
+
+            if (HttpContext.Session.GetString("UserSessionID") == null)
+            {
+                var guestUserEmail = $"guest_{Guid.NewGuid()}@example.com";
+
+                var guestUser = new User
+                {
+                    FullName = "Guest",
+                    Email = guestUserEmail,
+                    PasswordHash = Guid.NewGuid().ToString() // Using GUID as a placeholder for password hash
+                };
+
+                var user = await _userRepository.SaveUser(guestUser);
+                userId = user.UserId;
+
+                HttpContext.Session.SetString("UserSessionID", guestUserEmail);
+            }
+            else
+            {
+                var user = await _userRepository.FindUserByEmail(HttpContext.Session.GetString("UserSessionID"));
+                userId = user.UserId;
+            }
+
+            var shoppingCartItem = new ShoppingCartItem
+            {
+                ItemId = shoppingCartItemDto.ItemId,
+                UserId = userId,
+                Quantity = shoppingCartItemDto.Quantity
+            };
+
+            await _repository.AddAsync(shoppingCartItem);
             return CreatedAtAction("GetShoppingCartItem", new { id = shoppingCartItem.ShoppingCartItemId }, shoppingCartItem);
         }
 
@@ -52,23 +104,7 @@ namespace BLeaf.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(shoppingCartItem).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ShoppingCartItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _repository.UpdateAsync(shoppingCartItem);
 
             return NoContent();
         }
@@ -76,21 +112,8 @@ namespace BLeaf.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteShoppingCartItem(int id)
         {
-            var shoppingCartItem = await _context.ShoppingCartItems.FindAsync(id);
-            if (shoppingCartItem == null)
-            {
-                return NotFound();
-            }
-
-            _context.ShoppingCartItems.Remove(shoppingCartItem);
-            await _context.SaveChangesAsync();
-
+            await _repository.DeleteAsync(id);
             return NoContent();
-        }
-
-        private bool ShoppingCartItemExists(int id)
-        {
-            return _context.ShoppingCartItems.Any(e => e.ShoppingCartItemId == id);
         }
     }
 }

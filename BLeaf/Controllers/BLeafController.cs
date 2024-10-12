@@ -2,6 +2,7 @@
 using BLeaf.Models;
 using BLeaf.Models.IRepository;
 using BLeaf.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,27 +10,29 @@ namespace BLeaf.Controllers
 {
 	public class BLeafController : Controller
 	{
-		private readonly IItemRepository _itemRepository;
-		private readonly ICategoryRepository _categoryRepository;
-		private readonly IUserRepository _userRepository;
+        private readonly IItemRepository _itemRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly UserManager<IdentityUser> _userManager;
 
-		public BLeafController(IItemRepository itemRepository, ICategoryRepository categoryRepository, IUserRepository userRepository)
-		{
-			_categoryRepository = categoryRepository;
-			_itemRepository = itemRepository;
-			_userRepository = userRepository;	
-		}
+        public BLeafController(IItemRepository itemRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager)
+        {
+            _categoryRepository = categoryRepository;
+            _itemRepository = itemRepository;
+            _userRepository = userRepository;
+            _userManager = userManager;
+        }
 
-		public IActionResult Index()
-		{
-			var items = _itemRepository.AllItems;
-			var categories = _categoryRepository.AllCategories;
-			var users = _userRepository.AllUsers;
+        public IActionResult Index()
+        {
+            var items = _itemRepository.AllItems;
+            var categories = _categoryRepository.AllCategories;
+            var users = _userRepository.AllUsers;
 
-			return View(new BLeafViewModel(categories, items, users));
-		}
+            return View(new BLeafViewModel(categories, items, users));
+        }
 
-		public IActionResult AboutUs()
+        public IActionResult AboutUs()
 		{
 			return View();
 		}
@@ -169,18 +172,24 @@ namespace BLeaf.Controllers
 		{
 			return View();
 		}
-		public IActionResult ProductDetail(int id)
-		{
-			var item = _itemRepository.GetItemById(id).Result;
-			if (item == null)
-			{
-				return NotFound();
-			}
-			var viewModel  = new ItemDetailsViewModel{ Item = item };
+        public IActionResult ProductDetail(int id)
+        {
+            var item = _itemRepository.GetItemById(id).Result;
+            if (item == null)
+            {
+                return NotFound();
+            }
 
-			return View(viewModel);
-		}
-		public IActionResult ServiceDetail()
+            var userId = _userManager.GetUserId(User);
+            var viewModel = new ItemDetailsViewModel
+            {
+                Item = item,
+                UserId = userId
+            };
+
+            return View(viewModel);
+        }
+        public IActionResult ServiceDetail()
 		{
 			return View();
 		}
@@ -188,11 +197,17 @@ namespace BLeaf.Controllers
 		{
 			return View();
 		}
-		public IActionResult ShopCart()
-		{
-			return View();
-		}
-		public IActionResult ShopCheckout()
+        public IActionResult ShopCart()
+        {
+            var userId = _userManager.GetUserId(User);
+            var viewModel = new ShoppingCartViewModel
+            {
+                UserId = userId
+            };
+
+            return View(viewModel);
+        }
+        public IActionResult ShopCheckout()
 		{
 			return View();
 		}

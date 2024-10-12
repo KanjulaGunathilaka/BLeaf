@@ -4,6 +4,8 @@ using BLeaf.ViewModels;
 using BLeaf.Models;
 using BLeaf.Data;
 using System.Threading.Tasks;
+using BLeaf.Models.IRepository;
+using BLeaf.Models.Repository;
 
 namespace BLeaf.Controllers
 {
@@ -40,6 +42,7 @@ namespace BLeaf.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null && await _userManager.IsInRoleAsync(user, "Admin"))
                 {
+                    HttpContext.Session.SetString("UserSessionID", user.Email);
                     return RedirectToAction("AdminPanel", "Admin");
                 }
                 return RedirectToAction("Index", "BLeaf");

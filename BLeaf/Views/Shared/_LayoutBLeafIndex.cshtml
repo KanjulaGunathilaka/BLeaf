@@ -26,6 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+    @RenderSection("bleaf_style", required: false)
 </head>
 <body id="bg">
     <div class="page-wraper">
@@ -52,15 +53,14 @@
     <script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
     <script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
     <script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
-    
     <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- CUSTOM JS -->
-    
+
     <script>
         jQuery(document).ready(function () {
             dzSettingsOptions.themeFullColor_value = 'color_2';
             new dzSettings(dzSettingsOptions);
         });
     </script>
-    @RenderSection("Scripts", required: false)
+    @RenderSection("bleaf_script", required: false)
 </body>
 </html>
