@@ -30,7 +30,6 @@
                             <ul class="sub-menu">
                                 <li><a href="@Url.Action("ShopCart","BLeaf")">Shop Cart</a></li>
                                 <li><a href="@Url.Action("ShopCheckout","BLeaf")">Shop Checkout</a></li>
-                                <li><a href="">Product Detail</a></li>
                             </ul>
                         </li>
                         <li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
@@ -45,9 +44,9 @@
                         </ul>
                     </div>
                     <div class="extra-cell ms-3">
-                        <a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-primary btn-hover-2">
-                            <i class="fa-solid fa-shopping-cart"></i>
-                            <span id="cartItemCount" class="badge badge-pill badge-danger">0</span>
+                        <a href="@Url.Action("ShopCart", "BLeaf")" class="btn btn-primary btn-square btn-shadow cart-btn">
+                            <i class="flaticon-shopping-bag-1"></i>
+                            <span id="cartItemCount" class="badge">0</span>
                         </a>
                     </div>
                 </div>

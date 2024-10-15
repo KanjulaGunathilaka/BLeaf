@@ -1,13 +1,15 @@
 ﻿$(document).ready(function () {
     console.log("manageCart.js loaded");
 
-    // Add to Cart
-    $(document).on("click", ".add-to-cart", function (event) {
+    // Ensure single event listener for Add to Cart
+    $(document).off("click", ".add-to-cart").on("click", ".add-to-cart", function (event) {
         event.preventDefault();
+
+        console.log("Add to Cart button clicked");
 
         var itemId = $(this).data("item-id");
         var userId = $(this).data("user-id");
-        var quantity = $("#quantity_" + itemId).val() || 1;
+        var quantity = parseInt($("#quantity_" + itemId).val()) || 1;
         var shopCartUrl = $(this).data("shop-cart-url");
 
         if (userId === "guest") {
@@ -25,9 +27,9 @@
     });
 
     // Update Cart Item Quantity
-    $(document).on("change", ".update-cart", function () {
+    $(document).off("change", ".update-cart").on("change", ".update-cart", function () {
         var cartItemId = $(this).data("cart-item-id");
-        var newQuantity = $(this).val();
+        var newQuantity = parseInt($(this).val());
 
         console.log("Updating cart:", { cartItemId, newQuantity });
 
@@ -35,7 +37,7 @@
     });
 
     // Remove from Cart
-    $(document).on("click", ".remove-from-cart", function (event) {
+    $(document).off("click", ".remove-from-cart").on("click", ".remove-from-cart", function (event) {
         event.preventDefault();
 
         var cartItemId = $(this).data("cart-item-id");
@@ -46,7 +48,7 @@
     });
 
     // Checkout Button Click
-    $(document).on("click", ".btn-checkout", function (event) {
+    $(document).off("click", ".btn-checkout").on("click", ".btn-checkout", function (event) {
         event.preventDefault();
 
         let cart = getCartItems();
@@ -65,21 +67,25 @@
             success: function (item) {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+                quantity = parseInt(quantity, 10);
+                console.log('Parsed quantity:', quantity);
+
                 // Check if the item already exists in the cart
-                console.log('item', item, itemId)
+                console.log('item', item, itemId);
                 let existingCartItem = cart.find(cartItem => cartItem.item.itemId === item.itemId);
-                console.log("existing", existingCartItem)
+                console.log("existing", existingCartItem);
                 if (existingCartItem) {
                     // Update the quantity of the existing item
-                    existingCartItem.quantity += parseInt(quantity, 10);
+                    existingCartItem.quantity += quantity;
                 } else {
                     // Add the new item to the cart
-                    cart.push({ item, quantity: parseInt(quantity, 10) });
+                    cart.push({ item, quantity: quantity });
                 }
 
+                console.log("Cart after adding item:", cart);
                 localStorage.setItem('cart', JSON.stringify(cart));
-                loadCart(); // Reload cart after adding item
                 updateCartItemCount(); // Update the cart item count
+                loadCart(); // Reload cart after adding item
             },
             error: function (xhr, status, error) {
                 console.error("Failed to add item to cart:", xhr.responseText);
@@ -92,10 +98,10 @@
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let cartItem = cart.find(cartItem => cartItem.item.itemId === parseInt(cartItemId, 10));
         if (cartItem) {
-            cartItem.quantity = parseInt(newQuantity, 10);
+            cartItem.quantity = newQuantity;
             localStorage.setItem('cart', JSON.stringify(cart));
-            loadCart(); // Reload cart after updating item
             updateCartItemCount(); // Update the cart item count
+            loadCart(); // Reload cart after updating item
         }
     }
 
@@ -104,8 +110,8 @@
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         cart = cart.filter(cartItem => cartItem.item.itemId !== parseInt(cartItemId, 10));
         localStorage.setItem('cart', JSON.stringify(cart));
-        loadCart(); // Reload cart after removing item
         updateCartItemCount(); // Update the cart item count
+        loadCart(); // Reload cart after removing item
     }
 
     function loadCart() {
@@ -146,11 +152,8 @@
         // Update bill details
         let total = calculateCartTotal();
         console.log('total', total);
-        let itemCount = calculateTotalItemCount();
-
         $("#itemTotal").text("$" + total);
         $("#grandTotal").text("$" + total);
-        updateCartItemCount(); // Ensure the cart item count is updated here as well
     }
 
     function showMessage(message, alertClass) {
