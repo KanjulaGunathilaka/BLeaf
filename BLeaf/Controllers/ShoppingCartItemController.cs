@@ -71,7 +71,7 @@ namespace BLeaf.Controllers
                 {
                     FullName = "Guest",
                     Email = guestUserEmail,
-                    PasswordHash = Guid.NewGuid().ToString() // Using GUID as a placeholder for password hash
+                    PasswordHash = Guid.NewGuid().ToString()
                 };
 
                 var user = await _userRepository.SaveUser(guestUser);

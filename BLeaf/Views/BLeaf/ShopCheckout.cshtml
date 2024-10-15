@@ -3,7 +3,7 @@
 }
 <div class="page-content bg-white">
     <!-- Banner  -->
-    <div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr3.jpg'); background-size:cover; background-position:center;">
+    <div class="dz-bnr-inr style-1 text-center bg-parallax" style="background-image:url('../bleaf/images/banner/bnr3.jpg'); background-size:cover; background-position:center; max-height: 200px; height: 100vh;">
         <div class="container">
             <div class="dz-bnr-inr-entry">
                 <h1>Shop Checkout</h1>
@@ -23,14 +23,11 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6 m-b20">
-                                    <input  name="dzFirstName" required type="text" class="form-control" placeholder="First Name">
+                                    <input name="dzFirstName" required type="text" class="form-control" placeholder="First Name">
                                 </div>
                                 <div class="form-group col-md-6 m-b20">
                                     <input name="dzLastName" required type="text" class="form-control" placeholder="Last Name">
                                 </div>
-                            </div>
-                            <div class="form-group m-b20">
-                                <input name="dzOther[CompanyType]" required type="text" class="form-control" placeholder="Company Name">
                             </div>
                             <div class="form-group m-b20">
                                 <input name="dzOther[Address]" required type="text" class="form-control" placeholder="Address">
@@ -44,9 +41,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzOther[State/County]" required type="text" class="form-control" placeholder="State / County">
-                                </div>
                                 <div class="form-group col-md-6 m-b20">
                                     <input name="Postcode/Zip" required type="text" class="form-control" placeholder="Postcode / Zip">
                                 </div>
@@ -69,70 +63,9 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <button class="btn btn-gray btnhover mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#different-address">Ship to a different address <i class="fa fa-angle-down m-l10"></i></button>
-                        <div id="different-address" class="collapse">
-                            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
-                            <div class="form-group m-b20">
-                                <select class="form-select default-select">
-                                    <option value="Åland Islands">Åland Islands</option>
-                                    <option value="Afghanistan">Afghanistan</option>
-                                    <option value="Albania">Albania</option>
-                                    <option value="Algeria">Algeria</option>
-                                    <option value="Andorra">Andorra</option>
-                                    <option value="Angola">Angola</option>
-                                    <option value="Anguilla">Anguilla</option>
-                                    <option value="Antarctica">Antarctica</option>
-                                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                                    <option value="Argentina">Argentina</option>
-                                    <option value="Armenia">Armenia</option>
-                                    <option value="Aruba">Aruba</option>
-                                    <option value="Australia">Australia</option>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6 m-b20">
-                                    <input  name="dzFirstName" type="text" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzLastName" type="text" class="form-control" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="form-group m-b20">
-                                <input name="dzFirstName" type="text" class="form-control" placeholder="Company Name">
-                            </div>
-                            <div class="form-group m-b20">
-                                <input name="dzOther[Address]" type="text" class="form-control" placeholder="Address">
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzOther[Other]" type="text" class="form-control" placeholder="Apartment, suite, unit etc.">
-                                </div>
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzOther[Town/City]" type="text" class="form-control" placeholder="Town / City">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzOther[State/County]" type="text" class="form-control" placeholder="State / County">
-                                </div>
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzOther[Postcode/Zip]" type="text" class="form-control" placeholder="Postcode / Zip">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzEmail" type="email" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="form-group col-md-6 m-b20">
-                                    <input name="dzPhoneNumber" type="text" class="form-control dz-number" placeholder="Phone">
-                                </div>
-                            </div>
-                            <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                        </div>
                         <div class="form-group">
                             <textarea class="form-control" rows="5" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
                         </div>
-
                     </div>
                 </div>
             </form>
@@ -148,6 +81,7 @@
                                 <tr>
                                     <th>IMAGE</th>
                                     <th>PRODUCT NAME</th>
+                                    <th>QUANTITY</th>
                                     <th>TOTAL</th>
                                 </tr>
                             </thead>
@@ -155,6 +89,7 @@
                                 <!-- Items will be dynamically added here -->
                             </tbody>
                         </table>
+                        <a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-primary mt-3">Go back to cart</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -167,18 +102,19 @@
                                     <td class="product-price" id="orderSubtotal">$0.00</td>
                                 </tr>
                                 <tr>
-                                    <td>Shipping</td>
-                                    <td>Free Shipping</td>
-                                </tr>
-                                <tr>
                                     <td>Total</td>
                                     <td class="product-price-total" id="orderTotal">$0.00</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="form-group">
-                            <button class="btn btn-gray btn-hover-2" type="submit" value="submit" name="submit">Place Order Now </button>
+                            <div class="alert alert-info" role="alert">
+                                Payment at Pickup
+                            </div>
+                            <button class="btn btn-gray btn-hover-2" type="submit" value="submit" name="submit">Place Order Now</button>
                         </div>
+                        <!-- Add the message div here -->
+                        <div id="checkoutMessage" class="alert" style="display:none;"></div>
                     </form>
                 </div>
             </div>
@@ -199,7 +135,7 @@
     <!-- JAVASCRIPT FILES ========================================= -->
     <script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
     <script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-    <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELEECT -->
+    <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT -->
     <script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
     <script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
     <script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
