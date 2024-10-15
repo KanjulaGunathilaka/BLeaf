@@ -70,7 +70,7 @@
                 addressLine1: $("input[name='dzOther[Address]']").val(),
                 addressLine2: $("input[name='dzOther[Other]']").val(),
                 city: $("input[name='dzOther[Town/City]']").val(),
-                state: $("input[name='dzOther[State/County]']").val(),
+                state: $("input[name='dzOther[State/County]']").val() || null,
                 zipCode: $("input[name='Postcode/Zip']").val(),
                 phoneNumber: $("input[name='dzPhoneNumber']").val()
             },
@@ -98,7 +98,7 @@
                 showMessage("Order placed successfully!", "alert-success");
                 // Clear the cart and redirect or update the UI as needed
                 localStorage.removeItem('cart');
-                window.location.href = '/order-success'; // Redirect to a success page
+                window.location.href = '/OrderView/OrderSuccess?orderId=' + response.orderId;
             },
             error: function (xhr, status, error) {
                 showMessage("Failed to place order. Please try again.", "alert-danger");

@@ -36,7 +36,6 @@ namespace BLeaf.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("AddressLine2")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -61,7 +60,6 @@ namespace BLeaf.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 

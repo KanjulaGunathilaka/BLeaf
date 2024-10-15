@@ -16,7 +16,7 @@ namespace BLeaf.Models
         public string AddressLine1 { get; set; }
 
         [StringLength(255)]
-        public string AddressLine2 { get; set; }
+        public string? AddressLine2 { get; set; }
 
         [StringLength(10, MinimumLength = 4)]
         public string ZipCode { get; set; }
@@ -25,7 +25,7 @@ namespace BLeaf.Models
         public string City { get; set; }
 
         [StringLength(100)]
-        public string State { get; set; }
+        public string? State { get; set; }
 
         [StringLength(15)]
         public string PhoneNumber { get; set; }

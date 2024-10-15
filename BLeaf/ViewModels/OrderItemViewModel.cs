@@ -20,7 +20,6 @@ namespace BLeaf.ViewModels
         public User User { get; set; }
         public Address Address { get; set; }
         public decimal OrderTotal { get; set; }
-        //public string PaymentMethod { get; set; }
         public List<OrderDetailViewModel> Items { get; set; }
     }
 }

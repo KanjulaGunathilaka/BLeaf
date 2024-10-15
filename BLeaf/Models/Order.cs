@@ -12,8 +12,8 @@ namespace BLeaf.Models
         public User User { get; set; }
 
         [ForeignKey("Address")]
-        public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public int? AddressId { get; set; }
+        public Address? Address { get; set; }
 
         [Required]
         [Range(0, double.MaxValue)]
