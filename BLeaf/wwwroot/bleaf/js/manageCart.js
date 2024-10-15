@@ -79,6 +79,7 @@
 
                 localStorage.setItem('cart', JSON.stringify(cart));
                 loadCart(); // Reload cart after adding item
+                updateCartItemCount(); // Update the cart item count
             },
             error: function (xhr, status, error) {
                 console.error("Failed to add item to cart:", xhr.responseText);
@@ -94,6 +95,7 @@
             cartItem.quantity = parseInt(newQuantity, 10);
             localStorage.setItem('cart', JSON.stringify(cart));
             loadCart(); // Reload cart after updating item
+            updateCartItemCount(); // Update the cart item count
         }
     }
 
@@ -103,6 +105,7 @@
         cart = cart.filter(cartItem => cartItem.item.itemId !== parseInt(cartItemId, 10));
         localStorage.setItem('cart', JSON.stringify(cart));
         loadCart(); // Reload cart after removing item
+        updateCartItemCount(); // Update the cart item count
     }
 
     function loadCart() {
@@ -147,7 +150,7 @@
 
         $("#itemTotal").text("$" + total);
         $("#grandTotal").text("$" + total);
-        $("#cartItemCount").text(itemCount);
+        updateCartItemCount(); // Ensure the cart item count is updated here as well
     }
 
     function showMessage(message, alertClass) {
@@ -177,6 +180,17 @@
         return count;
     }
 
+    // Function to update the cart item count in the header and sidebar
+    function updateCartItemCount() {
+        let cart = getCartItems();
+        let itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        $("#cartItemCount").text(itemCount); // Update header cart item count
+        $(".widget-title .text-primary").text(`(${itemCount})`); // Update sidebar cart item count
+    }
+
     // Initial load of the cart
     loadCart();
+
+    // Initial update of the cart item count
+    updateCartItemCount();
 });

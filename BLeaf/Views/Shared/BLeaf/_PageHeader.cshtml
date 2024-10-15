@@ -1,54 +1,59 @@
 ﻿<!-- Header -->
 <header class="site-header mo-left header header-transparent style-1">
-	<!-- Main Header -->
-	<div class="sticky-header main-bar-wraper navbar-expand-lg">
-		<div class="main-bar clearfix">
-			<div class="container clearfix">
-				<!-- Website Logo -->
-				<div class="logo-header mostion">
-					<a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/" class="responsive-img" style="max-height: 54px"></a>
-					<a href="@Url.Action("Index","BLeaf")" class="logo-white"><img src="~/bleaf/images/logo-white.png" alt="/" class="responsive-img" style="max-height: 54px"></a>
-				</div>
+    <!-- Main Header -->
+    <div class="sticky-header main-bar-wraper navbar-expand-lg">
+        <div class="main-bar clearfix">
+            <div class="container clearfix">
+                <!-- Website Logo -->
+                <div class="logo-header mostion">
+                    <a href="@Url.Action("Index","BLeaf")" class="logo-dark"><img src="~/bleaf/images/logo.png" alt="/" class="responsive-img" style="max-height: 54px"></a>
+                    <a href="@Url.Action("Index","BLeaf")" class="logo-white"><img src="~/bleaf/images/logo-white.png" alt="/" class="responsive-img" style="max-height: 54px"></a>
+                </div>
 
-				<!-- Nav Toggle Button -->
-				<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-					<span></span>
-					<span></span>
-					<span></span>
-				</button>
-				<!-- Header Nav -->
-				<div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
-					<div class="logo-header">
-						<a href="@Url.Action("Index","BLeaf")"><img src="~/bleaf/images/logo.png" alt="/"></a>
-					</div>
-					<ul class="nav navbar-nav navbar white">
-						<li><a href="@Url.Action("Index","BLeaf")">Home</a></li>
-						<li><a href="@Url.Action("OurMenu3","BLeaf")">Menu</a></li>
-						<li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
-						<li class="sub-menu-down">
-							<a href="javascript:void(0);">Shop</a>
-							<ul class="sub-menu">
-								<li><a href="@Url.Action("ShopCart","BLeaf")">Shop Cart</a></li>
-								<li><a href="@Url.Action("ShopCheckout","BLeaf")">Shop Checkout</a></li>
-								<li><a href="">Product Detail</a></li>
-							</ul>
-						</li>
-						<li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
-						@await Html.PartialAsync("BLeaf/_UserMenu")
-					</ul>
-					<div class="dz-social-icon">
-						<ul>
-							<li><a target="_blank" class="fab fa-facebook-f" href="https://www.facebook.com/"></a></li>
-							<li><a target="_blank" class="fab fa-twitter" href="https://twitter.com/"></a></li>
-							<li><a target="_blank" class="fab fa-linkedin-in" href="https://www.linkedin.com/"></a></li>
-							<li><a target="_blank" class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<!-- Main Header End -->
+                <!-- Nav Toggle Button -->
+                <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <!-- Header Nav -->
+                <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+                    <div class="logo-header">
+                        <a href="@Url.Action("Index","BLeaf")"><img src="~/bleaf/images/logo.png" alt="/"></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar white">
+                        <li><a href="@Url.Action("Index","BLeaf")">Home</a></li>
+                        <li><a href="@Url.Action("OurMenu3","BLeaf")">Menu</a></li>
+                        <li><a href="@Url.Action("AboutUs","BLeaf")">About Us</a></li>
+                        <li class="sub-menu-down">
+                            <a href="javascript:void(0);">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="@Url.Action("ShopCart","BLeaf")">Shop Cart</a></li>
+                                <li><a href="@Url.Action("ShopCheckout","BLeaf")">Shop Checkout</a></li>
+                                <li><a href="">Product Detail</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Action("ContactUs","BLeaf")">Contact Us</a></li>
+                        @await Html.PartialAsync("BLeaf/_UserMenu")
+                    </ul>
+                    <div class="dz-social-icon">
+                        <ul>
+                            <li><a target="_blank" class="fab fa-facebook-f" href="https://www.facebook.com/"></a></li>
+                            <li><a target="_blank" class="fab fa-twitter" href="https://twitter.com/"></a></li>
+                            <li><a target="_blank" class="fab fa-linkedin-in" href="https://www.linkedin.com/"></a></li>
+                            <li><a target="_blank" class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
+                        </ul>
+                    </div>
+                    <div class="extra-cell ms-3">
+                        <a href="@Url.Action("ShopCart","BLeaf")" class="btn btn-primary btn-hover-2">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                            <span id="cartItemCount" class="badge badge-pill badge-danger">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Header End -->
 </header>
 <!-- Header -->
