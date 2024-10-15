@@ -16,11 +16,14 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="title m-b15 m-lg-30">Related Products</h5>
+                        <h5 class="title m-b15 m-lg-30">Cart Items</h5>
                         <a href="javascript:void(0);" class="btn btn-primary panel-btn">Filter</a>
                     </div>
                     <div id="cartItemsContainer">
                         <!-- Cart items will be dynamically loaded here -->
+                        <div id="emptyCartMessage" class="alert alert-info" style="display: none;">
+                            Your cart is empty.
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -54,7 +57,8 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a href="@Url.Action("ShopCheckout","BLeaf")" class="btn btn-primary d-block text-center btn-md w-100 btn-hover-1"><span>Order Now <i class="fa-solid fa-arrow-right"></i></span></a>
+                                <a href="@Url.Action("ShopCheckout","BLeaf")" class="btn btn-primary d-block text-center btn-md w-100 btn-hover-1 btn-checkout"><span>Order Now <i class="fa-solid fa-arrow-right"></i></span></a>
+                                <div id="cartMessage" class="alert" style="display:none;"></div>
                             </div>
                         </div>
                     </aside>
@@ -77,7 +81,7 @@
     <!-- JAVASCRIPT FILES ========================================= -->
     <script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
     <script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-    <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELEECT -->
+    <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT -->
     <script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
     <script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
     <script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
@@ -85,12 +89,11 @@
     <script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- TOUCHSPIN -->
     <script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
     <script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- OWL-CAROUSEL -->
-    <script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
     <script src="~/bleaf/vendor/particles/particles.js"></script>
     <script src="~/bleaf/vendor/particles/particles-app.js"></script>
+    <script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
     <script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
-    <script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
-    <script src="~/bleaf/js/jquery.star-rating-svg.js"></script><!-- Star Rating JS -->
     <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- CUSTOM JS -->
     <script src="~/bleaf/js/manageCart.js"></script><!-- Custom Cart JS -->
+    <script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
 }

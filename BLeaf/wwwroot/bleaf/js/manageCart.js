@@ -45,6 +45,19 @@
         removeCartItem(cartItemId);
     });
 
+    // Checkout Button Click
+    $(document).on("click", ".btn-checkout", function (event) {
+        event.preventDefault();
+
+        let cart = getCartItems();
+        if (cart.length === 0) {
+            showMessage("Your cart is empty. Please add items to your cart before proceeding to checkout.", "alert-warning");
+            return;
+        }
+
+        window.location.href = $(this).attr("href");
+    });
+
     function addToCart(itemId, userId, quantity, shopCartUrl) {
         $.ajax({
             url: "/api/item/" + itemId,
@@ -97,29 +110,35 @@
         console.log('cart', cart);
         var cartItemsContainer = $("#cartItemsContainer");
         cartItemsContainer.empty();
-        $.each(cart, function (index, cartItem) {
-            console.log('Setting cart item ID:', cartItem.item.itemId);
-            var cartItemHtml = `
-            <div class="cart-item style-1">
-                <div class="dz-media">
-                    <img src="${cartItem.item.imageUrl}" alt="${cartItem.item.name}">
-                </div>
-                <div class="dz-content">
-                    <div class="dz-head">
-                        <h6 class="title mb-0">${cartItem.item.name}</h6>
-                        <a href="javascript:void(0);" class="remove-from-cart" data-cart-item-id="${cartItem.item.itemId}"><i class="fa-solid fa-xmark text-danger"></i></a>
+
+        if (cart.length === 0) {
+            $("#emptyCartMessage").show();
+        } else {
+            $("#emptyCartMessage").hide();
+            $.each(cart, function (index, cartItem) {
+                console.log('Setting cart item ID:', cartItem.item.itemId);
+                var cartItemHtml = `
+                <div class="cart-item style-1">
+                    <div class="dz-media">
+                        <img src="${cartItem.item.imageUrl}" alt="${cartItem.item.name}">
                     </div>
-                    <div class="dz-body">
-                        <div class="btn-quantity style-1">
-                            <input id="quantity_${cartItem.item.itemId}" type="text" value="${cartItem.quantity}" class="update-cart" data-cart-item-id="${cartItem.item.itemId}">
+                    <div class="dz-content">
+                        <div class="dz-head">
+                            <h6 class="title mb-0">${cartItem.item.name}</h6>
+                            <a href="javascript:void(0);" class="remove-from-cart" data-cart-item-id="${cartItem.item.itemId}"><i class="fa-solid fa-xmark text-danger"></i></a>
                         </div>
-                        <h5 class="price text-primary mb-0">$${cartItem.item.price * cartItem.quantity}</h5>
+                        <div class="dz-body">
+                            <div class="btn-quantity style-1">
+                                <input id="quantity_${cartItem.item.itemId}" type="text" value="${cartItem.quantity}" class="update-cart" data-cart-item-id="${cartItem.item.itemId}">
+                            </div>
+                            <h5 class="price text-primary mb-0">$${(cartItem.item.price * cartItem.quantity).toFixed(2)}</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-            cartItemsContainer.append(cartItemHtml);
-        });
+            `;
+                cartItemsContainer.append(cartItemHtml);
+            });
+        }
 
         // Update bill details
         let total = calculateCartTotal();
@@ -131,7 +150,7 @@
         $("#cartItemCount").text(itemCount);
     }
 
-    function showCartMessage(message, alertClass) {
+    function showMessage(message, alertClass) {
         var messageDiv = $("#cartMessage");
         messageDiv.removeClass();
         messageDiv.addClass("alert " + alertClass);
@@ -142,14 +161,8 @@
         }, 5000);
     }
 
-    // Function to get all items from the cart
     function getCartItems() {
         return JSON.parse(localStorage.getItem('cart')) || [];
-    }
-
-    // Function to clear the cart
-    function clearCart() {
-        localStorage.removeItem('cart');
     }
 
     function calculateCartTotal() {
