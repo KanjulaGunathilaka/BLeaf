@@ -31,6 +31,36 @@
         addToCart(itemId, userId, quantity, shopCartUrl);
     });
 
+    // Event listener for Buy Now button
+    $(document).off("click", ".btn-buy-now").on("click", ".btn-buy-now", function (event) {
+        event.preventDefault();
+
+        console.log("Buy Now button clicked");
+
+        var itemId = $(this).data("item-id");
+        var userId = $(this).data("user-id");
+        var quantity = parseInt($("#quantity_" + itemId).val()) || 1;
+        var checkoutUrl = $(this).data("checkout-url");
+
+        if (userId === "guest") {
+            userId = null;
+        }
+
+        console.log("Adding to cart and navigating to checkout:", { itemId, userId, quantity });
+
+        if (!itemId) {
+            console.error("Item ID is missing!");
+            return;
+        }
+
+        if (quantity < 1 || quantity > 100) {
+            showMessage("Quantity must be between 1 and 100.", "alert-warning", "#cartMessage");
+            return;
+        }
+
+        addToCartAndCheckout(itemId, userId, quantity, checkoutUrl);
+    });
+
     // Update Cart Item Quantity
     $(document).off("change", ".update-cart").on("change", ".update-cart", function () {
         var cartItemId = $(this).data("cart-item-id");
@@ -97,6 +127,41 @@
                 updateCartItemCount(); // Update the cart item count
                 loadCart(); // Reload cart after adding item
                 showMessage("Item added to cart successfully!", "alert-success", "#cartMessage");
+            },
+            error: function (xhr, status, error) {
+                console.error("Failed to add item to cart:", xhr.responseText);
+                showMessage("Failed to add item to cart.", "alert-danger", "#cartMessage");
+            }
+        });
+    }
+
+    function addToCartAndCheckout(itemId, userId, quantity, checkoutUrl) {
+        $.ajax({
+            url: "/api/item/" + itemId,
+            type: 'GET',
+            success: function (item) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                quantity = parseInt(quantity, 10);
+                console.log('Parsed quantity:', quantity);
+
+                // Check if the item already exists in the cart
+                console.log('item', item, itemId);
+                let existingCartItem = cart.find(cartItem => cartItem.item.itemId === item.itemId);
+                console.log("existing", existingCartItem);
+                if (existingCartItem) {
+                    // Update the quantity of the existing item
+                    existingCartItem.quantity += quantity;
+                } else {
+                    // Add the new item to the cart
+                    cart.push({ item, quantity: quantity });
+                }
+
+                console.log("Cart after adding item:", cart);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartItemCount(); // Update the cart item count
+                loadCart(); // Reload cart after adding item
+                window.location.href = checkoutUrl; // Navigate to checkout page
             },
             error: function (xhr, status, error) {
                 console.error("Failed to add item to cart:", xhr.responseText);
