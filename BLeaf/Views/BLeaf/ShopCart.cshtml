@@ -19,13 +19,13 @@
                 <div class="col-lg-8">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="title m-b15 m-lg-30">Cart Items</h5>
-                        <a href="javascript:void(0);" class="btn btn-primary panel-btn">Filter</a>
+                        <a href="javascript:void(0);" class="btn btn-primary panel-btn">Filter</a>                       
                     </div>
                     <div id="cartItemsContainer">
                         <!-- Cart items will be dynamically loaded here -->
-                        <div id="emptyCartMessage" class="alert alert-info" style="display: none;">
-                            Your cart is empty.
-                        </div>
+                    </div>
+                    <div id="emptyCartMessage" class="alert alert-info" style="display: none;">
+                        Your cart is empty.
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -98,4 +98,25 @@
     <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- CUSTOM JS -->
     <script src="~/bleaf/js/manageCart.js"></script><!-- Custom Cart JS -->
     <script src="~/bleaf/js/custom.min.js"></script><!-- CUSTOM JS -->
+    <script>
+        $(document).ready(function () {
+            // Increment quantity
+            $(document).on('click', '.increment-quantity', function () {
+                var input = $(this).siblings('input[name="quantity"]');
+                var currentValue = parseInt(input.val()) || 1;
+                if (currentValue < 100) {
+                    input.val(currentValue + 1);
+                }
+            });
+
+            // Decrement quantity
+            $(document).on('click', '.decrement-quantity', function () {
+                var input = $(this).siblings('input[name="quantity"]');
+                var currentValue = parseInt(input.val()) || 1;
+                if (currentValue > 1) {
+                    input.val(currentValue - 1);
+                }
+            });
+        });
+    </script>
 }

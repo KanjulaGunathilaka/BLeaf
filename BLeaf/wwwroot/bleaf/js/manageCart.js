@@ -23,6 +23,11 @@
             return;
         }
 
+        if (quantity < 1 || quantity > 100) {
+            showMessage("Quantity must be between 1 and 100.", "alert-warning", "#cartMessage");
+            return;
+        }
+
         addToCart(itemId, userId, quantity, shopCartUrl);
     });
 
@@ -32,6 +37,11 @@
         var newQuantity = parseInt($(this).val());
 
         console.log("Updating cart:", { cartItemId, newQuantity });
+
+        if (newQuantity < 1 || newQuantity > 100) {
+            showMessage("Quantity must be between 1 and 100.", "alert-warning", "#cartMessage");
+            return;
+        }
 
         updateCartItem(cartItemId, newQuantity);
     });
@@ -53,7 +63,7 @@
 
         let cart = getCartItems();
         if (cart.length === 0) {
-            showMessage("Your cart is empty. Please add items to your cart before proceeding to checkout.", "alert-warning");
+            showMessage("Your cart is empty. Please add items to your cart before proceeding to checkout.", "alert-warning", "#cartMessage");
             return;
         }
 
@@ -86,9 +96,11 @@
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartItemCount(); // Update the cart item count
                 loadCart(); // Reload cart after adding item
+                showMessage("Item added to cart successfully!", "alert-success", "#cartMessage");
             },
             error: function (xhr, status, error) {
                 console.error("Failed to add item to cart:", xhr.responseText);
+                showMessage("Failed to add item to cart.", "alert-danger", "#cartMessage");
             }
         });
     }
@@ -156,8 +168,8 @@
         $("#grandTotal").text("$" + total);
     }
 
-    function showMessage(message, alertClass) {
-        var messageDiv = $("#cartMessage");
+    function showMessage(message, alertClass, container) {
+        var messageDiv = $(container);
         messageDiv.removeClass();
         messageDiv.addClass("alert " + alertClass);
         messageDiv.text(message);
