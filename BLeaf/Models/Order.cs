@@ -25,6 +25,9 @@ namespace BLeaf.Models
         [StringLength(50)]
         public string PaymentStatus { get; set; } = "Unpaid";
 
+        //[StringLength(500)]
+        //public string? SpecialNotes { get; set; }
+
         public DateTime OrderPlacedAt { get; set; } = DateTime.Now;
         public DateTime? EstimatedDelivery { get; set; }
         public DateTime? DeliveredAt { get; set; }

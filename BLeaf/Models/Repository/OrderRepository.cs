@@ -17,12 +17,22 @@ namespace BLeaf.Models.Repository
 
         public async Task<IEnumerable<Order>> GetAllAsync()
         {
-            return await _context.Orders.Include(o => o.User).Include(o => o.Address).Include(o => o.OrderDetails).ThenInclude(od => od.Item).ToListAsync();
+            return await _context.Orders
+                .Include(o => o.User)
+                .Include(o => o.Address)
+                .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.Item)
+                .ToListAsync();
         }
 
         public async Task<Order> GetByIdAsync(int id)
         {
-            return await _context.Orders.Include(o => o.User).Include(o => o.Address).Include(o => o.OrderDetails).ThenInclude(od => od.Item).FirstOrDefaultAsync(o => o.OrderId == id);
+            return await _context.Orders
+                .Include(o => o.User)
+                .Include(o => o.Address)
+                .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.Item)
+                .FirstOrDefaultAsync(o => o.OrderId == id);
         }
 
         public async Task AddAsync(Order order)
@@ -45,6 +55,11 @@ namespace BLeaf.Models.Repository
                 _context.Orders.Remove(order);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<Item> GetItemByIdAsync(int itemId)
+        {
+            return await _context.Items.FindAsync(itemId);
         }
     }
 }
