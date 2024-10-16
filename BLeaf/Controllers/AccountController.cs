@@ -116,6 +116,7 @@ namespace BLeaf.Controllers
                             <li><strong>Opening Hours Weekday:</strong> 07:00 AM - 08:00 PM, Monday to Friday</li>
                             <li><strong>Opening Hours Weekend:</strong> 08:00 AM - 08:00 PM, Saturday and Sunday</li>
                             <li><strong>Contact:</strong> 022 522 0400</li>
+                            <li><strong>Facebook:</strong> https://www.facebook.com/BLeafNZ/</li>
                         </ul>
                         <p>As a registered member, you will enjoy exclusive discounts and special offers. Stay tuned for our latest updates and promotions!</p>
                         <p>If you have any questions or need assistance, feel free to reach out to us at bleafcaf@gmail.com.</p>
