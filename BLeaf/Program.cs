@@ -1,10 +1,14 @@
 using BLeaf.Data;
 using BLeaf.Models.IRepository;
 using BLeaf.Models.Repository;
+using BLeaf.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var sendGridApiKey = builder.Configuration["SendGrid:ApiKey"];
+builder.Services.AddSingleton<IEmailSender>(new EmailSender(sendGridApiKey));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>

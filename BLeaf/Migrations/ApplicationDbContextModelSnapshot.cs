@@ -245,7 +245,7 @@ namespace BLeaf.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeliveredAt")
@@ -711,8 +711,7 @@ namespace BLeaf.Migrations
                     b.HasOne("BLeaf.Models.Address", "Address")
                         .WithMany("Orders")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("User", "User")
                         .WithMany("Orders")

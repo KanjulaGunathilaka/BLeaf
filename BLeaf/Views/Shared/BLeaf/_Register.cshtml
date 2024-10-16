@@ -8,7 +8,7 @@
                 <h4 class="title">Join Our Online Shop</h4>
                 <p>We’d love have you join our restaurant so that you can enjoy discounts and special offers</p>
             </div>
-            <form asp-controller="Account" asp-action="Register" method="post">
+            <form id="registerForm" asp-controller="Account" asp-action="Register" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group m-b15">
                     <label class="form-label">Name*</label>
@@ -46,6 +46,7 @@
                     </div>
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
+                <span id="registerValidation" class="text-danger"></span>
                 <button name="submit" value="submit" type="submit" class="btn btn-primary w-100 d-block btn-hover-2">
                     <span>Sign Up</span>
                 </button>
@@ -56,4 +57,4 @@
             </form>
         </div>
     </div>
-</div> 
+</div>

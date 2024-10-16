@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using BLeaf.ViewModels;
-using BLeaf.Models;
 using BLeaf.Data;
-using System.Threading.Tasks;
-using BLeaf.Models.IRepository;
-using BLeaf.Models.Repository;
+using BLeaf.Services;
 
 namespace BLeaf.Controllers
 {
@@ -14,18 +11,19 @@ namespace BLeaf.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ApplicationDbContext _context;
+        private readonly IEmailSender _emailSender;
 
-        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ApplicationDbContext context)
+        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ApplicationDbContext context, IEmailSender emailSender)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _context = context;
+            _emailSender = emailSender;
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            //return PartialView("BLeaf/_Login", new LoginViewModel());
             return View(new LoginViewModel());
         }
 
@@ -34,8 +32,7 @@ namespace BLeaf.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //return PartialView("BLeaf/_Login", new LoginViewModel());
-                return View(model);
+                return Json(new { success = false, message = "Invalid login attempt." });
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
@@ -45,13 +42,13 @@ namespace BLeaf.Controllers
                 if (user != null && await _userManager.IsInRoleAsync(user, "Admin"))
                 {
                     HttpContext.Session.SetString("UserSessionID", user.Email);
-                    return RedirectToAction("AdminPanel", "Admin");
+                    return Json(new { success = true, redirectUrl = Url.Action("AdminPanel", "Admin") });
                 }
-                return RedirectToAction("Index", "BLeaf");
+                return Json(new { success = true, redirectUrl = Url.Action("Index", "BLeaf") });
             }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt");
-            return View( model);
+            return Json(new { success = false, message = "Invalid login attempt." });
         }
 
         [HttpPost]
@@ -72,14 +69,13 @@ namespace BLeaf.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Register", model);
+                return Json(new { success = false, message = "Invalid registration attempt." });
             }
 
             var existingUser = await _userManager.FindByEmailAsync(model.Email);
             if (existingUser != null)
             {
-                ModelState.AddModelError(string.Empty, "A user with this email already exists.");
-                return View("Register", model);
+                return Json(new { success = false, message = "A user with this email already exists." });
             }
 
             var identityUser = new IdentityUser { UserName = model.Email, Email = model.Email };
@@ -103,15 +99,42 @@ namespace BLeaf.Controllers
                 await _context.SaveChangesAsync();
 
                 await _signInManager.SignInAsync(identityUser, isPersistent: false);
-                return RedirectToAction("Index", "BLeaf");
+
+                // Send a welcome email
+                try
+                {
+                    var subject = "Welcome to Our Restaurant!";
+                var plainTextContent = $"Dear {model.FullName},\n\nThank you for registering with our restaurant. We are excited to have you on board!\n\nBest Regards,\nYour Restaurant Name";
+                var htmlContent = $@"
+                    <html>
+                    <body>
+                        <h1>Welcome to Our Restaurant, {model.FullName}!</h1>
+                        <p>Thank you for registering with our restaurant. We are excited to have you on board!</p>
+                        <p>Here are some details about our restaurant:</p>
+                        <ul>
+                            <li><strong>Location:</strong> 408 Hutt Road, Alicetown, Lower Hutt 5010</li>
+                            <li><strong>Opening Hours Weekday:</strong> 07:00 AM - 08:00 PM, Monday to Friday</li>
+                            <li><strong>Opening Hours Weekend:</strong> 08:00 AM - 08:00 PM, Saturday and Sunday</li>
+                            <li><strong>Contact:</strong> 022 522 0400</li>
+                        </ul>
+                        <p>As a registered member, you will enjoy exclusive discounts and special offers. Stay tuned for our latest updates and promotions!</p>
+                        <p>If you have any questions or need assistance, feel free to reach out to us at bleafcaf@gmail.com.</p>
+                        <p>We look forward to serving you!</p>
+                        <p>Best Regards,<br>BLeaf Cafe</p>
+                    </body>
+                    </html>";
+
+                await _emailSender.SendEmailAsync(model.Email, subject, plainTextContent, htmlContent);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to send email: {ex.Message}");
+                }
+                return Json(new { success = true, redirectUrl = Url.Action("Index", "BLeaf") });
             }
 
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-
-            return View("Register", model);
+            var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+            return Json(new { success = false, message = errors });
         }
     }
 }

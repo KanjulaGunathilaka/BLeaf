@@ -1,12 +1,8 @@
 ﻿$(document).ready(function () {
-    console.log("manageCart.js loaded");
 
     // Ensure single event listener for Add to Cart
     $(document).off("click", ".add-to-cart").on("click", ".add-to-cart", function (event) {
         event.preventDefault();
-
-        console.log("Add to Cart button clicked");
-
         var itemId = $(this).data("item-id");
         var userId = $(this).data("user-id");
         var quantity = parseInt($("#quantity_" + itemId).val()) || 1;
@@ -15,9 +11,6 @@
         if (userId === "guest") {
             userId = null;
         }
-
-        console.log("Adding to cart:", { itemId, userId, quantity });
-
         if (!itemId) {
             console.error("Item ID is missing!");
             return;
@@ -34,9 +27,6 @@
     // Event listener for Buy Now button
     $(document).off("click", ".btn-buy-now").on("click", ".btn-buy-now", function (event) {
         event.preventDefault();
-
-        console.log("Buy Now button clicked");
-
         var itemId = $(this).data("item-id");
         var userId = $(this).data("user-id");
         var quantity = parseInt($("#quantity_" + itemId).val()) || 1;
@@ -45,9 +35,6 @@
         if (userId === "guest") {
             userId = null;
         }
-
-        console.log("Adding to cart and navigating to checkout:", { itemId, userId, quantity });
-
         if (!itemId) {
             console.error("Item ID is missing!");
             return;
@@ -65,25 +52,17 @@
     $(document).off("change", ".update-cart").on("change", ".update-cart", function () {
         var cartItemId = $(this).data("cart-item-id");
         var newQuantity = parseInt($(this).val());
-
-        console.log("Updating cart:", { cartItemId, newQuantity });
-
         if (newQuantity < 1 || newQuantity > 100) {
             showMessage("Quantity must be between 1 and 100.", "alert-warning", "#cartMessage");
             return;
         }
-
         updateCartItem(cartItemId, newQuantity);
     });
 
     // Remove from Cart
     $(document).off("click", ".remove-from-cart").on("click", ".remove-from-cart", function (event) {
         event.preventDefault();
-
         var cartItemId = $(this).data("cart-item-id");
-
-        console.log("Removing from cart:", { cartItemId });
-
         removeCartItem(cartItemId);
     });
 
@@ -106,14 +85,10 @@
             type: 'GET',
             success: function (item) {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
                 quantity = parseInt(quantity, 10);
-                console.log('Parsed quantity:', quantity);
 
                 // Check if the item already exists in the cart
-                console.log('item', item, itemId);
                 let existingCartItem = cart.find(cartItem => cartItem.item.itemId === item.itemId);
-                console.log("existing", existingCartItem);
                 if (existingCartItem) {
                     // Update the quantity of the existing item
                     existingCartItem.quantity += quantity;
@@ -122,14 +97,12 @@
                     cart.push({ item, quantity: quantity });
                 }
 
-                console.log("Cart after adding item:", cart);
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartItemCount(); // Update the cart item count
                 loadCart(); // Reload cart after adding item
                 showMessage("Item added to cart successfully!", "alert-success", "#cartMessage");
             },
             error: function (xhr, status, error) {
-                console.error("Failed to add item to cart:", xhr.responseText);
                 showMessage("Failed to add item to cart.", "alert-danger", "#cartMessage");
             }
         });
@@ -141,14 +114,9 @@
             type: 'GET',
             success: function (item) {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
                 quantity = parseInt(quantity, 10);
-                console.log('Parsed quantity:', quantity);
 
-                // Check if the item already exists in the cart
-                console.log('item', item, itemId);
                 let existingCartItem = cart.find(cartItem => cartItem.item.itemId === item.itemId);
-                console.log("existing", existingCartItem);
                 if (existingCartItem) {
                     // Update the quantity of the existing item
                     existingCartItem.quantity += quantity;
@@ -157,21 +125,18 @@
                     cart.push({ item, quantity: quantity });
                 }
 
-                console.log("Cart after adding item:", cart);
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartItemCount(); // Update the cart item count
                 loadCart(); // Reload cart after adding item
                 window.location.href = checkoutUrl; // Navigate to checkout page
             },
             error: function (xhr, status, error) {
-                console.error("Failed to add item to cart:", xhr.responseText);
                 showMessage("Failed to add item to cart.", "alert-danger", "#cartMessage");
             }
         });
     }
 
     function updateCartItem(cartItemId, newQuantity) {
-        console.log('Updating cart item ID:', cartItemId, 'with new quantity:', newQuantity);
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let cartItem = cart.find(cartItem => cartItem.item.itemId === parseInt(cartItemId, 10));
         if (cartItem) {
@@ -183,7 +148,6 @@
     }
 
     function removeCartItem(cartItemId) {
-        console.log('Removing cart item ID:', cartItemId);
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         cart = cart.filter(cartItem => cartItem.item.itemId !== parseInt(cartItemId, 10));
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -193,7 +157,6 @@
 
     function loadCart() {
         let cart = getCartItems();
-        console.log('cart', cart);
         var cartItemsContainer = $("#cartItemsContainer");
         cartItemsContainer.empty();
 
@@ -202,7 +165,6 @@
         } else {
             $("#emptyCartMessage").hide();
             $.each(cart, function (index, cartItem) {
-                console.log('Setting cart item ID:', cartItem.item.itemId);
                 var cartItemHtml = `
                 <div class="cart-item style-1">
                     <div class="dz-media">
@@ -228,7 +190,6 @@
 
         // Update bill details
         let total = calculateCartTotal();
-        console.log('total', total);
         $("#itemTotal").text("$" + total);
         $("#grandTotal").text("$" + total);
     }
