@@ -24,6 +24,24 @@
         addToCart(itemId, userId, quantity, shopCartUrl);
     });
 
+    // Event listener for Add to Cart from Menu button
+    $(document).off("click", ".add-to-cart-menu").on("click", ".add-to-cart-menu", function (event) {
+        event.preventDefault();
+        var itemId = $(this).data("item-id");
+        var userId = $(this).data("user-id");
+        var quantity = 1; // Default quantity for menu add-to-cart
+
+        if (userId === "guest") {
+            userId = null;
+        }
+        if (!itemId) {
+            console.error("Item ID is missing!");
+            return;
+        }
+
+        addToCart(itemId, userId, quantity);
+    });
+
     // Event listener for Buy Now button
     $(document).off("click", ".btn-buy-now").on("click", ".btn-buy-now", function (event) {
         event.preventDefault();
@@ -52,11 +70,22 @@
     $(document).off("change", ".update-cart").on("change", ".update-cart", function () {
         var cartItemId = $(this).data("cart-item-id");
         var newQuantity = parseInt($(this).val());
-        if (newQuantity < 1 || newQuantity > 100) {
+
+        // Handle null or invalid values
+        if (!newQuantity || newQuantity < 1 || newQuantity > 100) {
             showMessage("Quantity must be between 1 and 100.", "alert-warning", "#cartMessage");
+            $(this).val(1); // Reset to minimum value
             return;
         }
+
         updateCartItem(cartItemId, newQuantity);
+    });
+
+    // Prevent user from completely removing the text from the textbox
+    $(document).off("input", ".update-cart").on("input", ".update-cart", function () {
+        if ($(this).val() === "") {
+            $(this).val(1); // Set to minimum value if empty
+        }
     });
 
     // Remove from Cart

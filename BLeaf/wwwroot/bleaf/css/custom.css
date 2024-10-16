@@ -50,3 +50,7 @@
         max-height: 100px; /* Maximum height for even smaller screens */
     }
 }
+
+.btn-logout {
+    color: white;
+}

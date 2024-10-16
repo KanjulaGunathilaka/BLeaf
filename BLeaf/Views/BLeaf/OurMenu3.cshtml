@@ -42,7 +42,12 @@
                             <div class="dz-content">
                                 <h5 class="title"><a href="@Url.Action( "ProductDetail","BLeaf")/@item.ItemId">@item.Name</a></h5>
                                 <p>@item.Description</p>
-                                <span class="price">$@item.Price</span>
+                                <div class="price-container">
+                                    <span class="price">$@item.Price</span>
+                                    <a href="javascript:void(0);" class="btn btn-primary btn-square btn-shadow add-to-cart-menu" data-item-id="@item.ItemId" data-user-id="@User.Identity.Name" title="Add to Cart">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -60,6 +65,42 @@
     <link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/bleaf/vendor/nouislider/nouislider.min.css">
+    <style>
+        .price-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-to-cart-menu {
+            margin-left: 10px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+            .add-to-cart-menu:hover {
+                color: #ede100;
+            }
+
+                .add-to-cart-menu:hover::after {
+                    content: 'Add to Cart';
+                    position: absolute;
+                    background-color: #fff;
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    top: -30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    white-space: nowrap;
+                }
+
+        .added-to-cart {
+            background-color: green !important;
+            border-color: green !important;
+            color: white !important;
+        }
+    </style>
 }
 @section bleaf_script
 {
