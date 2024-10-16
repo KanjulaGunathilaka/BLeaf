@@ -1,19 +1,61 @@
 ﻿@model IEnumerable<BLeaf.Models.Order>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Management</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+@{
+    Layout = "~/Views/Shared/_LayoutBLeaf.cshtml";
+}
+
+<div class="page-content bg-white">
+    <!-- Banner  -->
+    <div class="dz-bnr-inr style-1 text-center bg-parallax bg-parallax" style="background-image:url('../bleaf/images/banner/bnr1.jpg'); background-size:cover; background-position:center; max-height: 200px; height: 100vh;">
+        <div class="container">
+            <div class="dz-bnr-inr-entry">
+                <h1>Order Management</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
     <div class="container mt-5">
-        <h2>Order Management</h2>
         <div id="orderMessage" class="alert" style="display: none;"></div>
 
-        <div id="orderTable" class="mt-3">
+        <div id="editOrderForm" style="display: none;">
+            <h3 id="orderFormTitle">Edit Order Details</h3>
+            <form id="orderForm">
+                <input type="hidden" id="orderId" name="orderId" />
+                <input type="hidden" id="orderUserId" name="orderUserId" />
+                <input type="hidden" id="orderUserFullName" name="orderUserFullName" />
+                <input type="hidden" id="orderUserEmail" name="orderUserEmail" />
+                <input type="hidden" id="orderAddressId" name="orderAddressId" />
+                <input type="hidden" id="orderTotal" name="orderTotal" />
+                <input type="hidden" id="orderPlacedAt" name="orderPlacedAt" />
+                <input type="hidden" id="orderEstimatedDelivery" name="orderEstimatedDelivery" />
+                <input type="hidden" id="orderDeliveredAt" name="orderDeliveredAt" />
+
+                <div class="form-group">
+                    <label for="orderStatus">Order Status:</label>
+                    <select id="orderStatus" name="orderStatus" class="form-control">
+                        <option value="Pending">Pending</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="paymentStatus">Payment Status:</label>
+                    <select id="paymentStatus" name="paymentStatus" class="form-control">
+                        <option value="Unpaid">Unpaid</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Refunded">Refunded</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <button id="submitOrder" type="button" class="btn btn-primary">Update Order</button>
+                    <button id="cancelOrderEdit" type="button" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="orderTable" class="mt-3 table-responsive">
             <h3>View Orders</h3>
             <table id="orderDataTable" class="table table-striped table-hover">
                 <thead>
@@ -23,7 +65,6 @@
                         <th>Address</th>
                         <th>Order Total</th>
                         <th>Order Status</th>
-                        <th>Payment Method</th>
                         <th>Payment Status</th>
                         <th>Order Placed At</th>
                         <th>Estimated Delivery</th>
@@ -37,7 +78,7 @@
                         <tr>
                             <td>@order.OrderId</td>
                             <td>@order.User.FullName</td>
-                            <td>@order.Address.AddressLine1</td>
+                            <td>@order.Address?.AddressLine1</td>
                             <td>@order.OrderTotal</td>
                             <td>@order.OrderStatus</td>
                             <td>@order.PaymentStatus</td>
@@ -45,8 +86,10 @@
                             <td>@order.EstimatedDelivery</td>
                             <td>@order.DeliveredAt</td>
                             <td>
-                                <button class="btn btn-secondary edit-order" data-id="@order.OrderId">Edit</button>
-                                <button class="btn btn-danger delete-order" data-id="@order.OrderId">Delete</button>
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <button class="btn btn-secondary edit-order m-1" data-id="@order.OrderId">Edit</button>
+                                    <button class="btn btn-danger delete-order m-1" data-id="@order.OrderId">Delete</button>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -54,141 +97,40 @@
             </table>
         </div>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            function loadOrders() {
-                $.ajax({
-                    type: "GET",
-                    url: "/api/order",
-                    success: function (orders) {
-                        var table = $("#orderDataTable tbody");
-                        table.empty();
-                        $.each(orders, function (i, order) {
-                            var row = $("<tr>");
-                            row.append($("<td>").text(order.orderId));
-                            row.append($("<td>").text(order.user.fullName));
-                            row.append($("<td>").text(order.address.addressLine1));
-                            row.append($("<td>").text(order.orderTotal));
-                            row.append($("<td>").text(order.orderStatus));
-                            row.append($("<td>").text(order.paymentMethod));
-                            row.append($("<td>").text(order.paymentStatus));
-                            row.append($("<td>").text(order.orderPlacedAt));
-                            row.append($("<td>").text(order.estimatedDelivery));
-                            row.append($("<td>").text(order.deliveredAt));
-                            row.append($("<td>").html('<button class="btn btn-secondary edit-order" data-id="' + order.orderId + '">Edit</button> <button class="btn btn-danger delete-order" data-id="' + order.orderId + '">Delete</button>'));
-                            table.append(row);
-                        });
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Failed to load orders:", error);
-                    }
-                });
-            }
+@section bleaf_style
+{
+    <!-- Stylesheet -->
+    <link href="~/bleaf/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/lightgallery/dist/css/lightgallery.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/lightgallery/dist/css/lg-thumbnail.css" rel="stylesheet">
+    <link href="~/bleaf/vendor/lightgallery/dist/css/lg-zoom.css" rel="stylesheet">
+    <link href="~/bleaf/css/custom.css" rel="stylesheet">
+}
 
-            loadOrders();
-
-            $(document).on("click", ".edit-order", function () {
-                var orderId = $(this).data("id");
-                editOrder(orderId);
-            });
-
-            $(document).on("click", ".delete-order", function () {
-                var orderId = $(this).data("id");
-                showOrderDeleteConfirmation(orderId);
-            });
-
-            function editOrder(orderId) {
-                $.ajax({
-                    type: "GET",
-                    url: "/api/order/" + orderId,
-                    success: function (order) {
-                        populateOrderForm(order);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Failed to fetch order:", error);
-                    }
-                });
-            }
-
-            function deleteOrder(orderId) {
-                $.ajax({
-                    type: "DELETE",
-                    url: "/api/order/" + orderId,
-                    success: function (response) {
-                        showOrderMessage("Order deleted successfully", "alert-success");
-                        loadOrders();
-                        clearOrderMessage();
-                    },
-                    error: function (xhr, status, error) {
-                        showOrderMessage("Failed to delete order", "alert-danger");
-                        console.error("Failed to delete order:", xhr.responseText);
-                        clearOrderMessage();
-                    }
-                });
-            }
-
-            function showOrderDeleteConfirmation(orderId) {
-                var confirmationModal = `
-                            <div class="modal fade" tabindex="-1" role="dialog" id="deleteOrderConfirmationModal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Confirm Deletion</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete this order?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" id="confirmDeleteOrderCancelButton">Cancel</button>
-                                            <button type="button" class="btn btn-danger" id="confirmDeleteOrderButton">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                $('body').append(confirmationModal);
-
-                $('#deleteOrderConfirmationModal').modal('show');
-
-                $('#confirmDeleteOrderButton').on('click', function () {
-                    deleteOrder(orderId);
-                    $('#deleteOrderConfirmationModal').modal('hide');
-                });
-
-                $('#confirmDeleteOrderCancelButton').on('click', function () {
-                    $('#deleteOrderConfirmationModal').modal('hide');
-                });
-
-                $('#deleteOrderConfirmationModal').on('hidden.bs.modal', function (e) {
-                    $(this).remove();
-                });
-            }
-
-            function populateOrderForm(order) {
-                // Populate the form with order details
-                // You can add a form similar to the other pages if you need to edit order details
-            }
-
-            function showOrderMessage(message, alertClass) {
-                var messageDiv = $("#orderMessage");
-                messageDiv.removeClass();
-                messageDiv.addClass("alert " + alertClass);
-                messageDiv.text(message);
-                messageDiv.show();
-            }
-
-            function clearOrderMessage() {
-                var messageDiv = $("#orderMessage");
-                messageDiv.removeClass();
-                messageDiv.text("");
-                messageDiv.hide();
-            }
-        });
-    </script>
-</body>
-</html>
+@section bleaf_script
+{
+    <!-- JAVASCRIPT FILES ========================================= -->
+    <script src="~/bleaf/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+    <script src="~/bleaf/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+    <script src="~/bleaf/vendor/bootstrap-select/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT -->
+    <script src="~/bleaf/vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN -->
+    <script src="~/bleaf/vendor/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+    <script src="~/bleaf/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+    <script src="~/bleaf/vendor/wow/wow.js"></script><!-- WOW JS -->
+    <script src="~/bleaf/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+    <script src="~/bleaf/vendor/lightgallery/dist/lightgallery.min.js"></script>
+    <script src="~/bleaf/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    <script src="~/bleaf/vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="~/bleaf/vendor/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+    <script src="~/bleaf/vendor/particles/particles.js"></script>
+    <script src="~/bleaf/vendor/particles/particles-app.js"></script>
+    <script src="~/bleaf/js/dz.carousel.min.js"></script><!-- OWL-CAROUSEL -->
+    <script src="~/bleaf/js/dz.ajax.js"></script><!-- AJAX -->
+    <script src="~/bleaf/js/custom.js"></script><!-- CUSTOM JS -->
+    <script src="~/bleaf/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER JS -->
+    <script src="~/bleaf/js/manageOrders.js"></script>
+}

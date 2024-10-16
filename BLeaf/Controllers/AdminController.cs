@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using BLeaf.Models.IRepository;
 using BLeaf.ViewModels;
+using BLeaf.Models.Repository;
 
 namespace BLeaf.Controllers
 {
@@ -13,13 +14,15 @@ namespace BLeaf.Controllers
         private readonly IItemRepository _itemRepository;
         private readonly IUserRepository _userRepository;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IOrderRepository _orderRepository;
 
-        public AdminController(ICategoryRepository categoryRepository, IItemRepository itemRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager)
+        public AdminController(ICategoryRepository categoryRepository, IItemRepository itemRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager, IOrderRepository orderRepository)
         {
             _categoryRepository = categoryRepository;
             _itemRepository = itemRepository;
             _userRepository = userRepository;
             _userManager = userManager;
+            _orderRepository = orderRepository;
         }
 
         // Action to manage items
@@ -48,6 +51,12 @@ namespace BLeaf.Controllers
             var roles = new List<string> { "Customer", "Admin" };
             var adminViewModel = new BLeafViewModel { Users = users, Roles = roles };
             return View(adminViewModel);
+        }
+
+        public IActionResult ManageOrders()
+        {
+            var orders = _orderRepository.GetAllAsync().Result;
+            return View(orders);
         }
 
         // GET: Admin/AdminPanel
