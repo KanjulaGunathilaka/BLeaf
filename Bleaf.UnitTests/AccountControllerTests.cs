@@ -15,6 +15,24 @@ namespace Bleaf.UnitTests
     [TestClass]
     public class AccountControllerTests
     {
+        private Mock<ICategoryRepository> fakeCategoryRepository;
+        private Mock<IItemRepository> fakeItemRepository;
+        private Mock<IUserRepository> fakeUserRepository;
+        private Mock<IOrderRepository> fakeOrderRepository;
+        private Mock<UserManager<IdentityUser>> mockUserManager;
+        private Mock<SignInManager<IdentityUser>> mockSignInManager;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            fakeCategoryRepository = new Mock<ICategoryRepository>();
+            fakeItemRepository = new Mock<IItemRepository>();
+            fakeUserRepository = new Mock<IUserRepository>();
+            fakeOrderRepository = new Mock<IOrderRepository>();
+            mockUserManager = GetMockUserManager();
+            mockSignInManager = GetMockSignInManager(mockUserManager);
+        }
+
         private Mock<UserManager<IdentityUser>> GetMockUserManager()
         {
             var store = new Mock<IUserStore<IdentityUser>>();
@@ -33,19 +51,13 @@ namespace Bleaf.UnitTests
         public void WhenManagedItemsCalled_CategoriesAreLoaded()
         {
             // Arrange
-            var fakeCategoryRepository = new Mock<ICategoryRepository>();
-            var fakeItemRepository = new Mock<IItemRepository>();
-            var fakeUserRepository = new Mock<IUserRepository>();
-            var mockUserManager = GetMockUserManager();
-            var mockSignInManager = GetMockSignInManager(mockUserManager);
-
             fakeCategoryRepository.Setup(x => x.AllCategories).Returns(new List<Category>()
             {
                 new Category { CategoryId = 1, Name = "Category 1" },
                 new Category { CategoryId = 2, Name = "Category 2" }
             });
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object);
 
             // Act
             var view = adminController.ManageItems() as ViewResult;
@@ -60,19 +72,13 @@ namespace Bleaf.UnitTests
         public void WhenManagedItemsCalled_ItemsAreLoaded()
         {
             // Arrange
-            var fakeCategoryRepository = new Mock<ICategoryRepository>();
-            var fakeItemRepository = new Mock<IItemRepository>();
-            var fakeUserRepository = new Mock<IUserRepository>();
-            var mockUserManager = GetMockUserManager();
-            var mockSignInManager = GetMockSignInManager(mockUserManager);
-
             fakeItemRepository.Setup(x => x.AllItems).Returns(new List<Item>()
             {
                 new Item { ItemId = 1, Name = "Item 1" },
                 new Item { ItemId = 2, Name = "Item 2" }
             }.AsQueryable());
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object);
 
             // Act
             var view = adminController.ManageItems() as ViewResult;

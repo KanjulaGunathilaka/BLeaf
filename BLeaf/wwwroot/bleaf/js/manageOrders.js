@@ -1,6 +1,27 @@
 ﻿$(document).ready(function () {
     console.log("manageOrders.js loaded");
 
+    // Function to fetch and display the count of pending orders
+    function updatePendingOrdersBadge() {
+        $.ajax({
+            type: "GET",
+            url: "/api/order/pendingCount",
+            success: function (count) {
+                if (count > 0) {
+                    $("#pendingOrdersBadge").text(count).show();
+                } else {
+                    $("#pendingOrdersBadge").hide();
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Failed to fetch pending orders count:", error);
+            }
+        });
+    }
+
+    // Call the function to update the badge on page load
+    updatePendingOrdersBadge();
+
     // Load Orders
     function loadOrders() {
         $.ajax({
@@ -64,6 +85,7 @@
             success: function (response) {
                 showOrderMessage("Order deleted successfully", "alert-success");
                 loadOrders();
+                updatePendingOrdersBadge(); // Update the badge after deleting an order
                 clearOrderMessage();
             },
             error: function (xhr, status, error) {
@@ -169,6 +191,7 @@
             success: function (response) {
                 showOrderMessage("Order updated successfully", "alert-success");
                 loadOrders();
+                updatePendingOrdersBadge(); // Update the badge after updating an order
                 $("#editOrderForm").hide();
                 setTimeout(clearOrderMessage, 5000);
             },

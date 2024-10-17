@@ -11,5 +11,6 @@ namespace BLeaf.Models.IRepository
         Task UpdateAsync(Order order);
         Task DeleteAsync(int id);
         Task<Item> GetItemByIdAsync(int itemId);
+        Task<int> GetPendingOrdersCountAsync();
     }
 }

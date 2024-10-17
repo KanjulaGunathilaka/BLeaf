@@ -118,6 +118,13 @@ namespace BLeaf.Controllers
             return NoContent();
         }
 
+        [HttpGet("pendingCount")]
+        public async Task<ActionResult<int>> GetPendingOrdersCount()
+        {
+            var pendingOrdersCount = await _orderRepository.GetPendingOrdersCountAsync();
+            return Ok(pendingOrdersCount);
+        }
+
         [HttpGet("DownloadReceipt")]
         public async Task<ActionResult> DownloadReceipt(int orderId)
         {

@@ -61,5 +61,10 @@ namespace BLeaf.Models.Repository
         {
             return await _context.Items.FindAsync(itemId);
         }
+
+        public async Task<int> GetPendingOrdersCountAsync()
+        {
+            return await _context.Orders.CountAsync(o => o.OrderStatus == "Pending");
+        }
     }
 }
