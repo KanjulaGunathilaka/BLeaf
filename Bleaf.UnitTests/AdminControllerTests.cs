@@ -16,6 +16,7 @@ namespace Bleaf.UnitTests
         private Mock<IUserRepository> fakeUserRepository;
         private Mock<IOrderRepository> fakeOrderRepository;
         private Mock<IReservationRepository> fakeReservationRepository;
+        private Mock<IDiscountRepository> fakeDiscountRepository;
         private Mock<UserManager<IdentityUser>> mockUserManager;
 
         [TestInitialize]
@@ -26,6 +27,7 @@ namespace Bleaf.UnitTests
             fakeUserRepository = new Mock<IUserRepository>();
             fakeOrderRepository = new Mock<IOrderRepository>();
             fakeReservationRepository = new Mock<IReservationRepository>();
+            fakeDiscountRepository = new Mock<IDiscountRepository>();
             mockUserManager = GetMockUserManager();
         }
 
@@ -45,7 +47,7 @@ namespace Bleaf.UnitTests
                 new Category { CategoryId = 2, Name = "Category 2" }
             });
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object, fakeDiscountRepository.Object);
 
             var view = adminController.ManageItems() as ViewResult;
 
@@ -63,7 +65,7 @@ namespace Bleaf.UnitTests
                 new Item { ItemId = 2, Name = "Item 2" }
             }.AsQueryable());
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object, fakeDiscountRepository.Object);
 
             var view = adminController.ManageItems() as ViewResult;
 
@@ -77,7 +79,7 @@ namespace Bleaf.UnitTests
         {
             fakeCategoryRepository.Setup(x => x.AllCategories).Returns(new List<Category>());
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object, fakeDiscountRepository.Object);
 
             var view = adminController.ManageItems() as ViewResult;
 
@@ -92,7 +94,7 @@ namespace Bleaf.UnitTests
             List<Item> items = new List<Item>();
             fakeItemRepository.Setup(x => x.AllItems).Returns(items.AsQueryable());
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object, fakeDiscountRepository.Object);
 
             var view = adminController.ManageItems() as ViewResult;
 

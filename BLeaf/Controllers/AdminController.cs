@@ -16,8 +16,9 @@ namespace BLeaf.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IOrderRepository _orderRepository;
         private readonly IReservationRepository _reservationRepository;
+        private readonly IDiscountRepository _discountRepository;
 
-        public AdminController(ICategoryRepository categoryRepository, IItemRepository itemRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager, IOrderRepository orderRepository, IReservationRepository reservationRepository)
+        public AdminController(ICategoryRepository categoryRepository, IItemRepository itemRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager, IOrderRepository orderRepository, IReservationRepository reservationRepository, IDiscountRepository discountRepository)
         {
             _categoryRepository = categoryRepository;
             _itemRepository = itemRepository;
@@ -25,6 +26,7 @@ namespace BLeaf.Controllers
             _userManager = userManager;
             _orderRepository = orderRepository;
             _reservationRepository = reservationRepository;
+            _discountRepository = discountRepository;
         }
 
         // Action to manage items
@@ -33,8 +35,9 @@ namespace BLeaf.Controllers
             var categories = _categoryRepository.AllCategories;
             var items = _itemRepository.AllItems;
             var users = _userRepository.AllUsers;
+            var discounts = _discountRepository.AllDiscounts;
 
-            var adminViewModel = new BLeafViewModel(categories, items, users);
+            var adminViewModel = new BLeafViewModel(categories, items, users, discounts);
             return View(adminViewModel);
         }
 
@@ -65,6 +68,13 @@ namespace BLeaf.Controllers
         {
             var reservations = await _reservationRepository.GetAllReservationsAsync();
             return View(reservations);
+        }
+
+        public IActionResult ManageDiscounts()
+        {
+            var discounts = _discountRepository.AllDiscounts;
+            var adminViewModel = new BLeafViewModel { Discounts = discounts };
+            return View(adminViewModel);
         }
 
         [HttpPost]

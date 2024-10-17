@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BLeaf.Models;
-using BLeaf.Data;
+﻿using BLeaf.Models;
+using BLeaf.Models.IRepository;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BLeaf.Controllers
 {
@@ -9,88 +10,79 @@ namespace BLeaf.Controllers
     [ApiController]
     public class DiscountController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IDiscountRepository _discountRepository;
 
-        public DiscountController(ApplicationDbContext context)
+        public DiscountController(IDiscountRepository discountRepository)
         {
-            _context = context;
+            _discountRepository = discountRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Discount>>> GetDiscounts()
+        public async Task<ActionResult<IEnumerable<Discount>>> GetAllDiscounts()
         {
-            return await _context.Discounts.ToListAsync();
+            var discounts = _discountRepository.AllDiscounts;
+            return Ok(discounts);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Discount>> GetDiscount(int id)
+        public async Task<ActionResult<Discount>> GetDiscountById(int id)
         {
-            var discount = await _context.Discounts.FindAsync(id);
-
+            var discount = await _discountRepository.FindDiscountById(id);
             if (discount == null)
             {
                 return NotFound();
             }
-
-            return discount;
+            return Ok(discount);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Discount>> PostDiscount(Discount discount)
+        public async Task<ActionResult<Discount>> AddDiscount([FromBody] Discount discount)
         {
-            _context.Discounts.Add(discount);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return CreatedAtAction("GetDiscount", new { id = discount.DiscountId }, discount);
+            var createdDiscount = await _discountRepository.SaveDiscount(discount);
+            return CreatedAtAction(nameof(GetDiscountById), new { id = createdDiscount.DiscountId }, createdDiscount);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDiscount(int id, Discount discount)
+        public async Task<IActionResult> UpdateDiscount(int id, [FromBody] Discount discount)
         {
-            if (id != discount.DiscountId)
+            if (discount == null || discount.DiscountId != id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(discount).State = EntityState.Modified;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             try
             {
-                await _context.SaveChangesAsync();
+                var updatedDiscount = await _discountRepository.UpdateDiscount(discount);
+                return Ok(updatedDiscount);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (KeyNotFoundException)
             {
-                if (!DiscountExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
-
-            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDiscount(int id)
         {
-            var discount = await _context.Discounts.FindAsync(id);
-            if (discount == null)
+            try
+            {
+                var deletedDiscount = await _discountRepository.DeleteDiscount(id);
+                return Ok(deletedDiscount);
+            }
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            _context.Discounts.Remove(discount);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool DiscountExists(int id)
-        {
-            return _context.Discounts.Any(e => e.DiscountId == id);
         }
     }
 }

@@ -13,13 +13,15 @@ namespace BLeaf.Controllers
         private readonly IItemRepository _itemRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IDiscountRepository _discountRepository;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public BLeafController(IItemRepository itemRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager)
+        public BLeafController(IItemRepository itemRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager, IDiscountRepository discountRepository)
         {
             _categoryRepository = categoryRepository;
             _itemRepository = itemRepository;
             _userRepository = userRepository;
+			_discountRepository = discountRepository;
             _userManager = userManager;
         }
 
@@ -28,8 +30,9 @@ namespace BLeaf.Controllers
             var items = _itemRepository.AllItems;
             var categories = _categoryRepository.AllCategories;
             var users = _userRepository.AllUsers;
+			var discounts = _discountRepository.AllDiscounts;
 
-            return View(new BLeafViewModel(categories, items, users));
+            return View(new BLeafViewModel(categories, items, users, discounts));
         }
 
         public IActionResult AboutUs()
