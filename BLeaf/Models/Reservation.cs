@@ -7,19 +7,22 @@ namespace BLeaf.Models
     {
         public int ReservationId { get; set; }
 
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        public User User { get; set; }
+        [Required]
+        public string Name { get; set; }
 
         [Required]
+        public string? Email { get; set; }
+
+        [Phone]
+        public string? PhoneNumber { get; set; }
+
         public DateTime ReservationDate { get; set; }
 
-        [Required]
         [Range(1, int.MaxValue)]
-        public int NumberOfPeople { get; set; }
+        public int? NumberOfPeople { get; set; }
 
         [StringLength(500)]
-        public string SpecialRequests { get; set; }
+        public string? SpecialRequests { get; set; }
 
         [StringLength(50)]
         public string ReservationStatus { get; set; } = "Pending";

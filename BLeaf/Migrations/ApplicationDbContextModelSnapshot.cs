@@ -335,8 +335,19 @@ namespace BLeaf.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int>("NumberOfPeople")
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NumberOfPeople")
                         .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReservationDate")
                         .HasColumnType("datetime2");
@@ -349,7 +360,6 @@ namespace BLeaf.Migrations
                         .HasDefaultValue("Pending");
 
                     b.Property<string>("SpecialRequests")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -358,7 +368,7 @@ namespace BLeaf.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("ReservationId");
@@ -745,13 +755,9 @@ namespace BLeaf.Migrations
 
             modelBuilder.Entity("BLeaf.Models.Reservation", b =>
                 {
-                    b.HasOne("User", "User")
+                    b.HasOne("User", null)
                         .WithMany("Reservations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("BLeaf.Models.Review", b =>

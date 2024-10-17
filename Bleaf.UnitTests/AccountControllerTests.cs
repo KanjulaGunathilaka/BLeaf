@@ -19,6 +19,7 @@ namespace Bleaf.UnitTests
         private Mock<IItemRepository> fakeItemRepository;
         private Mock<IUserRepository> fakeUserRepository;
         private Mock<IOrderRepository> fakeOrderRepository;
+        private Mock<IReservationRepository> fakeReservationRepository;
         private Mock<UserManager<IdentityUser>> mockUserManager;
         private Mock<SignInManager<IdentityUser>> mockSignInManager;
 
@@ -29,6 +30,7 @@ namespace Bleaf.UnitTests
             fakeItemRepository = new Mock<IItemRepository>();
             fakeUserRepository = new Mock<IUserRepository>();
             fakeOrderRepository = new Mock<IOrderRepository>();
+            fakeReservationRepository = new Mock<IReservationRepository>();
             mockUserManager = GetMockUserManager();
             mockSignInManager = GetMockSignInManager(mockUserManager);
         }
@@ -57,7 +59,7 @@ namespace Bleaf.UnitTests
                 new Category { CategoryId = 2, Name = "Category 2" }
             });
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object);
 
             // Act
             var view = adminController.ManageItems() as ViewResult;
@@ -78,7 +80,7 @@ namespace Bleaf.UnitTests
                 new Item { ItemId = 2, Name = "Item 2" }
             }.AsQueryable());
 
-            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object);
+            var adminController = new AdminController(fakeCategoryRepository.Object, fakeItemRepository.Object, fakeUserRepository.Object, mockUserManager.Object, fakeOrderRepository.Object, fakeReservationRepository.Object);
 
             // Act
             var view = adminController.ManageItems() as ViewResult;

@@ -1,99 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BLeaf.Models;
-using System.Collections.Generic;
-using System.Linq;
+using BLeaf.Models.IRepository;
 using System.Threading.Tasks;
-using BLeaf.Data;
 
 namespace BLeaf.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReservationController : ControllerBase
+    public class ReservationController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IReservationRepository _reservationRepository;
 
-        public ReservationController(ApplicationDbContext context)
+        public ReservationController(IReservationRepository reservationRepository)
         {
-            _context = context;
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
-        {
-            return await _context.Reservations.Include(r => r.User).ToListAsync();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(int id)
-        {
-            var reservation = await _context.Reservations.Include(r => r.User).FirstOrDefaultAsync(r => r.ReservationId == id);
-
-            if (reservation == null)
-            {
-                return NotFound();
-            }
-
-            return reservation;
+            _reservationRepository = reservationRepository;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+        public async Task<IActionResult> Create(Reservation reservation)
         {
-            _context.Reservations.Add(reservation);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetReservation", new { id = reservation.ReservationId }, reservation);
+            if (ModelState.IsValid)
+            {
+                reservation.CreatedAt = DateTime.Now;
+                reservation.UpdatedAt = DateTime.Now;
+                await _reservationRepository.AddReservationAsync(reservation);
+                return Json(new { success = true, message = "Reservation created successfully!" });
+            }
+            return Json(new { success = false, message = "Failed to create reservation. Please check your input and try again." });
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(int id, Reservation reservation)
+        public async Task<IActionResult> ManageReservations()
         {
-            if (id != reservation.ReservationId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(reservation).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReservationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var reservations = await _reservationRepository.GetAllReservationsAsync();
+            return View(reservations);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReservation(int id)
+        [HttpPost]
+        public async Task<IActionResult> UpdateReservationStatus(int reservationId, string status)
         {
-            var reservation = await _context.Reservations.FindAsync(id);
-            if (reservation == null)
+            var reservation = await _reservationRepository.GetReservationByIdAsync(reservationId);
+            if (reservation != null)
             {
-                return NotFound();
+                reservation.ReservationStatus = status;
+                reservation.UpdatedAt = DateTime.Now;
+                await _reservationRepository.UpdateReservationAsync(reservation);
+                return Json(new { success = true, message = "Reservation status updated successfully!" });
             }
-
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ReservationExists(int id)
-        {
-            return _context.Reservations.Any(e => e.ReservationId == id);
+            return Json(new { success = false, message = "Failed to update reservation status. Reservation not found." });
         }
     }
 }

@@ -270,22 +270,40 @@ namespace BLeaf.Data
 					context.SaveChanges();
 				}
 
-				// Seed Reservations
-				if (!context.Reservations.Any())
-				{
-					var reservations = new Reservation[]
-					{
-						new Reservation{UserId=1, ReservationDate=DateTime.Now.AddDays(1), NumberOfPeople=2, SpecialRequests="Window seat", ReservationStatus="Pending"},
-						new Reservation{UserId=2, ReservationDate=DateTime.Now.AddDays(2), NumberOfPeople=4, SpecialRequests="High chair for baby", ReservationStatus="Confirmed"}
-					};
+                // Seed Reservations
+                if (!context.Reservations.Any())
+                {
+                    var reservations = new Reservation[]
+                    {
+        new Reservation
+        {
+            Name = "John Doe",
+            Email = "john@example.com",
+            PhoneNumber = "1234567890",
+            ReservationDate = DateTime.Now.AddDays(1),
+            NumberOfPeople = 2,
+            SpecialRequests = "Window seat",
+            ReservationStatus = "Pending"
+        },
+        new Reservation
+        {
+            Name = "Jane Smith",
+            Email = "jane@example.com",
+            PhoneNumber = "0987654321",
+            ReservationDate = DateTime.Now.AddDays(2),
+            NumberOfPeople = 4,
+            SpecialRequests = "High chair for baby",
+            ReservationStatus = "Confirmed"
+        }
+                    };
 
-					foreach (var r in reservations)
-					{
-						context.Reservations.Add(r);
-					}
-					context.SaveChanges();
-				}
-			}
+                    foreach (var r in reservations)
+                    {
+                        context.Reservations.Add(r);
+                    }
+                    context.SaveChanges();
+                }
+            }
 		}
 	}
 }

@@ -15,14 +15,16 @@ namespace BLeaf.Controllers
         private readonly IUserRepository _userRepository;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IOrderRepository _orderRepository;
+        private readonly IReservationRepository _reservationRepository;
 
-        public AdminController(ICategoryRepository categoryRepository, IItemRepository itemRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager, IOrderRepository orderRepository)
+        public AdminController(ICategoryRepository categoryRepository, IItemRepository itemRepository, IUserRepository userRepository, UserManager<IdentityUser> userManager, IOrderRepository orderRepository, IReservationRepository reservationRepository)
         {
             _categoryRepository = categoryRepository;
             _itemRepository = itemRepository;
             _userRepository = userRepository;
             _userManager = userManager;
             _orderRepository = orderRepository;
+            _reservationRepository = reservationRepository;
         }
 
         // Action to manage items
@@ -57,6 +59,25 @@ namespace BLeaf.Controllers
         {
             var orders = _orderRepository.GetAllAsync().Result;
             return View(orders);
+        }
+
+        public async Task<IActionResult> ManageReservations()
+        {
+            var reservations = await _reservationRepository.GetAllReservationsAsync();
+            return View(reservations);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateReservationStatus(int reservationId, string status)
+        {
+            var reservation = await _reservationRepository.GetReservationByIdAsync(reservationId);
+            if (reservation != null)
+            {
+                reservation.ReservationStatus = status;
+                reservation.UpdatedAt = DateTime.Now;
+                await _reservationRepository.UpdateReservationAsync(reservation);
+            }
+            return RedirectToAction("ManageReservations");
         }
 
         // GET: Admin/AdminPanel
