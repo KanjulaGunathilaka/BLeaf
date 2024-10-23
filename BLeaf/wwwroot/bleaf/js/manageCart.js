@@ -39,7 +39,16 @@
             return;
         }
 
-        addToCart(itemId, userId, quantity);
+        var $button = $(this);
+        addToCart(itemId, userId, quantity, function () {
+            // Change the icon to a checkmark
+            $button.html('<i class="fa fa-check"></i>').addClass('added-to-cart');
+
+            // Revert back to the original icon after 2 seconds
+            setTimeout(function () {
+                $button.html('<i class="fa fa-plus"></i>').removeClass('added-to-cart');
+            }, 2000);
+        });
     });
 
     // Event listener for Buy Now button
@@ -108,7 +117,7 @@
         window.location.href = $(this).attr("href");
     });
 
-    function addToCart(itemId, userId, quantity, shopCartUrl) {
+    function addToCart(itemId, userId, quantity, callback) {
         $.ajax({
             url: "/api/item/" + itemId,
             type: 'GET',
@@ -130,6 +139,10 @@
                 updateCartItemCount(); // Update the cart item count
                 loadCart(); // Reload cart after adding item
                 showMessage("Item added to cart successfully!", "alert-success", "#cartMessage");
+
+                if (callback) {
+                    callback();
+                }
             },
             error: function (xhr, status, error) {
                 showMessage("Failed to add item to cart.", "alert-danger", "#cartMessage");

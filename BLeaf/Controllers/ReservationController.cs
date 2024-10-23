@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BLeaf.Models;
 using BLeaf.Models.IRepository;
-using System.Threading.Tasks;
 
 namespace BLeaf.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ReservationController : Controller
     {
         private readonly IReservationRepository _reservationRepository;
@@ -14,8 +15,8 @@ namespace BLeaf.Controllers
             _reservationRepository = reservationRepository;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(Reservation reservation)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -27,24 +28,61 @@ namespace BLeaf.Controllers
             return Json(new { success = false, message = "Failed to create reservation. Please check your input and try again." });
         }
 
-        public async Task<IActionResult> ManageReservations()
+        [HttpGet]
+        public async Task<IActionResult> GetAllReservations()
         {
             var reservations = await _reservationRepository.GetAllReservationsAsync();
-            return View(reservations);
+            return Ok(reservations);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateReservationStatus(int reservationId, string status)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetReservationById(int id)
         {
-            var reservation = await _reservationRepository.GetReservationByIdAsync(reservationId);
-            if (reservation != null)
+            var reservation = await _reservationRepository.GetReservationByIdAsync(id);
+            if (reservation == null)
             {
-                reservation.ReservationStatus = status;
-                reservation.UpdatedAt = DateTime.Now;
-                await _reservationRepository.UpdateReservationAsync(reservation);
-                return Json(new { success = true, message = "Reservation status updated successfully!" });
+                return NotFound();
             }
-            return Json(new { success = false, message = "Failed to update reservation status. Reservation not found." });
+            return Ok(reservation);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateReservation(int id, [FromBody] Reservation reservation)
+        {
+            if (reservation == null || reservation.ReservationId != id)
+            {
+                return BadRequest(new { success = false, message = "Invalid reservation data." });
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { success = false, message = "Invalid model state." });
+            }
+
+            try
+            {
+                reservation.UpdatedAt = DateTime.Now;
+                var updatedReservation = await _reservationRepository.UpdateReservationAsync(reservation);
+                return Ok(new { success = true, message = "Reservation updated successfully!", data = updatedReservation });
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { success = false, message = "Reservation not found." });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReservation(int id)
+        {
+            try
+            {
+                var deletedReservation = await _reservationRepository.DeleteReservationAsync(id);
+                return Ok(new { success = true, message = "Reservation deleted successfully!", data = deletedReservation });
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }

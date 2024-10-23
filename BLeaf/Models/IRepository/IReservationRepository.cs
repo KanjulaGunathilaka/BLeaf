@@ -8,6 +8,7 @@ namespace BLeaf.Models.IRepository
         Task<IEnumerable<Reservation>> GetAllReservationsAsync();
         Task<Reservation> GetReservationByIdAsync(int reservationId);
         Task AddReservationAsync(Reservation reservation);
-        Task UpdateReservationAsync(Reservation reservation);
+        Task<Reservation> UpdateReservationAsync(Reservation reservation);
+        Task<Reservation> DeleteReservationAsync(int reservationId);
     }
 }
