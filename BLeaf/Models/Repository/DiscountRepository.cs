@@ -49,5 +49,10 @@ namespace BLeaf.Models.Repository
         {
             return await _applicationDbContext.Discounts.FindAsync(discountId);
         }
+
+        public async Task<Discount> FindDiscountByCode(string code)
+        {
+            return await _applicationDbContext.Discounts.FirstOrDefaultAsync(d => d.Code == code);
+        }
     }
 }

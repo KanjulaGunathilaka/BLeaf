@@ -185,7 +185,7 @@
             cartItem.quantity = newQuantity;
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartItemCount(); // Update the cart item count
-            loadCart(); // Reload cart after updating item
+            applyPromoCodeAndLoadCart(); // Reapply promo code and reload cart after updating item
         }
     }
 
@@ -194,7 +194,17 @@
         cart = cart.filter(cartItem => cartItem.item.itemId !== parseInt(cartItemId, 10));
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartItemCount(); // Update the cart item count
-        loadCart(); // Reload cart after removing item
+        applyPromoCodeAndLoadCart(); // Reapply promo code and reload cart after removing item
+    }
+
+    function applyPromoCodeAndLoadCart() {
+        // Reapply promo code if it exists
+        let promoCode = localStorage.getItem('promoCode');
+        if (promoCode) {
+            applyPromoCode(promoCode, loadCart);
+        } else {
+            loadCart();
+        }
     }
 
     function loadCart() {
@@ -233,7 +243,97 @@
         // Update bill details
         let total = calculateCartTotal();
         $("#itemTotal").text("$" + total);
-        $("#grandTotal").text("$" + total);
+
+        // Retrieve discount information from localStorage
+        let discountValue = localStorage.getItem('discountValue') || "0.00";
+        let discountedTotal = localStorage.getItem('discountedTotal') || total;
+
+        $("#discountValue").text("-$" + discountValue);
+        $("#grandTotal").text("$" + discountedTotal);
+    }
+
+    // Event listener for Apply Promo Code button
+    $(document).off("click", "#applyPromoCode").on("click", "#applyPromoCode", function (event) {
+        event.preventDefault();
+        var promoCode = $("#promoCode").val();
+        applyPromoCode(promoCode, loadCart);
+    });
+
+    function applyPromoCode(promoCode, callback) {
+        $.ajax({
+            url: "/api/discount/validate/" + promoCode,
+            type: 'GET',
+            success: function (discount) {
+                if (discount) {
+                    let total = calculateCartTotal();
+
+                    // Check if the total meets the minimum order amount requirement
+                    const minimumOrderAmount = 20;
+                    if (total < minimumOrderAmount) {
+                        showMessage("Your order must be at least $" + minimumOrderAmount + " to apply this promo code.", "alert-warning", "#cartMessage");
+                        $("#discountValue").text("$0.00");
+                        $("#grandTotal").text("$" + total.toFixed(2));
+                        return;
+                    }
+
+                    let discountValue = 0;
+
+                    if (discount.discountAmount) {
+                        discountValue = discount.discountAmount;
+                    } else if (discount.discountPercentage) {
+                        discountValue = total * (discount.discountPercentage / 100);
+                    }
+
+                    // Ensure the discount value does not exceed the total
+                    if (discountValue > total) {
+                        discountValue = total;
+                    }
+
+                    let discountedTotal = total - discountValue;
+
+                    // Ensure the discounted total is not less than zero
+                    if (discountedTotal < 0) {
+                        discountedTotal = 0;
+                    }
+
+                    // Store discount information in localStorage
+                    localStorage.setItem('discountValue', discountValue.toFixed(2));
+                    localStorage.setItem('discountedTotal', discountedTotal.toFixed(2));
+                    localStorage.setItem('promoCode', promoCode);
+
+                    $("#discountValue").text("-$" + discountValue.toFixed(2));
+                    $("#grandTotal").text("$" + discountedTotal.toFixed(2));
+                    showMessage("Promo code applied successfully!", "alert-success", "#cartMessage");
+
+                    if (callback) {
+                        callback();
+                    }
+                } else {
+                    showMessage("Invalid promo code.", "alert-danger", "#cartMessage");
+                    localStorage.removeItem('discountValue');
+                    localStorage.removeItem('discountedTotal');
+                    localStorage.removeItem('promoCode');
+                    $("#discountValue").text("$0.00");
+                    $("#grandTotal").text("$" + calculateCartTotal());
+
+                    if (callback) {
+                        callback();
+                    }
+                }
+            },
+            error: function (xhr, status, error) {
+                showMessage("Failed to apply promo code.", "alert-danger", "#cartMessage");
+                localStorage.removeItem('discountValue');
+                localStorage.removeItem('discountedTotal');
+                localStorage.removeItem('promoCode');
+                $("#discountValue").text("$0.00");
+                $("#grandTotal").text("$" + calculateCartTotal());
+
+                if (callback) {
+                    callback();
+                }
+            }
+        });
     }
 
     function showMessage(message, alertClass, container) {

@@ -37,8 +37,12 @@
 
         // Update order total
         let total = calculateCartTotal();
+        let discountValue = localStorage.getItem('discountValue') || "0.00";
+        let discountedTotal = localStorage.getItem('discountedTotal') || total;
+
         $("#orderSubtotal").text("$" + total);
-        $("#orderTotal").text("$" + total);
+        $("#orderDiscount").text("-$" + discountValue);
+        $("#orderTotal").text("$" + discountedTotal);
 
         // Attach event handler for remove buttons
         $(".remove-item").on("click", function () {
@@ -53,12 +57,22 @@
         let cart = getCartItems();
         cart = cart.filter(item => item.item.itemId !== parseInt(cartItemId, 10));
         localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Reapply promo code if it exists
+        let promoCode = localStorage.getItem('promoCode');
+        if (promoCode) {
+            applyPromoCode(promoCode);
+        } else {
+            let total = calculateCartTotal();
+            $("#orderDiscount").text("$0.00");
+            $("#orderTotal").text("$" + total);
+        }
     }
 
     // Function to gather form data and create order
     function gatherOrderDetails() {
         let cart = getCartItems();
-        let orderTotal = calculateCartTotal();
+        let orderTotal = localStorage.getItem('discountedTotal') || calculateCartTotal();
 
         let orderDetails = {
             user: {
@@ -98,6 +112,9 @@
                 showMessage("Order placed successfully!", "alert-success");
                 // Clear the cart and redirect or update the UI as needed
                 localStorage.removeItem('cart');
+                localStorage.removeItem('discountValue');
+                localStorage.removeItem('discountedTotal');
+                localStorage.removeItem('promoCode');
                 window.location.href = '/OrderView/OrderSuccess?orderId=' + response.orderId;
             },
             error: function (xhr, status, error) {

@@ -84,5 +84,18 @@ namespace BLeaf.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet("validate/{code}")]
+        public async Task<ActionResult<Discount>> ValidatePromoCode(string code)
+        {
+            var discount = await _discountRepository.FindDiscountByCode(code);
+            if (discount == null || (discount.IsActive.HasValue && !discount.IsActive.Value) ||
+                (discount.ValidFrom.HasValue && discount.ValidFrom > DateTime.Now) ||
+                (discount.ValidTo.HasValue && discount.ValidTo < DateTime.Now))
+            {
+                return NotFound();
+            }
+            return Ok(discount);
+        }
     }
 }

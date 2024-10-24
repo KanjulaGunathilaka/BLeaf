@@ -19,7 +19,7 @@
                 <div class="col-lg-8">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="title m-b15 m-lg-30">Cart Items</h5>
-                        <a href="javascript:void(0);" class="btn btn-primary panel-btn">Filter</a>                       
+                        <a href="javascript:void(0);" class="btn btn-primary panel-btn">Filter</a>
                     </div>
                     <div id="cartItemsContainer">
                         <!-- Cart items will be dynamically loaded here -->
@@ -53,13 +53,22 @@
                                             <td>Govt Taxes & Other Charges</td>
                                             <td class="price text-primary" id="taxes">$0.00</td>
                                         </tr>
+                                        <tr class="discount">
+                                            <td>Discount</td>
+                                            <td class="price text-primary" id="discountValue">$0.00</td>
+                                        </tr>
                                         <tr class="total">
                                             <td><h6>Total</h6></td>
                                             <td class="price text-primary" id="grandTotal">$0.00</td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a href="@Url.Action("ShopCheckout","BLeaf")" class="btn btn-primary d-block text-center btn-md w-100 btn-hover-1 btn-checkout"><span>Order Now <i class="fa-solid fa-arrow-right"></i></span></a>
+                                <!-- Promo Code Section -->
+                                <div class="promo-code">
+                                    <input type="text" id="promoCode" placeholder="Enter promo code" class="form-control mb-2">
+                                    <button id="applyPromoCode" class="btn btn-primary w-100">Apply</button>
+                                </div>
+                                <a href="@Url.Action("ShopCheckout","BLeaf")" class="btn btn-primary d-block text-center btn-md w-100 btn-hover-1 btn-checkout mt-3"><span>Order Now <i class="fa-solid fa-arrow-right"></i></span></a>
                                 <div id="cartMessage" class="alert" style="display:none;"></div>
                             </div>
                         </div>

@@ -10,5 +10,6 @@ namespace BLeaf.Models.IRepository
         Task<Discount> UpdateDiscount(Discount discount);
         Task<Discount> DeleteDiscount(int discountId);
         Task<Discount> FindDiscountById(int discountId);
+        Task<Discount> FindDiscountByCode(string code);
     }
 }
